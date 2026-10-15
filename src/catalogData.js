@@ -1,12 +1,243 @@
 export const PRODUCTS_CATALOG = [
   {
+    id: 'NORGREN-RM8000',
+    name: 'Norgren - Air Cylinder RM8000 Series',
+    brand: 'Norgren',
+    category: 'Silinder Pneumatik',
+    categoryName: 'Silinder & Aktuator Pneumatik ISO 15552',
+    sku: 'RM/8025/M/100',
+    image: '/products/norgren-air-cylinder-rm8000.jpg',
+    stockStatus: 'Stok Tersedia',
+    stockLocation: 'Gudang Cikarang & Jakarta',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Silinder pneumatik standar ISO 15552 Norgren seri RM/8000 double acting dengan bodi profil aluminium kokoh.',
+    description: 'Silinder pneumatik profil Norgren seri RM/8000 memenuhi standar ISO 15552 dengan piston magnetik, bantalan peredam adjustable yang presisi, dan daya tahan operasi jutaan siklus untuk otomasi industri berat.',
+    specsBadge: 'Standar: ISO 15552 • Bore Ø32-100mm • Double Acting',
+    specs: {
+      'Standar Desain': 'ISO 15552 / VDMA 24562',
+      'Tipe Operasi': 'Double Acting (Kerja Ganda)',
+      'Bahan Bodi': 'Aluminium Anodized Berkekuatan Tinggi',
+      'Tekanan Kerja': '1 ~ 10 bar (14.5 ~ 145 psi)',
+      'Suhu Kerja': '-20°C ~ +80°C',
+      'Fitur Piston': 'Piston Magnetik untuk Sensor Posisi'
+    },
+    installationNotes: [
+      'Gunakan filter udara 40 mikron sebelum silinder untuk umur pakai seal maksimal.',
+      'Setel sekrup bantalan peredam (cushion) di kedua ujung silinder agar gerakan berhenti mulus.'
+    ]
+  },
+  {
+    id: 'NORGREN-ISO-STAR',
+    name: 'Norgren - Iso Star Solenoid Valve',
+    brand: 'Norgren',
+    category: 'Katup Solenoid',
+    categoryName: 'Katup Solenoid Sub-base ISO 5599-1',
+    sku: 'SXE9573-A70-00',
+    image: '/products/norgren-iso-star-solenoid-valve.jpg',
+    stockStatus: 'Stok Tersedia',
+    stockLocation: 'Gudang Pusat Jakarta',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Katup solenoid sub-base Norgren ISO*Star dengan spool & sleeve stainless steel presisi tinggi bebas gesekan karet.',
+    description: 'Katup kontrol arah Norgren ISO*Star dirancang untuk performa tanpa tanding pada sirkuit pneumatik berkecepatan tinggi. Teknologi spool & sleeve khusus memberikan respon instan dan masa pakai hingga ratusan juta siklus tanpa memerlukan oli pelumas tambahan.',
+    specsBadge: 'Standar: ISO 5599-1 • Respon Cepat • Lapped Spool',
+    specs: {
+      'Standar Dudukan': 'ISO 5599-1 Size 1 / Size 2',
+      'Fungsi Katup': '5/2-Way atau 5/3-Way Solenoid Pilot',
+      'Material Spool & Sleeve': 'Stainless Steel Presisi Tinggi',
+      'Tekanan Operasi': '1.2 ~ 16 bar',
+      'Konsumsi Daya': '2.0W DC / 4.2VA AC'
+    },
+    installationNotes: [
+      'Pasang pada sub-base atau manifold blok resmi berstandar ISO 5599-1.',
+      'Kencangkan baut pengikat secara diagonal dengan torsi yang merata.'
+    ]
+  },
+  {
+    id: 'NORGREN-B64G-REG',
+    name: 'Norgren - Olympian Plus Filter or Regulator B64G Series',
+    brand: 'Norgren',
+    category: 'Filter & Regulator (FRL)',
+    categoryName: 'Penyaring & Pengatur Tekanan Udara Modular',
+    sku: 'B64G-4GK-AD3-RMN',
+    image: '/products/norgren-olympian-plus-b64g.jpg',
+    stockStatus: 'Stok Tersedia',
+    stockLocation: 'Gudang Cikarang & Karawang',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Unit filter-regulator kombinasi Norgren Olympian Plus B64G dengan sistem plug-in modular tanpa perlu membongkar pipa.',
+    description: 'Unit kombinasi filter dan pengatur tekanan Norgren Olympian Plus B64G terkenal di industri manufaktur atas sistem plug-in clamp-ring yang memudahkan penggantian unit dalam hitungan detik tanpa membongkar pipa inlet/outlet.',
+    specsBadge: 'Port G1/2" • Filtrasi 40µm • Aliran 4,200 L/mnt',
+    specs: {
+      'Port Koneksi': 'G1/4", G3/8", G1/2" BSPP',
+      'Elemen Filter': '40 Mikron Sintered Bronze / Polypropylene',
+      'Rentang Tekanan Outlet': '0.3 ~ 10 bar (4 ~ 145 psi)',
+      'Laju Aliran': 'Hingga 4,200 Liter / menit',
+      'Tipe Mangkuk': 'Aluminium dengan Indikator Level Cairan'
+    },
+    installationNotes: [
+      'Pastikan arah panah aliran pada yoke bodi searah dengan pipa udara kompresor.',
+      'Gunakan sistem auto-drain untuk pembuangan air kondensasi otomatis.'
+    ]
+  },
+  {
+    id: 'NORGREN-B68G-REG',
+    name: 'Norgren - Olympian Plus FilterRegulator B68G Series',
+    brand: 'Norgren',
+    category: 'Filter & Regulator (FRL)',
+    categoryName: 'Unit FRL Heavy Duty Aliran Tinggi G3/4 - G1',
+    sku: 'B68G-8GK-AR3-RLN',
+    image: '/products/norgren-olympian-plus-b68g.jpg',
+    stockStatus: 'Garansi Resmi',
+    stockLocation: 'Gudang Jakarta & Surabaya',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Unit filter regulator Olympian Plus B68G kapasitas aliran besar untuk jalur utama pipa pabrik industri berat.',
+    description: 'Norgren Olympian Plus B68G adalah solusi terbaik untuk instalasi jalur utama pipa udara pabrik dengan kebutuhan debit udara masif. Mangkuk logam tahan tekanan tinggi dan elemen penyaring mikron ganda menjamin udara bertekanan bebas minyak dan kondensat air.',
+    specsBadge: 'Port G3/4" - G1" • Aliran Hingga 11,000 L/mnt',
+    specs: {
+      'Port Koneksi': 'G3/4", G1" BSPP',
+      'Laju Aliran Maksimum': '11,000 Liter / menit',
+      'Tekanan Masuk Maksimum': '17 bar (250 psi)',
+      'Tingkat Filtrasi': '40 µm atau 5 µm High Efficiency'
+    },
+    installationNotes: [
+      'Pasang secara vertikal dengan mangkuk pembuangan menghadap ke bawah.',
+      'Bersihkan elemen filter secara berkala untuk menjaga kapasitas aliran optimal.'
+    ]
+  },
+  {
+    id: 'NORGREN-VCB',
+    name: 'Norgren - Solenoid Valve VCB Series',
+    brand: 'Norgren',
+    category: 'Katup Solenoid',
+    categoryName: 'Katup Solenoid Presisi IMI Norgren',
+    sku: 'VCB22D517A-AD213L',
+    image: '/products/norgren-solenoid-valve-vcb.jpg',
+    stockStatus: 'Stok Tersedia',
+    stockLocation: 'Gudang Pusat Jakarta & Cikarang',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Katup solenoid presisi tinggi IMI Norgren seri VCB22D tekanan kerja 1.5 - 8.0 bar, hemat daya 3W IP65.',
+    description: 'Katup solenoid pneumatik IMI Norgren Seri VCB22D517A-AD213L buatan pabrik bersertifikasi internasional. Memiliki rentang operasi tekanan 1.5 ~ 8.0 bar, kumparan DC24V hemat daya 3 Watt dengan proteksi IP65 dan sertifikasi CE untuk keandalan mesin industri tinggi.',
+    specsBadge: 'Model: VCB22D • DC24V 3W • IP65 • 1.5 - 8.0 bar',
+    specs: {
+      'Model Lengkap': 'VCB22D517A-AD213L',
+      'Tipe Katup': '5/2-Way Single Solenoid Spring Return',
+      'Voltase Kumparan': 'DC 24V (100% ED)',
+      'Konsumsi Daya': '3 Watt',
+      'Rentang Tekanan': '1.5 ~ 8.0 bar (0.15 ~ 0.8 MPa)',
+      'Tingkat Proteksi': 'IP65 Dust & Water Resistant'
+    },
+    installationNotes: [
+      'Port 1 adalah inlet tekanan utama, port 2 & 4 adalah jalur silinder aktuator.',
+      'Pastikan soket konektor DIN terpasang rapat untuk menjaga proteksi kedap air IP65.'
+    ]
+  },
+  {
+    id: 'NORGREN-V51',
+    name: 'Norgren - Solenoid Valve V51 Series',
+    brand: 'Norgren',
+    category: 'Katup Solenoid',
+    categoryName: 'Katup Solenoid Kontrol Arah Mesin',
+    sku: 'V51B517A-A2000',
+    image: '/products/norgren-solenoid-valve-v51.jpg',
+    stockStatus: 'Stok Tersedia',
+    stockLocation: 'Gudang Cikarang',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Katup pneumatik solenoid 5/2-Way Norgren seri V51B bertekanan maksimal hingga 8 bar bertegangan 220V/240V.',
+    description: 'Katup solenoid Norgren V51B517A-A2000 adalah katup kontrol silinder kerja ganda berkecepatan tinggi. Dilengkapi kumparan koil 220/240V AC 5.0VA IP65 untuk pengoperasian langsung dengan arus listrik pabrik.',
+    specsBadge: 'Model: V51B • Pmax: 8 bar • 220/240V AC IP65',
+    specs: {
+      'Model Lengkap': 'V51B517A-A2000',
+      'Konfigurasi': '5/2-Way Single Solenoid',
+      'Tekanan Maksimal': 'Pmax: 8 bar',
+      'Voltase Koil': '220/240V AC 50/60Hz 5.0VA',
+      'Waktu Siklus': '< 20 milidetik respon kilat'
+    },
+    installationNotes: [
+      'Gunakan silencer pada port exhaust untuk meredam kebisingan pembuangan udara.',
+      'Pastikan kabel ground terpasang sesuai standar keselamatan kelistrikan pabrik.'
+    ]
+  },
+  {
+    id: 'NORGREN-V61',
+    name: 'Norgren - Solenoid Valve V61 Series',
+    brand: 'Norgren',
+    category: 'Katup Solenoid',
+    categoryName: 'Katup Solenoid Profil Ramping Manifold Blok',
+    sku: 'V61B513A-A213J',
+    image: '/products/norgren-solenoid-valve-v61.jpg',
+    stockStatus: 'Stok Tersedia',
+    stockLocation: 'Gudang Jakarta',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Katup solenoid kompak Norgren V61 dengan profil ramping untuk blok manifold mesin packaging presisi.',
+    description: 'Seri Norgren V61 dirancang dengan bodi ramping agar dapat disusun rapat pada blok manifold bersama. Solusi ideal untuk kabinet kendali mesin yang memiliki ruang terbatas dengan kebutuhan laju aliran tinggi.',
+    specsBadge: 'Profil Ramping • Manifold Mountable • Laju Aliran Tinggi',
+    specs: {
+      'Model': 'V61B513A-A213J',
+      'Tipe Katup': '5/2-Way Solenoid Valve',
+      'Daya Koil': 'DC24V / AC220V Opsi',
+      'Tekanan Kerja': '1.5 ~ 10 bar'
+    },
+    installationNotes: [
+      'Dapat dipasang tunggal maupun berjejer pada manifold rail.',
+      'Gunakan O-ring seal berkualitas pada dudukan bawah port manifold.'
+    ]
+  },
+  {
+    id: 'NORGREN-B64G',
+    name: 'Norgren - B64G Series',
+    brand: 'Norgren',
+    category: 'Filter & Regulator (FRL)',
+    categoryName: 'Penyaring Udara Presisi Seri B64G',
+    sku: 'B64G-2GK-AD1-RMN',
+    image: '/products/norgren-b64g-series.jpg',
+    stockStatus: 'Garansi Resmi',
+    stockLocation: 'Gudang Cikarang',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Unit regulator dan filter Norgren B64G efisiensi tinggi untuk proteksi instrumen pneumatik mesin otomatis.',
+    description: 'Regulator dan filter udara Norgren seri B64G menyaring debu, karat, dan tetesan air pada sistem pasokan udara bertekanan serta menstabilkan tekanan keluar agar aktuator mesin bekerja konsisten.',
+    specsBadge: 'Filter 40µm • Kenop Kunci Pengaman Tekanan',
+    specs: {
+      'Tipe Unit': 'Filter-Regulator Kombinasi',
+      'Port Koneksi': 'G1/4" BSPP',
+      'Rentang Penyetelan': '0.3 ~ 10 bar',
+      'Mangkuk Penampung': 'Polycarbonate dengan Metal Guard'
+    },
+    installationNotes: [
+      'Tarik kenop regulator ke atas untuk menyetel tekanan, dan tekan ke bawah untuk mengunci nilainya.',
+      'Kuras air kondensat secara teratur sebelum melewati garis batas maksimal mangkuk.'
+    ]
+  },
+  {
+    id: 'NORGREN-B68G',
+    name: 'Norgren - B68G Series',
+    brand: 'Norgren',
+    category: 'Filter & Regulator (FRL)',
+    categoryName: 'Regulator Udara Presisi Seri B68G',
+    sku: 'B68G-6GK-AR1-RLN',
+    image: '/products/norgren-b68g-series.jpg',
+    stockStatus: 'Garansi Resmi',
+    stockLocation: 'Gudang Surabaya',
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Unit filter dan pengatur tekanan Norgren B68G kapasitas besar dengan pembuangan kondensat otomatis.',
+    description: 'Seri Norgren B68G memberikan proteksi maksimal terhadap sistem pneumatik berat. Mampu mengalirkan udara dalam volume tinggi dengan pressure drop minimal.',
+    specsBadge: 'Heavy Duty FRL • Auto-Drain Terintegrasi',
+    specs: {
+      'Tipe Unit': 'Filter-Regulator Kapasitas Besar',
+      'Port Koneksi': 'G3/4" BSPP',
+      'Kapasitas Debit': 'Hingga 8,500 L/menit'
+    },
+    installationNotes: [
+      'Gunakan bracket penopang dinding pipa yang kokoh saat memasang unit B68G.',
+      'Sambungkan selang buangan pada fitting auto-drain menuju penampungan limbah cairan.'
+    ]
+  },
+  {
     id: 'ASCO-8210',
     name: 'ASCO RedHat Katup Solenoid Presisi Tinggi (Seri 8210)',
     brand: 'ASCO',
     category: 'Katup Solenoid',
     categoryName: 'Katup Solenoid Kontrol Fluida',
     sku: '8210G002-24VDC',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+    image: '/products/norgren-iso-star-solenoid-valve.jpg',
     stockStatus: 'Stok Tersedia',
     stockLocation: 'Gudang Pusat Jakarta & Cikarang',
     whatsapp: '+62 896 5958 6363',
@@ -23,8 +254,7 @@ export const PRODUCTS_CATALOG = [
     },
     installationNotes: [
       'Pastikan arah panah pada bodi katup searah dengan aliran pipa fluida pabrik.',
-      'Gunakan saringan filter sebelum katup untuk mencegah partikel menyumbat dudukan inti solenoid.',
-      'Pasang kabel kumparan dengan ground yang baik untuk keselamatan standar kelistrikan industri.'
+      'Gunakan saringan filter sebelum katup untuk mencegah partikel menyumbat dudukan inti solenoid.'
     ]
   },
   {
@@ -34,7 +264,7 @@ export const PRODUCTS_CATALOG = [
     category: 'Katup Solenoid',
     categoryName: 'Katup Pneumatik Arah Mesin',
     sku: 'MK8-08-SINGLE-24V',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    image: '/products/norgren-solenoid-valve-vcb.jpg',
     stockStatus: 'Stok Tersedia',
     stockLocation: 'Gudang Cikarang & Karawang',
     whatsapp: '+62 896 5958 6363',
@@ -60,7 +290,7 @@ export const PRODUCTS_CATALOG = [
     category: 'Silinder Pneumatik',
     categoryName: 'Silinder & Aktuator Pneumatik Presisi',
     sku: 'PRA-50X100-M',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    image: '/products/norgren-air-cylinder-rm8000.jpg',
     stockStatus: 'Stok Tersedia',
     stockLocation: 'Gudang Pusat Jakarta',
     whatsapp: '+62 896 5958 6363',
@@ -78,188 +308,5 @@ export const PRODUCTS_CATALOG = [
       'Gunakan sensor magnetik Aventics tipe ST6 pada alur samping tanpa memerlukan bracket eksternal.',
       'Setel sekrup cushion pada tutup ujung silinder secara perlahan untuk meredam hentakan beban kinetik.'
     ]
-  },
-  {
-    id: 'NORGREN-EXCELON',
-    name: 'Norgren Unit Filter Regulator Udara (Seri Excelon Plus)',
-    brand: 'Norgren',
-    category: 'Filter & Regulator (FRL)',
-    categoryName: 'Penyaring & Pengatur Tekanan Udara',
-    sku: 'NORG-BL84-301G',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta & Surabaya',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Unit kombinasi penyaring udara mikron dan regulator tekanan Norgren Excelon Plus efisiensi tinggi.',
-    description: 'Unit kombinasi filter-regulator Norgren Excelon Plus dirancang dengan tingkat pemisahan air kondensasi hingga 98%, mangkuk aluminium kokoh dengan indikator level cairan, dan tombol kenop regulator anti-geser untuk menjaga stabilitas tekanan kerja mesin.',
-    specsBadge: 'Aliran: 4,000 L/mnt | Tekanan: 0.3 - 10 bar | Port: G3/8"',
-    specs: {
-      'Efisiensi Filtrasi Partikel': '5 Mikron / 40 Mikron Sintered Element',
-      'Tingkat Pemisahan Air': '> 98% Water Separation Efficiency',
-      'Laju Aliran Maksimum': '4,000 Liter / menit',
-      'Rentang Tekanan Kerja': '0.3 ~ 10 bar (4.3 ~ 145 psi)',
-      'Sistem Pembuangan Kondensat': 'Auto-Drain & Manual Drain'
-    },
-    installationNotes: [
-      'Pasang tegak lurus dengan saluran masuk searah dengan tanda panah pada bodi.',
-      'Bersihkan elemen filter secara berkala setiap 6 bulan atau saat penurunan tekanan terdeteksi.'
-    ]
-  },
-  {
-    id: 'AIRTAC-4V210',
-    name: 'Airtac Katup Solenoid 5/2-Way (Seri 4V210-08)',
-    brand: 'Airtac',
-    category: 'Katup Solenoid',
-    categoryName: 'Katup Solenoid Kontrol Pneumatik',
-    sku: '4V210-08-24VDC',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Cikarang & Karawang',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Katup solenoid 5/2-Way Airtac single coil berkecepatan respon tinggi untuk silinder kerja ganda.',
-    description: 'Katup solenoid pneumatik Airtac Seri 4V210 adalah standar industri untuk pengendalian silinder kerja ganda. Memiliki respon kilat di bawah 0.05 detik, konsumsi daya rendah, serta ketahanan tinggi terhadap debu dan kelembapan industri.',
-    specsBadge: 'Port: G1/4" | Voltase: 24VDC / 220VAC | Respon Cepat',
-    specs: {
-      'Tipe Katup': '5 Lubang 2 Posisi (Single Solenoid)',
-      'Voltase Kumparan': '24V DC / 220V AC',
-      'Ukuran Lubang Port': 'Inlet/Outlet: G1/4", Exhaust: G1/8"',
-      'Waktu Respon': '< 0.05 detik (50 milidetik)',
-      'Konsumsi Daya': '3.0W (DC) / 4.5VA (AC)',
-      'Tingkat Perlindungan': 'IP65 (Tahan Debu & Percikan Air)'
-    },
-    installationNotes: [
-      'Gunakan peredam suara (silencer) pada port exhaust untuk meredam kebisingan buangan.',
-      'Periksa polaritas kabel terminal coil sebelum disambungkan ke modul output PLC pabrik.'
-    ]
-  },
-  {
-    id: 'BARKSDALE-B1T',
-    name: 'Barksdale Heavy Duty Pressure Switch (Seri B1T)',
-    brand: 'Barksdale',
-    category: 'Sensor & Switch Tekanan',
-    categoryName: 'Sakelar & Sensor Tekanan Industri',
-    sku: 'BARK-B1T-M100SS',
-    image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Pressure switch elektromekanis Barksdale tahan ledak & getaran untuk sistem pneumatik-hidrolik kritis.',
-    description: 'Sakelar tekanan Barksdale Seri B1T buatan Jerman/AS terkenal dengan keandalan kontak listrik SPDT tahan beban berat, akurasi repeatability ±1%, dan housing die-cast tahan cuaca ekstrem untuk pengaman jalur kompresor dan boiler pabrik.',
-    specsBadge: 'Rentang Set Point: 0.5 - 10 bar | Kontak: SPDT 10A | Akurasi: ±1%',
-    specs: {
-      'Tipe Sensor': 'Diaphragm / Piston Actuated Pressure Switch',
-      'Tipe Sakelar Listrik': 'SPDT Microswitch Rating 10A @ 250VAC',
-      'Rentang Pengaturan Tekanan': '0.5 ~ 10 bar (Dapat diatur manual via kenop)',
-      'Material Diafragma': 'Stainless Steel 316 / Buna-N',
-      'Tingkat Perlindungan Housing': 'IP66 / NEMA 4X Tahan Air & Debu'
-    },
-    installationNotes: [
-      'Kunci baut penyetel kalibrasi tekanan dengan obeng min setelah nilai batas alarm tercapai.',
-      'Gunakan isolasi kabel gland tahan getaran saat menghubungkan ke sirkuit interlock pengaman mesin.'
-    ]
-  },
-  {
-    id: 'FINDEVA-T09',
-    name: 'Findeva Pneumatic Turbine Vibrator (Seri T-09 Golden)',
-    brand: 'Findeva',
-    category: 'Vibrator Pneumatik',
-    categoryName: 'Penggetar Pneumatik Hopper & Silo',
-    sku: 'FIND-T09-SWISS',
-    image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Surabaya & Jakarta',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Penggetar pneumatik turbin Findeva Swiss bebas oli (oil-free) dengan kebisingan sangat rendah.',
-    description: 'Vibrator pneumatik Findeva Swiss Seri T adalah solusi terbaik untuk melancarkan aliran material serbuk pada hopper, silo, dan saringan getar. Menggunakan turbin bodi aluminium teranodisasi emas dengan bearing tertutup berkecepatan tinggi tanpa memerlukan lubrikasi oli.',
-    specsBadge: 'Frekuensi: Hingga 46,000 RPM | Gaya Sentrifugal: Hingga 2,160 N | Bebas Oli',
-    specs: {
-      'Prinsip Kerja': 'Turbin Pneumatik Berkecepatan Tinggi (Gold Anodized)',
-      'Frekuensi Getaran': '14,000 ~ 46,000 RPM (Tergantung suplai bar)',
-      'Gaya Sentrifugal Maks': '2,160 Newton',
-      'Tingkat Kebisingan': 'Di bawah 75 dBA (Sangat Senyap)',
-      'Konsumsi Udara': '110 ~ 260 Liter / menit'
-    },
-    installationNotes: [
-      'Gunakan udara bertekanan bersih kering; tidak diperlukan penambahan oli pelumas (oil-free operation).',
-      'Pasang langsung pada pelat penguat dinding hopper dengan baut grade 8.8 berkekuatan tinggi.'
-    ]
-  },
-  {
-    id: 'WINTERS-PFQ',
-    name: 'Winters Manometer Tekanan Premium Diisi Gliserin (Seri PFQ)',
-    brand: 'Winters',
-    category: 'Manometer Tekanan',
-    categoryName: 'Alat Ukur Tekanan Presisi',
-    sku: 'WINT-PFQ-63-10BAR',
-    image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta & Cikarang',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Manometer industri Winters Instruments Kanada stainless steel 304 tahan getaran dan pulsasi.',
-    description: 'Pengukur tekanan Winters Seri PFQ dirancang khusus untuk lingkungan industri dengan getaran dan denyut pompa tinggi. Dilengkapi tabung Bourdon phosphor bronze presisi tinggi, casing stainless steel 304, dan cairan gliserin murni untuk pembacaan jarum yang stabil.',
-    specsBadge: 'Diameter Dial: Ø63mm | Rentang: 0 - 10 bar / 145 psi | Drat: G1/4"',
-    specs: {
-      'Diameter Dial Tampilan': '63 mm (2.5 inci)',
-      'Rentang Skala Tekanan': '0 ~ 10 bar ganda dengan psi (0 ~ 145 psi)',
-      'Material Casing Luar': 'Stainless Steel 304 Crimped Ring',
-      'Cairan Pengisi Peredam': 'Gliserin Murni 99.7%',
-      'Akurasi Standar': '±1.5% dari Skala Penuh (ASME B40.100 Grade B)'
-    },
-    installationNotes: [
-      'Gunakan seal tape PTFE secukupnya pada drat koneksi untuk mencegah kebocoran udara/cairan.',
-      'Buka ventilasi karet bagian atas setelah pemasangan untuk menjaga akurasi tekanan atmosferik.'
-    ]
-  },
-  {
-    id: 'HYDAC-DF',
-    name: 'HYDAC Inline Filter Tekanan Tinggi (Seri DF / DFDK)',
-    brand: 'HYDAC',
-    category: 'Filter & Regulator (FRL)',
-    categoryName: 'Unit Filtrasi Tekanan Tinggi Industri',
-    sku: 'HYDAC-DF-60-G10-A',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Unit filter inline HYDAC Jerman untuk proteksi komponen sensitif pada tekanan hingga 420 bar.',
-    description: 'Unit filtrasi tekanan tinggi HYDAC Jerman Seri DF memberikan proteksi tertinggi terhadap kontaminasi mikropartikel. Dirancang dengan bodi baja ductile iron berkekuatan ekstrem dan elemen serat kaca mikron Betamicron yang mampu menahan tekanan lonjakan tanpa robek.',
-    specsBadge: 'Tekanan Kerja: Hingga 420 bar | Filtrasi: 10 µm Betamicron | Port: G1/2"',
-    specs: {
-      'Tekanan Operasi Maksimum': '420 bar (6,000 psi)',
-      'Elemen Filtrasi': '10 µm Optimicron Glass Fiber',
-      'Laju Aliran Nominal': 'Hingga 60 Liter / menit',
-      'Indikator Diferensial Tekanan': 'Indikator Visual / Elektrikal Terintegrasi',
-      'Material Mangkuk & Kepala': 'Ductile Iron Berkekuatan Tinggi'
-    },
-    installationNotes: [
-      'Pasang langsung pada saluran tekanan sebelum katup kontrol proporsional atau aktuator presisi.',
-      'Ganti elemen filter saat indikator diferensial tekanan berwarna merah (tekanan drop > 5 bar).'
-    ]
-  },
-  {
-    id: 'CAMOZZI-6000',
-    name: 'Camozzi Fitting Cepat Super-Rapid Lurus Kuningan (Seri 6000)',
-    brand: 'Camozzi',
-    category: 'Fitting & Selang Udara',
-    categoryName: 'Konektor Satu Sentuhan Super-Rapid',
-    sku: 'CAM-6512-08-04',
-    image: 'https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=800&q=80',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Cikarang & Surabaya',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Konektor fitting cepat Camozzi Italia berbahan kuningan lapis nikel dengan cakar pengunci baja.',
-    description: 'Fitting cepat Camozzi Seri 6000 buatan Italia memberikan koneksi pneumatik yang kokoh, bebas kebocoran, dan tahan lama. Dirancang dari kuningan berlapis nikel penuh dengan collet baja tahan karat untuk selang PU/PA kaliber 8mm.',
-    specsBadge: 'Ukuran Selang: Ø8mm | Drat: G1/4" | Material: Kuningan Lapis Nikel Penuh',
-    specs: {
-      'Ukuran Selang Pneumatik (OD)': 'Ø 8 mm',
-      'Ukuran Drat Koneksi': 'G 1/4" Male dengan O-Ring Seal Terintegrasi',
-      'Material Bodi & Collet': 'Kuningan Berlapis Nikel (Full Brass Nickel-Plated)',
-      'Rentang Tekanan Kerja': '-0.99 bar ~ 16 bar (-0.09 ~ 1.6 MPa)',
-      'Suhu Kerja': '-20°C ~ +80°C'
-    },
-    installationNotes: [
-      'Potong selang secara tegak lurus 90° dengan pemotong selang sebelum dimasukkan ke dalam collet.',
-      'Dorong selang hingga batas terdalam untuk mengaktifkan segel O-ring secara sempurna.'
-    ]
-  },
+  }
 ];

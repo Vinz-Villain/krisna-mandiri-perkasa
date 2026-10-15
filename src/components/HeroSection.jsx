@@ -1,86 +1,96 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 
-// Featured items for the 3D cylindrical carousel
+// Featured items for the 3D cylindrical carousel using real KMP products from D:\produk_kmp
 const FEATURED_ITEMS = [
   {
-    id: 'AVENTICS-PRA',
+    id: 'NORGREN-RM8000',
     badge: 'SILINDER PNEUMATIK',
-    title: 'Aventics ISO 15552',
-    specs: 'Seri PRA • Double Acting • Standar ISO',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    title: 'Norgren - Air Cylinder RM8000 Series',
+    specs: 'RM/8000 Series • Double Acting • Standar ISO',
+    image: '/products/norgren-air-cylinder-rm8000.jpg',
     stock: 'Standar ISO',
     category: 'Silinder Pneumatik',
-    sku: 'PRA-50X100-M'
+    sku: 'RM/8025/M/100'
   },
   {
-    id: 'ASCO-8210',
+    id: 'NORGREN-ISO-STAR',
     badge: 'KATUP SOLENOID',
-    title: 'ASCO RedHat 8210',
-    specs: 'Brass 2-Way • 24VDC/220VAC • Respon Cepat',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
-    stock: 'ASCO Original',
+    title: 'Norgren - Iso Star Solenoid Valve',
+    specs: 'ISO*Star Valve • Spool & Sleeve Presisi Tinggi',
+    image: '/products/norgren-iso-star-solenoid-valve.jpg',
+    stock: 'Norgren Asli',
     category: 'Katup Solenoid',
-    sku: '8210G002-24VDC'
+    sku: 'SXE9573-A70-00'
   },
   {
-    id: 'NUMATICS-MARK8',
-    badge: 'KATUP OTOMASI',
-    title: 'Numatics Mark 8',
-    specs: 'Lapped Spool • Respon <15ms • Non-Lube',
-    image: 'https://images.unsplash.com/photo-1581092215357-414c3e387126?auto=format&fit=crop&w=800&q=80',
+    id: 'NORGREN-B64G-REG',
+    badge: 'FILTER & REGULATOR',
+    title: 'Norgren - Olympian Plus Filter or Regulator B64G Series',
+    specs: 'B64G Olympian Plus • Plug-in Modular FRL',
+    image: '/products/norgren-olympian-plus-b64g.jpg',
     stock: 'Ready Stock',
-    category: 'Katup Solenoid',
-    sku: 'MK8-08-SINGLE-24V'
+    category: 'Filter & Regulator (FRL)',
+    sku: 'B64G-4GK-AD3-RMN'
   },
   {
-    id: 'NORGREN-EXCELON',
-    badge: 'AIR PREPARATION',
-    title: 'Norgren Excelon Plus',
-    specs: 'BL84 Modular • Filter 40µm • Presisi Tinggi',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
+    id: 'NORGREN-B68G-REG',
+    badge: 'FILTER & REGULATOR',
+    title: 'Norgren - Olympian Plus FilterRegulator B68G Series',
+    specs: 'B68G Olympian Plus • Heavy Duty Aliran Tinggi',
+    image: '/products/norgren-olympian-plus-b68g.jpg',
     stock: 'Garansi Resmi',
     category: 'Filter & Regulator (FRL)',
-    sku: 'NORG-BL84-301G'
+    sku: 'B68G-8GK-AR3-RLN'
   },
   {
-    id: 'AIRTAC-4V210',
+    id: 'NORGREN-VCB',
     badge: 'KATUP SOLENOID',
-    title: 'Airtac Seri 4V210',
-    specs: '5/2-Way Single Solenoid • IP65 • Siklus Cepat',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
+    title: 'Norgren - Solenoid Valve VCB Series',
+    specs: 'VCB22D517A-AD213L • DC24V 3W • IP65',
+    image: '/products/norgren-solenoid-valve-vcb.jpg',
     stock: 'Ready Stock',
     category: 'Katup Solenoid',
-    sku: '4V210-08-24VDC'
+    sku: 'VCB22D517A-AD213L'
   },
   {
-    id: 'FINDEVA-T09',
-    badge: 'VIBRATOR PNEUMATIK',
-    title: 'Findeva Turbin Emas',
-    specs: 'Findeva T-09 Swiss • 46,000 RPM • Oil-Free',
-    image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=800&q=80',
-    stock: 'Swiss Made',
-    category: 'Vibrator Pneumatik',
-    sku: 'FIND-T09-SWISS'
+    id: 'NORGREN-V51',
+    badge: 'KATUP SOLENOID',
+    title: 'Norgren - Solenoid Valve V51 Series',
+    specs: 'V51B517A-A2000 • Pmax 8 Bar • Respon Cepat',
+    image: '/products/norgren-solenoid-valve-v51.jpg',
+    stock: 'Ready Stock',
+    category: 'Katup Solenoid',
+    sku: 'V51B517A-A2000'
   },
   {
-    id: 'WINTERS-PFQ',
-    badge: 'MANOMETER TEKANAN',
-    title: 'Winters PFQ Gliserin',
-    specs: 'Ø63mm • 0-10 bar • Stainless Steel 304',
-    image: 'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=800&q=80',
-    stock: 'Grade Akurasi',
-    category: 'Manometer Tekanan',
-    sku: 'WINT-PFQ-63-10BAR'
+    id: 'NORGREN-V61',
+    badge: 'KATUP SOLENOID',
+    title: 'Norgren - Solenoid Valve V61 Series',
+    specs: 'V61B513A • Profil Ramping Manifold Blok',
+    image: '/products/norgren-solenoid-valve-v61.jpg',
+    stock: 'Stok Tersedia',
+    category: 'Katup Solenoid',
+    sku: 'V61B513A-A213J'
   },
   {
-    id: 'HYDAC-DF',
-    badge: 'HIGH PRESSURE FILTER',
-    title: 'HYDAC Inline Filter',
-    specs: 'Hingga 420 bar • Betamicron 10µm • Heavy Duty',
-    image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80',
-    stock: 'Teknologi Jerman',
+    id: 'NORGREN-B64G',
+    badge: 'AIR PREPARATION',
+    title: 'Norgren - B64G Series',
+    specs: 'B64G Series • Filter Udara Presisi Tinggi',
+    image: '/products/norgren-b64g-series.jpg',
+    stock: 'Garansi Resmi',
     category: 'Filter & Regulator (FRL)',
-    sku: 'HYDAC-DF-60-G10-A'
+    sku: 'B64G-2GK-AD1-RMN'
+  },
+  {
+    id: 'NORGREN-B68G',
+    badge: 'AIR PREPARATION',
+    title: 'Norgren - B68G Series',
+    specs: 'B68G Series • Kapasitas Aliran Industri Berat',
+    image: '/products/norgren-b68g-series.jpg',
+    stock: 'Garansi Resmi',
+    category: 'Filter & Regulator (FRL)',
+    sku: 'B68G-6GK-AR1-RLN'
   }
 ];
 
@@ -188,21 +198,23 @@ function CarouselCardItem({
       {/* Light Sheen Sweep Effect */}
       <div className="hero-sheen-effect" />
 
-      {/* Card Image */}
+      {/* Real Product Image with subtle background fallback */}
       {item.image && isVisible ? (
-        <img
-          src={item.image}
-          alt={item.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-90 group-hover:brightness-100"
-          loading="lazy"
-        />
+        <div className="w-full h-full bg-slate-800 flex items-center justify-center overflow-hidden">
+          <img
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 brightness-95 group-hover:brightness-105"
+            loading="lazy"
+          />
+        </div>
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-950 flex items-center justify-center">
           <span className="text-slate-400 font-medium text-xs text-center px-2">{item.title}</span>
         </div>
       )}
 
-      {/* Dark vignette gradient overlay */}
+      {/* Dark vignette gradient overlay for high text legibility */}
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent pointer-events-none" />
 
       {/* Top Badge */}
@@ -403,67 +415,64 @@ export default function HeroSection({
   };
 
   return (
-    <section className="relative min-h-[92vh] sm:min-h-[100dvh] w-full flex flex-col justify-center overflow-hidden bg-[#F8FAFC] pt-24 pb-14 sm:pt-28 sm:pb-20">
+    <section className="relative min-h-[90vh] sm:min-h-[96dvh] w-full flex flex-col justify-center overflow-hidden bg-[#F8FAFC] pt-24 pb-14 sm:pt-28 sm:pb-16 font-sans">
       
-      {/* 1. Atmospheric Ambient Lighting & Tech Grid (Chevron-inspired) */}
+      {/* 1. Atmospheric Ambient Lighting & Grid */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-[#F8FAFC]/95" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-amber-500/15 via-[#3B49DF]/10 to-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-40" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-amber-500/12 via-[#3B49DF]/8 to-indigo-500/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
       </div>
 
-      {/* 2. Genuine 3D Curved / Cylindrical Rotating Carousel (RTS-inspired Spatial Engine) */}
+      {/* 2. Genuine 3D Curved Cylindrical Carousel with Real Product Photos */}
       <Curved3DCarouselStage onSelectProduct={onSelectProduct} />
 
-      {/* 3. Radial Soft Vignette Mask (Gives clear typographic readability without obscuring 3D depth) */}
+      {/* 3. Radial Soft Vignette Mask */}
       <div className="absolute inset-0 z-[5] pointer-events-none select-none bg-[radial-gradient(ellipse_70%_58%_at_50%_46%,rgba(248,250,252,0.92)_0%,rgba(248,250,252,0.55)_50%,transparent_85%)]" />
 
-      {/* 4. Center Stage: Modern Industrial Architectural Typography (Chevron Design DNA) */}
+      {/* 4. Center Stage Content (Matching Screenshot 2026-10-15 230726.png) */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
         
-        {/* Chevron-style Tech Eyebrow Pill Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-amber-500/30 shadow-[0_4px_16px_rgba(223,146,53,0.15)] mb-4 sm:mb-6 transition-all hover:border-amber-500/60 hover:scale-105 duration-300">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#DF9235]" />
-          </span>
-          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-800">
+        {/* Pill Eyebrow Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_2px_10px_rgba(0,0,0,0.04)] mb-4 sm:mb-5">
+          <span className="h-2 w-2 rounded-full bg-[#DF9235]" />
+          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-800">
             DISTRIBUTOR RESMI SUKU CADANG & PNEUMATIK PABRIK
           </span>
         </div>
 
-        {/* Clean, Non-Tilted High-Impact Headline with Rich Gradient Keyphrase */}
-        <div className="flex flex-col items-center justify-center space-y-1 sm:space-y-2">
-          <h1 className="text-3xl min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-black tracking-tight leading-[1.1] text-slate-900 drop-shadow-xs">
+        {/* Headline: Clean, Non-Tilted (Suku Cadang Industri in Slate, Presisi & Otomasi Pabrik in Amber) */}
+        <div className="flex flex-col items-center justify-center space-y-0.5 sm:space-y-1">
+          <h1 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-slate-900 leading-tight">
             Suku Cadang Industri
           </h1>
-          <h2 className="text-3xl min-[400px]:text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-black tracking-tight leading-[1.1] bg-gradient-to-r from-[#DF9235] via-[#F59E0B] to-[#C97E25] bg-clip-text text-transparent drop-shadow-sm pb-1">
+          <h2 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-[#DF9235] leading-tight pb-1">
             Presisi & Otomasi Pabrik
           </h2>
         </div>
 
-        {/* Airy, Refined Subtitle */}
-        <p className="mt-4 sm:mt-5 text-xs sm:text-sm md:text-base text-slate-600 max-w-xl mx-auto font-medium leading-relaxed bg-white/70 sm:bg-transparent backdrop-blur-xs sm:backdrop-blur-none px-4 py-2 sm:p-0 rounded-full border border-slate-200/50 sm:border-none shadow-xs sm:shadow-none">
+        {/* Subtitle */}
+        <p className="mt-3.5 sm:mt-4 text-xs sm:text-sm md:text-base text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
           Pemasok terpercaya silinder pneumatik, katup solenoid presisi tinggi, dan unit FRL berstandar ISO dunia langsung ke lini produksi Anda tanpa jeda.
         </p>
 
-        {/* Chevron-style High-Conversion CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-7 w-full max-w-xs sm:max-w-none">
-          {/* Primary CTA: Glowing Amber Chevron-style Pill */}
+        {/* Dual CTA Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-5 sm:mt-6">
+          {/* Button 1: Solid Amber Pill */}
           <a
             href="https://wa.me/6289659586363?text=Halo%20CV.%20Krisna%20Mandiri%20Perkasa%2C%20saya%20ingin%20meminta%20penawaran%20harga%20resmi%20suku%20cadang."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-[46px] sm:h-[50px] w-full sm:w-auto sm:min-w-[210px] px-7 sm:px-8 items-center justify-center rounded-full bg-gradient-to-r from-[#DF9235] via-[#E59819] to-[#C97E25] text-white font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_22px_0_rgba(223,146,53,0.42)] transition hover:brightness-105 active:scale-95 whitespace-nowrap gap-2.5 group"
+            className="px-7 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#DF9235] hover:bg-[#C97E25] text-white font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_16px_rgba(223,146,53,0.35)] flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 group"
           >
             <span>MINTA PENAWARAN (RFQ)</span>
             <i className="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1" />
           </a>
 
-          {/* Secondary CTA: Crisp Tech Glass Pill */}
+          {/* Button 2: White Pill with Layer Icon */}
           <button
             onClick={handleScrollToCatalog}
-            className="flex h-[46px] sm:h-[50px] w-full sm:w-auto sm:min-w-[190px] px-7 sm:px-8 items-center justify-center rounded-full border border-slate-300 hover:border-[#DF9235]/60 bg-white/95 hover:bg-white text-slate-800 font-bold text-xs sm:text-sm tracking-wide shadow-xs transition active:scale-95 whitespace-nowrap gap-2.5 group"
+            className="px-7 sm:px-8 py-3 sm:py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm tracking-wide border border-slate-200/90 shadow-xs flex items-center justify-center gap-2.5 transition-all hover:scale-105 active:scale-95 group"
           >
             <i className="fa-solid fa-layer-group text-xs text-[#DF9235]" />
             <span>JELAJAHI KATALOG</span>
@@ -473,7 +482,7 @@ export default function HeroSection({
         {/* ========================================================================= */}
         {/* INTERACTIVE SEARCH & QUICK CATEGORY FILTER CAPSULE */}
         {/* ========================================================================= */}
-        <div className="pt-8 sm:pt-10 w-full max-w-2xl mx-auto space-y-3.5">
+        <div className="pt-6 sm:pt-8 w-full max-w-2xl mx-auto space-y-3.5">
           {/* Search Pill Input Bar */}
           <div className="bg-white/95 backdrop-blur-md rounded-full p-2 pl-5 sm:pl-6 shadow-md border border-slate-200/90 flex items-center justify-between gap-3 transition-all focus-within:ring-2 focus-within:ring-[#DF9235]/40 focus-within:border-[#DF9235]">
             <div className="flex items-center gap-3 w-full">
@@ -505,44 +514,24 @@ export default function HeroSection({
           </div>
 
           {/* Quick Filter Category Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5 pt-1">
-            <span className="text-[11px] font-bold text-slate-500 mr-1 flex items-center gap-1">
-              <i className="fa-solid fa-bolt text-[#DF9235] text-[10px]" />
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+            <span className="text-xs font-semibold text-slate-600 mr-1 flex items-center gap-1">
+              <i className="fa-solid fa-bolt text-[#DF9235] text-[11px]" />
               Kategori Cepat:
             </span>
             {quickFilterTabs.map((tab) => (
               <button
                 key={tab.value}
                 onClick={() => onQuickTabClick(tab.value)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
                   activeTabFilter === tab.value
-                    ? 'bg-[#DF9235] text-white shadow-sm font-bold scale-105'
-                    : 'bg-white/90 hover:bg-white text-slate-700 hover:text-slate-900 border border-slate-200/90 shadow-xs'
+                    ? 'bg-[#DF9235] text-white shadow-xs font-semibold'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 shadow-xs'
                 }`}
               >
                 {tab.label}
               </button>
             ))}
-          </div>
-
-          {/* Chevron-style Metric Cards Bar */}
-          <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 max-w-3xl mx-auto">
-            <div className="bg-white/85 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs text-center transition hover:border-[#DF9235]/40 hover:-translate-y-0.5">
-              <div className="text-lg sm:text-xl font-black text-slate-900">1,500+</div>
-              <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">SKU Ready Stock</div>
-            </div>
-            <div className="bg-white/85 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs text-center transition hover:border-[#DF9235]/40 hover:-translate-y-0.5">
-              <div className="text-lg sm:text-xl font-black text-slate-900">500+</div>
-              <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">Pabrik Rekanan</div>
-            </div>
-            <div className="bg-white/85 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs text-center transition hover:border-[#DF9235]/40 hover:-translate-y-0.5">
-              <div className="text-lg sm:text-xl font-black text-emerald-600">100%</div>
-              <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">Garansi Original</div>
-            </div>
-            <div className="bg-white/85 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs text-center transition hover:border-[#DF9235]/40 hover:-translate-y-0.5">
-              <div className="text-lg sm:text-xl font-black text-[#DF9235]">&lt; 15 Mnt</div>
-              <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">Respon Cepat RFQ</div>
-            </div>
           </div>
         </div>
 

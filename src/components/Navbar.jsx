@@ -15,9 +15,7 @@ export default function Navbar({ rfqCount, onOpenRfq, onQuickSearch }) {
   }, []);
 
   const navLinks = [
-    { label: 'Katalog Suku Cadang', href: '#katalog' },
-    { label: 'Keunggulan', href: '#keunggulan' },
-    { label: 'Sektor Industri', href: '#sektor' },
+    { label: 'Katalog Produk', href: '#katalog' },
     { label: 'Layanan Penawaran', href: '#layanan' },
     { label: 'FAQ', href: '#faq' },
   ];
@@ -55,7 +53,7 @@ export default function Navbar({ rfqCount, onOpenRfq, onQuickSearch }) {
             </div>
           </div>
 
-          {/* Center: Floating Pill Capsule Menu (ala Referensi RencanaTuhan) */}
+          {/* Center: Floating Pill Capsule Menu */}
           <nav className="hidden lg:flex items-center bg-slate-100/90 p-1 rounded-full border border-slate-200/80 shadow-sm backdrop-blur-md">
             <a
               href="#"
@@ -72,18 +70,6 @@ export default function Navbar({ rfqCount, onOpenRfq, onQuickSearch }) {
               className="px-4 py-2 rounded-full text-slate-600 hover:text-slate-900 font-semibold text-xs transition-colors"
             >
               Katalog Produk
-            </a>
-            <a
-              href="#keunggulan"
-              className="px-4 py-2 rounded-full text-slate-600 hover:text-slate-900 font-semibold text-xs transition-colors"
-            >
-              Keunggulan
-            </a>
-            <a
-              href="#sektor"
-              className="px-4 py-2 rounded-full text-slate-600 hover:text-slate-900 font-semibold text-xs transition-colors"
-            >
-              Sektor Industri
             </a>
             <a
               href="#layanan"

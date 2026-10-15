@@ -7,8 +7,6 @@ import RfqModal from './RfqModal';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import BrandMarquee from './components/BrandMarquee';
-import BentoFeatures from './components/BentoFeatures';
-import IndustrySectorsSection from './components/IndustrySectorsSection';
 import ProductCatalogSection from './components/ProductCatalogSection';
 import FaqSection from './components/FaqSection';
 import CtaBanner from './components/CtaBanner';
@@ -145,19 +143,7 @@ Apakah barang ini ready stock dan bisa dikirimkan penawaran resminya? Terima kas
         }}
       />
 
-      {/* 4. Bento Grid Keunggulan KMP (Why Choose Us) */}
-      <BentoFeatures
-        onOpenRfq={() => setIsRfqOpen(true)}
-      />
-
-      {/* 5. Interactive Industry Sectors Showcase */}
-      <IndustrySectorsSection
-        onFilterCategory={(cat) => {
-          setSelectedCategory(cat);
-        }}
-      />
-
-      {/* 6. Katalog Suku Cadang Interaktif */}
+      {/* 4. Katalog Suku Cadang Interaktif */}
       <ProductCatalogSection
         products={filteredProducts}
         searchQuery={searchQuery}
