@@ -41,10 +41,6 @@ export default function ProductCatalogSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-bold text-slate-700 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-[#DF9235] animate-ping"></span>
-            <span>INVENTORI SIAP KIRIM GUDANG KMP</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             Katalog Komponen <span className="text-[#DF9235]">& Suku Cadang</span>
           </h2>

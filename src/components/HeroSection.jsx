@@ -96,9 +96,10 @@ const FEATURED_ITEMS = [
 
 // Helper to determine card dimensions by screen width
 function getCardDimensions(width) {
-  if (width < 380) return { cardWidth: 145, cardHeight: 95, cardGap: 8, key: 'mobile' };
-  if (width < 640) return { cardWidth: 165, cardHeight: 108, cardGap: 12, key: 'mobile' };
-  if (width < 1024) return { cardWidth: 280, cardHeight: 180, cardGap: 22, key: 'tablet' };
+  if (width < 360) return { cardWidth: 125, cardHeight: 82, cardGap: 6, key: 'mobile' };
+  if (width < 480) return { cardWidth: 140, cardHeight: 90, cardGap: 8, key: 'mobile' };
+  if (width < 640) return { cardWidth: 160, cardHeight: 104, cardGap: 10, key: 'mobile' };
+  if (width < 1024) return { cardWidth: 260, cardHeight: 165, cardGap: 20, key: 'tablet' };
   return { cardWidth: 380, cardHeight: 240, cardGap: 34, key: 'desktop' };
 }
 
@@ -115,12 +116,12 @@ function CarouselCardItem({
   const absDiff = Math.abs(slotDiff);
   const dir = slotDiff < 0 ? 1 : slotDiff > 0 ? -1 : 0;
 
-  // Exact 3D formula matching Rencana Tuhan Studio
+  // Exact 3D formula matching Rencana Tuhan Studio, adjusted for mobile scale
   let transformConfig;
   if (absDiff === 0) {
     transformConfig = {
-      scale: isMobile ? 0.72 : 0.7,
-      translateY: isMobile ? -50 : -90,
+      scale: isMobile ? 0.74 : 0.7,
+      translateY: isMobile ? -35 : -90,
       translateX: 0,
       opacity: 0.95,
       zIndex: 10,
@@ -129,9 +130,9 @@ function CarouselCardItem({
     };
   } else if (absDiff === 1) {
     transformConfig = {
-      scale: isMobile ? 0.85 : 0.86,
-      translateY: isMobile ? -10 : -15,
-      translateX: dir * (isMobile ? 12 : 18),
+      scale: isMobile ? 0.86 : 0.86,
+      translateY: isMobile ? -6 : -15,
+      translateX: dir * (isMobile ? 10 : 18),
       opacity: 1,
       zIndex: 5,
       rotateY: dir * (isMobile ? 12 : 16),
@@ -140,7 +141,7 @@ function CarouselCardItem({
   } else if (absDiff === 2) {
     transformConfig = {
       scale: 1,
-      translateY: isMobile ? 25 : 45,
+      translateY: isMobile ? 22 : 45,
       translateX: 0,
       opacity: 1,
       zIndex: 2,
@@ -150,7 +151,7 @@ function CarouselCardItem({
   } else {
     transformConfig = {
       scale: 0.95,
-      translateY: isMobile ? 35 : 55,
+      translateY: isMobile ? 32 : 55,
       translateX: 0,
       opacity: 0,
       zIndex: 0,
@@ -433,13 +434,6 @@ export default function HeroSection({
       {/* 4. Center Stage Content (Matching Screenshot 2026-10-15 230726.png) */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
         
-        {/* Pill Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_2px_10px_rgba(0,0,0,0.04)] mb-4 sm:mb-5">
-          <span className="h-2 w-2 rounded-full bg-[#DF9235]" />
-          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-800">
-            DISTRIBUTOR RESMI SUKU CADANG & PNEUMATIK PABRIK
-          </span>
-        </div>
 
         {/* Headline: Clean, Non-Tilted (Suku Cadang Industri in Slate, Presisi & Otomasi Pabrik in Amber) */}
         <div className="flex flex-col items-center justify-center space-y-0.5 sm:space-y-1">
