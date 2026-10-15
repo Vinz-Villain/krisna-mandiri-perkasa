@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProductDetailModal({ product, onClose, onAddToRfq, onDirectWhatsApp }) {
-  const [activeTab, setActiveTab] = useState('specs'); // 'specs', 'installation', 'datasheet'
   const [qty, setQty] = useState(1);
 
   if (!product) return null;
@@ -121,112 +120,6 @@ export default function ProductDetailModal({ product, onClose, onAddToRfq, onDir
                 </div>
               </div>
             </div>
-
-            {/* Info Tabs */}
-            <div className="border-b border-slate-200 flex gap-6 text-sm font-medium pt-2">
-              <button
-                onClick={() => setActiveTab('specs')}
-                className={`pb-3 font-bold transition-colors flex items-center gap-2 border-b-2 text-xs uppercase tracking-wider ${
-                  activeTab === 'specs'
-                    ? 'border-[#DF9235] text-slate-900'
-                    : 'border-transparent text-slate-400 hover:text-slate-700'
-                }`}
-              >
-                <i className="fa-solid fa-table-list"></i>
-                Spesifikasi Teknis
-              </button>
-              <button
-                onClick={() => setActiveTab('installation')}
-                className={`pb-3 font-bold transition-colors flex items-center gap-2 border-b-2 text-xs uppercase tracking-wider ${
-                  activeTab === 'installation'
-                    ? 'border-[#DF9235] text-slate-900'
-                    : 'border-transparent text-slate-400 hover:text-slate-700'
-                }`}
-              >
-                <i className="fa-solid fa-wrench"></i>
-                Panduan Pemasangan
-              </button>
-              <button
-                onClick={() => setActiveTab('datasheet')}
-                className={`pb-3 font-bold transition-colors flex items-center gap-2 border-b-2 text-xs uppercase tracking-wider ${
-                  activeTab === 'datasheet'
-                    ? 'border-[#DF9235] text-slate-900'
-                    : 'border-transparent text-slate-400 hover:text-slate-700'
-                }`}
-              >
-                <i className="fa-solid fa-file-pdf"></i>
-                Lembar Data & Dokumen Teknis
-              </button>
-            </div>
-
-            {/* Tab Contents */}
-            {activeTab === 'specs' && product.specs && (
-              <div className="overflow-x-auto rounded-2xl border border-slate-200">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-50 text-slate-600 font-mono uppercase border-b border-slate-200">
-                    <tr>
-                      <th className="py-3 px-4 font-bold">Parameter Teknis</th>
-                      <th className="py-3 px-4 font-bold">Nilai Standar / Rentang Operasi</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 bg-white font-mono">
-                    {Object.entries(product.specs).map(([key, val], idx) => (
-                      <tr key={key} className={idx % 2 === 0 ? 'bg-slate-50/50' : 'bg-white'}>
-                        <td className="py-3 px-4 font-semibold text-slate-900 capitalize font-sans">
-                          {key}
-                        </td>
-                        <td className="py-3 px-4 text-slate-600 font-mono">
-                          {val}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            {activeTab === 'installation' && (
-              <div className="bg-slate-50 rounded-[24px] p-6 border border-slate-200 space-y-3">
-                <h4 className="font-bold text-slate-900 text-xs flex items-center gap-2 font-mono uppercase">
-                  <i className="fa-solid fa-circle-exclamation text-[#DF9235]"></i>
-                  Petunjuk Pemasangan Standar Pabrik:
-                </h4>
-                <ul className="space-y-2.5 text-xs text-slate-600">
-                  {(product.installationNotes || [
-                    'Pastikan suplai udara bersih dan telah melalui unit FRL berkecepatan sesuai.',
-                    'Gunakan fitting berdiameter presisi dan periksa kekencangan baut dudukan.',
-                    'Lakukan pengujian bertahap tanpa beban sebelum mesin dijalankan pada kecepatan penuh.'
-                  ]).map((note, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-5 h-5 rounded-full bg-slate-900 text-white text-[10px] font-mono font-bold flex items-center justify-center shrink-0 mt-0.5">
-                        {i + 1}
-                      </span>
-                      <span className="leading-relaxed">{note}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {activeTab === 'datasheet' && (
-              <div className="p-6 rounded-[24px] border border-dashed border-[#DF9235] bg-amber-50/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <h5 className="font-black text-slate-900 text-sm">
-                    Unduh Lembar Data Resmi (PDF & Model 3D CAD)
-                  </h5>
-                  <p className="text-xs text-slate-600">
-                    Spesifikasi lengkap, dimensi gambar teknik 2D dan model 3D CAD tersedia untuk teknisi rancang bangun mesin pabrik Anda.
-                  </p>
-                </div>
-                <button
-                  onClick={() => alert(`Mengunduh dokumen teknis ${product.sku}`)}
-                  className="px-5 py-2.5 bg-slate-900 text-white hover:bg-black rounded-full text-xs font-bold transition-all flex items-center gap-2 shrink-0 active:scale-95"
-                >
-                  <i className="fa-solid fa-file-pdf text-[#DF9235]"></i>
-                  <span>Unduh Dokumen PDF</span>
-                </button>
-              </div>
-            )}
           </div>
         </motion.div>
       </div>
