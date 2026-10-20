@@ -204,10 +204,37 @@ body {
   animation-play-state: paused;
 }
 
-/* Custom Sleek Scrollbar */
+/* Global Smooth Scrolling Defaults */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+/* Lenis Recommended Smooth Scrolling CSS */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Sleek Scrollbar with Amber Glow */
 ::-webkit-scrollbar { 
-  width: 7px; 
-  height: 7px;
+  width: 8px; 
+  height: 8px;
 }
 ::-webkit-scrollbar-track { 
   background: #F1F5F9; 
@@ -215,6 +242,8 @@ body {
 ::-webkit-scrollbar-thumb { 
   background: #CBD5E1; 
   border-radius: 9999px; 
+  border: 2px solid #F1F5F9;
+  transition: background-color 0.2s ease;
 }
 ::-webkit-scrollbar-thumb:hover { 
   background: #DF9235; 

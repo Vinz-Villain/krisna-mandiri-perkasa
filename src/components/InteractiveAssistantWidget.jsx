@@ -95,7 +95,7 @@ export default function InteractiveAssistantWidget({
           {/* Body Content */}
           <div className="p-4 sm:p-5 space-y-4 max-h-[380px] overflow-y-auto">
             <div className="bg-slate-50 rounded-2xl p-3 border border-slate-200/80 text-xs text-slate-700 leading-relaxed">
-              👋 <strong>Selamat datang di KMP!</strong> Butuh nomor part tertentu, cek stok gudang hari ini, atau minta quotation resmi? Pilih bantuan cepat di bawah:
+              👋 <strong>Selamat datang di KMP!</strong> Butuh nomor part tertentu, konsultasi pengadaan suku cadang, atau minta quotation resmi? Pilih bantuan cepat di bawah:
             </div>
 
             {/* Quick Prompts List */}

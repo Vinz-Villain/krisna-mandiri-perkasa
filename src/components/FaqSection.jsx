@@ -14,7 +14,7 @@ export default function FaqSection({ onOpenRfq }) {
     },
     {
       q: 'Apakah KMP melayani pengiriman darurat (Same-Day Dispatch)?',
-      a: 'Tentu. Kami memahami bahwa penghentian mesin pabrik (downtime) menyebabkan kerugian besar. Untuk barang yang tersedia (ready stock), kami menyediakan pengiriman kilat langsung dari gudang Jakarta & Cikarang ke kawasan industri Jabodetabek, Cikarang, Karawang, dan sekitarnya pada hari yang sama.',
+      a: 'Tentu. Kami memahami bahwa penghentian mesin pabrik (downtime) menyebabkan kerugian besar. Kami siap memprioritaskan kebutuhan suku cadang mesin Anda dengan pengiriman kilat ke kawasan industri Jabodetabek, Cikarang, Karawang, dan seluruh Indonesia.',
     },
     {
       q: 'Bagaimana jika nomor part yang kami butuhkan sudah diskontinu / tidak diproduksi?',

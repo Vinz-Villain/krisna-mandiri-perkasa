@@ -31,7 +31,7 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
             </p>
 
             <div className="pt-2 text-[11px] font-mono text-slate-400 space-y-1">
-              <div>📍 Kantor & Distribusi: Jakarta & Kawasan Industri Cikarang</div>
+              <div>📍 Layanan Pengadaan: Kawasan Industri Nasional & Seluruh Indonesia</div>
               <div>⚡ Status Badan Usaha: CV Resmi • PKP & e-Faktur</div>
             </div>
           </div>

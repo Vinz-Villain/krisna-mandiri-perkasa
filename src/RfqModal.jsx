@@ -8,7 +8,7 @@ export default function RfqModal({ isOpen, onClose, items = [], onRemoveItem, on
     email: '',
     phone: '',
     projectLocation: 'Kawasan Industri Cikarang / Jababeka',
-    urgency: 'Segera (Ready Stock)',
+    urgency: 'Segera (Prioritas Pengadaan)',
     notes: '',
   });
   const [submitted, setSubmitted] = useState(false);
@@ -45,7 +45,7 @@ ${itemListText}
 *Catatan / Spesifikasi Khusus:*
 ${formData.notes || '-'}
 ─────────────────────────────────────
-Mohon dikirimkan penawaran harga resmi (Quotation) & info ketersediaan stok segera. Terima kasih.`;
+Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
 
     const waNumber = '6289659586363';
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(fullMessage)}`;
@@ -87,7 +87,7 @@ Mohon dikirimkan penawaran harga resmi (Quotation) & info ketersediaan stok sege
                 <span>Permintaan Penawaran Resmi (RFQ)</span>
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
-                Dapatkan surat penawaran resmi (Quotation) & info stok dari CV. Krisna Mandiri Perkasa
+                Dapatkan surat penawaran resmi (Quotation) dari CV. Krisna Mandiri Perkasa
               </p>
             </div>
             <button

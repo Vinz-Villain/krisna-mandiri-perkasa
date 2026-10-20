@@ -1,5 +1,93 @@
 export const PRODUCTS_CATALOG = [
   {
+    id: 'ASCO-NUMATICS-L12',
+    name: 'Asco - Numatics L12 Series',
+    brand: 'ASCO / Numatics',
+    category: 'Katup Solenoid',
+    categoryName: 'Katup Solenoid Kontrol Arah 5/2-Way L12',
+    sku: 'L12BA452BG00061',
+    image: '/products/asco-numatics-l12-series.jpeg',
+    images: [
+      '/products/asco-numatics-l12-series.jpeg',
+      '/products/asco-numatics-l12-series-slide-2.jpeg',
+      '/products/asco-numatics-l12-series-slide-3.jpeg'
+    ],
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Katup solenoid kontrol arah ASCO Numatics L12 Series (L12BA452BG00061) 5/2-way single solenoid bertekanan 1-10 bar dengan koil 24VDC.',
+    description: 'Katup pneumatik ASCO Numatics Seri L12 model L12BA452BG00061 dengan aktuasi solenoid spring return 5/2-way. Menggunakan koil Numatics 226-749B 24VDC 0.15A (100% ED VDE 0580), rentang tekanan 1.0 - 10 bar (14.5 - 145 psig-air), serta rentang temperatur operasi -10°F hingga 115°F untuk otomasi industri berat.',
+    specsBadge: 'Model: L12BA452BG00061 • 24VDC 0.15A • P: 1-10 bar • 5/2-Way',
+    specs: {
+      'Model Lengkap': 'L12BA452BG00061',
+      'Merek / Manufaktur': 'ASCO / Numatics',
+      'Konfigurasi Katup': '5/2-Way Single Solenoid Spring Return',
+      'Spesifikasi Koil': 'Numatics 226-749B (24VDC 0.15 A, 100% ED)',
+      'Standar Koil': 'VDE 0580',
+      'Rentang Tekanan Udara': '1.0 ~ 10 bar (14.5 ~ 145 psig-air)',
+      'Rentang Suhu Kerja': '-10°F ~ 115°F (-23°C ~ +46°C)'
+    },
+    installationNotes: [
+      'Hubungkan port 1 ke sumber udara bertekanan bersih yang sudah melalui filter regulator.',
+      'Pastikan soket terminal DIN koil 24V terpasang kencang dan terlindungi dari cairan eksternal.'
+    ]
+  },
+  {
+    id: 'WINTERS-PFP',
+    name: 'Winters - Pressure Gauge',
+    brand: 'Winters',
+    category: 'Sensor & Pressure Gauge',
+    categoryName: 'Alat Ukur Tekanan Presisi Seri PFP',
+    sku: 'PFP-10BAR-150PSI',
+    image: '/products/winters-pressure-gauge.jpeg',
+    images: [
+      '/products/winters-pressure-gauge.jpeg'
+    ],
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Manometer tekanan presisi Winters PFP Series dual scale 0-10 bar / 0-150 psi bodi stainless steel dengan safety glass dan akurasi tinggi ACC 1.0.',
+    description: 'Pressure gauge industri premium Winters PFP Series dirancang untuk monitoring tekanan gas dan fluida dengan keandalan maksimal. Menggunakan lensa Safety Glass tahan benturan, casing stainless steel tahan korosi, skala pembacaan ganda 0-10 bar / 0-150 psi dengan akurasi Class 1.0 (ACC 1.0), serta koneksi drat bawah male berkualitas tinggi.',
+    specsBadge: 'Seri PFP • Skala: 0-10 bar / 0-150 psi • Akurasi: ACC 1.0 • Safety Glass',
+    specs: {
+      'Seri Produk': 'Winters PFP Series (Safety Glass)',
+      'Rentang Skala': 'Dual Scale 0 ~ 10 bar / 0 ~ 150 psi',
+      'Tingkat Akurasi': 'Class 1.0 (ACC 1.0 / ±1% F.S.)',
+      'Material Lensa': 'Safety Glass Tahan Pecah',
+      'Tipe Dudukan': 'Bottom Connection (Drat Bawah Male Stainless Steel)',
+      'Material Konstruksi': 'Stainless Steel Casing Tahan Korosi',
+      'Nomor Seri': '22023766'
+    },
+    installationNotes: [
+      'Gunakan seal tape PTFE pada drat bawah sebelum pemasangan pada pipa sistem tekanan.',
+      'Gunakan kunci pas pada bagian hexagonal socket saat mengencangkan, jangan memutar bodi dial.'
+    ]
+  },
+  {
+    id: 'AVENTICS-CYLINDER',
+    name: 'Aventics - Cylinder',
+    brand: 'Aventics',
+    category: 'Silinder Pneumatik',
+    categoryName: 'Silinder Aktuator Pneumatik Seri 191 / 183',
+    sku: '191-00030-208H',
+    image: '/products/aventics-cylinder.jpeg',
+    images: [
+      '/products/aventics-cylinder.jpeg'
+    ],
+    whatsapp: '+62 896 5958 6363',
+    summary: 'Silinder pneumatik round-body Aventics (Part No. 191-00030 208H / 183R311) konstruksi stainless steel / heavy duty alloy buatan Aventics USA.',
+    description: 'Silinder aktuator pneumatik Aventics Seri 191 (Part No. 191-00030 208H / 183R311) buatan Aventics USA. Memiliki bodi tabung bulat bermaterial baja tahan karat (stainless steel/alloy), dudukan ulir nose mount yang kokoh, dan piston presisi tinggi untuk mesin otomasi pabrik.',
+    specsBadge: 'Model: 191-00030 208H • Aventics USA • Heavy Duty Cylinder',
+    specs: {
+      'Part Number / Model': '191-00030 208H (183R311)',
+      'Merek': 'Aventics (Emerson Automation)',
+      'Tipe Konstruksi': 'Round Body Stainless / Heavy Duty Pneumatic Cylinder',
+      'Tipe Dudukan': 'Threaded Nose Mount & Port End Cap',
+      'Asal Manufaktur': 'Aventics USA',
+      'Aplikasi Mesin': 'Otomasi Pabrik, Packaging, & Manufaktur Presisi'
+    },
+    installationNotes: [
+      'Pastikan suplai udara disaring melalui filter 40µm atau 5µm sebelum masuk ke silinder.',
+      'Pasang fitting pneumatik pada port ulir silinder dengan kekencangan torsi standar.'
+    ]
+  },
+  {
     id: 'NORGREN-RM8000',
     name: 'Norgren - Air Cylinder RM8000 Series',
     brand: 'Norgren',
@@ -7,8 +95,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Silinder & Aktuator Pneumatik ISO 15552',
     sku: 'RM/8025/M/100',
     image: '/products/norgren-air-cylinder-rm8000.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Cikarang & Jakarta',
     whatsapp: '+62 896 5958 6363',
     summary: 'Silinder pneumatik standar ISO 15552 Norgren seri RM/8000 double acting dengan bodi profil aluminium kokoh.',
     description: 'Silinder pneumatik profil Norgren seri RM/8000 memenuhi standar ISO 15552 dengan piston magnetik, bantalan peredam adjustable yang presisi, dan daya tahan operasi jutaan siklus untuk otomasi industri berat.',
@@ -34,8 +120,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Katup Solenoid Sub-base ISO 5599-1',
     sku: 'SXE9573-A70-00',
     image: '/products/norgren-iso-star-solenoid-valve.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta',
     whatsapp: '+62 896 5958 6363',
     summary: 'Katup solenoid sub-base Norgren ISO*Star dengan spool & sleeve stainless steel presisi tinggi bebas gesekan karet.',
     description: 'Katup kontrol arah Norgren ISO*Star dirancang untuk performa tanpa tanding pada sirkuit pneumatik berkecepatan tinggi. Teknologi spool & sleeve khusus memberikan respon instan dan masa pakai hingga ratusan juta siklus tanpa memerlukan oli pelumas tambahan.',
@@ -60,8 +144,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Penyaring & Pengatur Tekanan Udara Modular',
     sku: 'B64G-4GK-AD3-RMN',
     image: '/products/norgren-olympian-plus-b64g.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Cikarang & Karawang',
     whatsapp: '+62 896 5958 6363',
     summary: 'Unit filter-regulator kombinasi Norgren Olympian Plus B64G dengan sistem plug-in modular tanpa perlu membongkar pipa.',
     description: 'Unit kombinasi filter dan pengatur tekanan Norgren Olympian Plus B64G terkenal di industri manufaktur atas sistem plug-in clamp-ring yang memudahkan penggantian unit dalam hitungan detik tanpa membongkar pipa inlet/outlet.',
@@ -86,8 +168,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Unit FRL Heavy Duty Aliran Tinggi G3/4 - G1',
     sku: 'B68G-8GK-AR3-RLN',
     image: '/products/norgren-olympian-plus-b68g.jpg',
-    stockStatus: 'Garansi Resmi',
-    stockLocation: 'Gudang Jakarta & Surabaya',
     whatsapp: '+62 896 5958 6363',
     summary: 'Unit filter regulator Olympian Plus B68G kapasitas aliran besar untuk jalur utama pipa pabrik industri berat.',
     description: 'Norgren Olympian Plus B68G adalah solusi terbaik untuk instalasi jalur utama pipa udara pabrik dengan kebutuhan debit udara masif. Mangkuk logam tahan tekanan tinggi dan elemen penyaring mikron ganda menjamin udara bertekanan bebas minyak dan kondensat air.',
@@ -111,8 +191,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Katup Solenoid Presisi IMI Norgren',
     sku: 'VCB22D517A-AD213L',
     image: '/products/norgren-solenoid-valve-vcb.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta & Cikarang',
     whatsapp: '+62 896 5958 6363',
     summary: 'Katup solenoid presisi tinggi IMI Norgren seri VCB22D tekanan kerja 1.5 - 8.0 bar, hemat daya 3W IP65.',
     description: 'Katup solenoid pneumatik IMI Norgren Seri VCB22D517A-AD213L buatan pabrik bersertifikasi internasional. Memiliki rentang operasi tekanan 1.5 ~ 8.0 bar, kumparan DC24V hemat daya 3 Watt dengan proteksi IP65 dan sertifikasi CE untuk keandalan mesin industri tinggi.',
@@ -138,8 +216,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Katup Solenoid Kontrol Arah Mesin',
     sku: 'V51B517A-A2000',
     image: '/products/norgren-solenoid-valve-v51.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Cikarang',
     whatsapp: '+62 896 5958 6363',
     summary: 'Katup pneumatik solenoid 5/2-Way Norgren seri V51B bertekanan maksimal hingga 8 bar bertegangan 220V/240V.',
     description: 'Katup solenoid Norgren V51B517A-A2000 adalah katup kontrol silinder kerja ganda berkecepatan tinggi. Dilengkapi kumparan koil 220/240V AC 5.0VA IP65 untuk pengoperasian langsung dengan arus listrik pabrik.',
@@ -164,8 +240,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Katup Solenoid Profil Ramping Manifold Blok',
     sku: 'V61B513A-A213J',
     image: '/products/norgren-solenoid-valve-v61.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Jakarta',
     whatsapp: '+62 896 5958 6363',
     summary: 'Katup solenoid kompak Norgren V61 dengan profil ramping untuk blok manifold mesin packaging presisi.',
     description: 'Seri Norgren V61 dirancang dengan bodi ramping agar dapat disusun rapat pada blok manifold bersama. Solusi ideal untuk kabinet kendali mesin yang memiliki ruang terbatas dengan kebutuhan laju aliran tinggi.',
@@ -189,8 +263,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Penyaring Udara Presisi Seri B64G',
     sku: 'B64G-2GK-AD1-RMN',
     image: '/products/norgren-b64g-series.jpg',
-    stockStatus: 'Garansi Resmi',
-    stockLocation: 'Gudang Cikarang',
     whatsapp: '+62 896 5958 6363',
     summary: 'Unit regulator dan filter Norgren B64G efisiensi tinggi untuk proteksi instrumen pneumatik mesin otomatis.',
     description: 'Regulator dan filter udara Norgren seri B64G menyaring debu, karat, dan tetesan air pada sistem pasokan udara bertekanan serta menstabilkan tekanan keluar agar aktuator mesin bekerja konsisten.',
@@ -214,8 +286,6 @@ export const PRODUCTS_CATALOG = [
     categoryName: 'Regulator Udara Presisi Seri B68G',
     sku: 'B68G-6GK-AR1-RLN',
     image: '/products/norgren-b68g-series.jpg',
-    stockStatus: 'Garansi Resmi',
-    stockLocation: 'Gudang Surabaya',
     whatsapp: '+62 896 5958 6363',
     summary: 'Unit filter dan pengatur tekanan Norgren B68G kapasitas besar dengan pembuangan kondensat otomatis.',
     description: 'Seri Norgren B68G memberikan proteksi maksimal terhadap sistem pneumatik berat. Mampu mengalirkan udara dalam volume tinggi dengan pressure drop minimal.',
@@ -230,83 +300,4 @@ export const PRODUCTS_CATALOG = [
       'Sambungkan selang buangan pada fitting auto-drain menuju penampungan limbah cairan.'
     ]
   },
-  {
-    id: 'ASCO-8210',
-    name: 'ASCO RedHat Katup Solenoid Presisi Tinggi (Seri 8210)',
-    brand: 'ASCO',
-    category: 'Katup Solenoid',
-    categoryName: 'Katup Solenoid Kontrol Fluida',
-    sku: '8210G002-24VDC',
-    image: '/products/norgren-iso-star-solenoid-valve.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta & Cikarang',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Katup solenoid 2-arah kerja langsung dengan durabilitas jutaan siklus untuk udara, air, dan gas inert.',
-    description: 'Katup solenoid 2-arah ASCO RedHat Seri 8210 berbahan kuningan tempa (forged brass) berkualitas tinggi. Dikenal di seluruh dunia untuk keandalan buka-tutup berkecepatan tinggi dalam kontrol fluida otomasi pabrik.',
-    specsBadge: 'Ukuran Port: 1/2" NPT | Voltase: 24VDC / 220VAC | Tekanan: 0 ~ 1.0 MPa',
-    specs: {
-      'Tipe Katup': '2/2-Way Normally Closed (NC)',
-      'Material Bodi': 'Forged Brass Berkekuatan Tinggi',
-      'Ukuran Port Koneksi': '1/2" NPT Thread',
-      'Tekanan Diferensial Operasi': '0 ~ 1.0 MPa (0 ~ 150 psi)',
-      'Material Seal & Diafragma': 'NBR / Viton Tahan Suhu Tinggi',
-      'Daya Konsumsi Listrik': '6.1 Watt (DC) / 9.1 VA (AC)'
-    },
-    installationNotes: [
-      'Pastikan arah panah pada bodi katup searah dengan aliran pipa fluida pabrik.',
-      'Gunakan saringan filter sebelum katup untuk mencegah partikel menyumbat dudukan inti solenoid.'
-    ]
-  },
-  {
-    id: 'NUMATICS-MARK8',
-    name: 'Numatics Mark 8 Directional Control Valve Berkecepatan Tinggi',
-    brand: 'Numatics',
-    category: 'Katup Solenoid',
-    categoryName: 'Katup Pneumatik Arah Mesin',
-    sku: 'MK8-08-SINGLE-24V',
-    image: '/products/norgren-solenoid-valve-vcb.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Cikarang & Karawang',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Katup spool pneumatik Numatics berpaten lapped-spool and sleeve tanpa O-ring karet aus.',
-    description: 'Katup pneumatik Numatics Mark 8 legendaris menggunakan teknologi stainless steel lapped-spool and sleeve. Mengeliminasi gesekan karet, tahan terhadap udara kering non-lubrikasi, dan teruji beroperasi hingga ratusan juta siklus kerja tanpa henti.',
-    specsBadge: 'Port: G1/4" | Laju Aliran: 1,000 L/mnt | Respon Cepat 15ms',
-    specs: {
-      'Konfigurasi Katup': '5 Lubang 2 Posisi (Single Solenoid Spring Return)',
-      'Teknologi Inti Spool': 'Patented Lapped Spool & Sleeve (Stainless Steel)',
-      'Waktu Respon': '< 15 milidetik (Sangat Cepat)',
-      'Pelumasan': 'Dapat beroperasi tanpa pelumas (Non-Lube Air)',
-      'Port Koneksi': 'G 1/4" BSPP'
-    },
-    installationNotes: [
-      'Cocok langsung dipasang pada manifold blok bersama untuk menghemat ruang kabinet mesin.',
-      'Gunakan muffler/silencer berkualitas pada port exhaust untuk meminimalkan kebisingan.'
-    ]
-  },
-  {
-    id: 'AVENTICS-PRA',
-    name: 'Aventics Silinder Pneumatik Standar ISO 15552 (Seri PRA)',
-    brand: 'Aventics',
-    category: 'Silinder Pneumatik',
-    categoryName: 'Silinder & Aktuator Pneumatik Presisi',
-    sku: 'PRA-50X100-M',
-    image: '/products/norgren-air-cylinder-rm8000.jpg',
-    stockStatus: 'Stok Tersedia',
-    stockLocation: 'Gudang Pusat Jakarta',
-    whatsapp: '+62 896 5958 6363',
-    summary: 'Silinder pneumatik profil ISO 15552 Aventics dengan peredam bantalan pneumatik ideal.',
-    description: 'Silinder profil pneumatik Aventics Seri PRA memenuhi standar ISO 15552 dengan bodi aluminium anodized yang ramping, alur sensor terintegrasi, dan sistem bantalan udara pneumatik yang dapat disetel halus untuk gerakan halus mesin packaging & otomotif.',
-    specsBadge: 'Diameter Bore: Ø50mm | Stroke: 100mm | Standar ISO 15552',
-    specs: {
-      'Standar Desain': 'ISO 15552 / ISO 6431',
-      'Diameter Silinder (Bore)': 'Ø50 mm',
-      'Panjang Langkah (Stroke)': '100 mm',
-      'Bahan Batang Piston (Rod)': 'Baja Berlapis Krom Keras (Hard Chrome Steel)',
-      'Rentang Tekanan Kerja': '0.15 ~ 1.0 MPa (1.5 ~ 10 bar)'
-    },
-    installationNotes: [
-      'Gunakan sensor magnetik Aventics tipe ST6 pada alur samping tanpa memerlukan bracket eksternal.',
-      'Setel sekrup cushion pada tutup ujung silinder secara perlahan untuk meredam hentakan beban kinetik.'
-    ]
-  }
 ];

@@ -16,7 +16,7 @@ export default function ProductCatalogSection({
   displayWhatsApp,
   defaultWhatsAppNumber,
 }) {
-  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'compact'
+  
   const [addedAnimationId, setAddedAnimationId] = useState(null);
 
   const handleQuickAddRfq = (product) => {
@@ -117,8 +117,8 @@ export default function ProductCatalogSection({
               </div>
             </div>
 
-            {/* View Mode & Reset Controls */}
-            <div className="md:col-span-2 flex items-center justify-end gap-2">
+            {/* Reset Controls */}
+            <div className="md:col-span-2 flex items-center justify-end">
               {/* Reset filter button if active */}
               {(selectedCategory !== 'all' || selectedBrand !== 'all' || searchQuery !== '') && (
                 <button
@@ -127,38 +127,12 @@ export default function ProductCatalogSection({
                     setSelectedBrand('all');
                     setSearchQuery('');
                   }}
-                  className="px-3 py-2 text-xs text-rose-600 hover:text-rose-700 font-bold underline"
+                  className="px-3 py-2 text-xs text-rose-600 hover:text-rose-700 font-bold underline cursor-pointer"
                   title="Reset Filter"
                 >
-                  Reset
+                  Reset Filter
                 </button>
               )}
-
-              {/* View mode toggle */}
-              <div className="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200">
-                <button
-                  onClick={() => setViewMode('grid')}
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-colors ${
-                    viewMode === 'grid'
-                      ? 'bg-white text-slate-900 shadow-sm font-bold'
-                      : 'text-slate-500 hover:text-slate-800'
-                  }`}
-                  title="Grid View"
-                >
-                  <i className="fa-solid fa-grid-2"></i>
-                </button>
-                <button
-                  onClick={() => setViewMode('compact')}
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs transition-colors ${
-                    viewMode === 'compact'
-                      ? 'bg-white text-slate-900 shadow-sm font-bold'
-                      : 'text-slate-500 hover:text-slate-800'
-                  }`}
-                  title="Compact List View"
-                >
-                  <i className="fa-solid fa-list"></i>
-                </button>
-              </div>
             </div>
           </div>
 
@@ -224,47 +198,41 @@ export default function ProductCatalogSection({
           <div>
             Menampilkan <strong>{products.length}</strong> jenis komponen industri
           </div>
-          <div className="flex items-center gap-2 text-emerald-600 font-bold">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Gudang Siap Kirim (Dispatch Nasional)</span>
+          <div className="flex items-center gap-2 text-slate-500 font-bold">
+            <span className="w-2 h-2 rounded-full bg-[#DF9235]"></span>
+            <span>Pengadaan Komponen Resmi (Pengiriman Nasional)</span>
           </div>
         </div>
 
         {/* ============================================================== */}
-        {/* VIEW 1: GRID VIEW (Fresh modern tech cards)                    */}
+        {/* VIEW 1: GRID VIEW (2 cols on mobile, 2 on tablet, 3 on desktop)*/}
         {/* ============================================================== */}
-        {viewMode === 'grid' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5 md:gap-7">
             {products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-[28px] border border-slate-200 p-5 flex flex-col justify-between hover:shadow-card-hover hover:border-[#DF9235]/60 transition-all duration-300 group relative"
+                className="bg-white rounded-2xl sm:rounded-[28px] border border-slate-200 p-2 sm:p-4 md:p-5 flex flex-col justify-between hover:shadow-card-hover hover:border-[#DF9235]/60 transition-all duration-300 group relative"
               >
                 <div>
                   {/* Photo & Badges */}
                   <div
                     onClick={() => onSelectProduct(product)}
-                    className="relative h-56 bg-slate-50 rounded-[22px] border border-slate-100 p-4 flex items-center justify-center overflow-hidden cursor-pointer group-hover:bg-amber-50/20 transition-colors"
+                    className="relative h-28 xs:h-36 sm:h-48 md:h-56 bg-slate-50 rounded-xl sm:rounded-[22px] border border-slate-100 p-1.5 sm:p-4 flex items-center justify-center overflow-hidden cursor-pointer group-hover:bg-amber-50/20 transition-colors"
                   >
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="max-h-48 object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
+                      className="max-h-24 xs:max-h-32 sm:max-h-40 md:max-h-48 object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
                     />
 
                     {/* Brand Pill */}
-                    <span className="absolute top-3.5 left-3.5 bg-slate-900 text-white text-[10px] font-mono font-bold px-2.5 py-1 rounded-full shadow-sm">
+                    <span className="absolute top-1.5 left-1.5 sm:top-3.5 sm:left-3.5 bg-slate-900 text-white text-[8px] sm:text-[10px] font-mono font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded sm:rounded-full shadow-sm">
                       {product.brand}
                     </span>
 
-                    {/* Stock Status Pill */}
-                    <span className="absolute top-3.5 right-3.5 bg-white/95 border border-slate-200 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                      {product.stockStatus}
-                    </span>
-
                     {/* Hover Quick Zoom Hint */}
-                    <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:flex items-center justify-center pointer-events-none">
                       <span className="bg-white/90 text-slate-800 text-[11px] font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm flex items-center gap-1.5">
                         <i className="fa-solid fa-eye text-[#DF9235]"></i>
                         Lihat Spesifikasi
@@ -273,53 +241,53 @@ export default function ProductCatalogSection({
                   </div>
 
                   {/* Product Details */}
-                  <div className="pt-4 space-y-2.5 text-left">
-                    <div className="flex items-center justify-between text-[11px] font-mono">
-                      <span className="font-bold text-[#DF9235] tracking-wider uppercase">
+                  <div className="pt-2 sm:pt-4 space-y-1 sm:space-y-2 text-left">
+                    <div className="flex items-center justify-between text-[9px] sm:text-[11px] font-mono">
+                      <span className="font-bold text-[#DF9235] tracking-wider uppercase truncate max-w-full">
                         SKU: {product.sku}
                       </span>
-                      <span className="text-slate-400 truncate max-w-[140px]">
+                      <span className="text-slate-400 truncate hidden sm:inline max-w-[140px]">
                         {product.categoryName || product.category}
                       </span>
                     </div>
 
                     <h3
                       onClick={() => onSelectProduct(product)}
-                      className="font-extrabold text-base text-slate-900 group-hover:text-[#DF9235] transition-colors leading-snug cursor-pointer line-clamp-2"
+                      className="font-extrabold text-[11px] sm:text-sm md:text-base text-slate-900 group-hover:text-[#DF9235] transition-colors leading-snug cursor-pointer line-clamp-2 min-h-[1.75rem] sm:min-h-[2.5rem]"
                       title={product.name}
                     >
                       {product.name}
                     </h3>
 
-                    <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+                    <p className="text-[11px] sm:text-xs text-slate-500 leading-relaxed line-clamp-1 sm:line-clamp-2 hidden sm:block">
                       {product.description}
                     </p>
 
                     {/* Specs Badge */}
-                    <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80 font-mono text-[11px] text-slate-700 truncate">
+                    <div className="bg-slate-50 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-slate-200/80 font-mono text-[8px] sm:text-[11px] text-slate-700 truncate">
                       {product.specsBadge}
                     </div>
                   </div>
                 </div>
 
                 {/* Actions Row */}
-                <div className="pt-5 mt-4 border-t border-slate-100 space-y-2.5">
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="pt-2 sm:pt-4 mt-2 sm:mt-4 border-t border-slate-100 space-y-1 sm:space-y-2">
+                  <div className="grid grid-cols-2 gap-1 sm:gap-2">
                     {/* Tanya WA */}
                     <a
                       href={getProductWhatsAppUrl(product)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="py-2.5 px-3 rounded-full bg-slate-900 hover:bg-black text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all text-center active:scale-95"
+                      className="py-1.5 sm:py-2.5 px-1 sm:px-3 rounded-lg sm:rounded-full bg-slate-900 hover:bg-black text-white font-bold text-[9px] sm:text-xs flex items-center justify-center gap-1 sm:gap-1.5 shadow-sm transition-all text-center active:scale-95"
                     >
-                      <i className="fa-brands fa-whatsapp text-sm text-[#DF9235]"></i>
-                      <span>Tanya WA</span>
+                      <i className="fa-brands fa-whatsapp text-xs sm:text-sm text-[#DF9235]"></i>
+                      <span className="truncate">WA</span>
                     </a>
 
                     {/* Tambah ke RFQ */}
                     <button
                       onClick={() => handleQuickAddRfq(product)}
-                      className={`py-2.5 px-3 rounded-full border text-xs font-bold flex items-center justify-center gap-1.5 transition-all text-center active:scale-95 ${
+                      className={`py-1.5 sm:py-2.5 px-1 sm:px-3 rounded-lg sm:rounded-full border text-[9px] sm:text-xs font-bold flex items-center justify-center gap-1 sm:gap-1.5 transition-all text-center active:scale-95 ${
                         addedAnimationId === product.id
                           ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
                           : 'bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200'
@@ -332,8 +300,8 @@ export default function ProductCatalogSection({
                             : 'fa-file-circle-plus'
                         } text-xs`}
                       ></i>
-                      <span>
-                        {addedAnimationId === product.id ? 'Ditambahkan!' : '+ Minta RFQ'}
+                      <span className="truncate">
+                        {addedAnimationId === product.id ? 'OK' : '+ RFQ'}
                       </span>
                     </button>
                   </div>
@@ -341,97 +309,17 @@ export default function ProductCatalogSection({
                   {/* Detail Link */}
                   <button
                     onClick={() => onSelectProduct(product)}
-                    className="w-full text-center text-[11px] font-bold text-slate-500 hover:text-slate-800 py-1 transition-colors flex items-center justify-center gap-1"
+                    className="w-full text-center text-[9px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-800 py-0.5 sm:py-1 transition-colors flex items-center justify-center gap-1"
                   >
-                    <span>Buka Rincian Spesifikasi & Gambar Detail</span>
-                    <i className="fa-solid fa-chevron-right text-[9px]"></i>
+                    <span>Rincian & Foto</span>
+                    <i className="fa-solid fa-chevron-right text-[7px] sm:text-[9px]"></i>
                   </button>
                 </div>
               </div>
             ))}
           </div>
-        )}
 
-        {/* ============================================================== */}
-        {/* VIEW 2: COMPACT LIST VIEW (Professional procurement table)      */}
-        {/* ============================================================== */}
-        {viewMode === 'compact' && (
-          <div className="bg-white rounded-[28px] border border-slate-200 overflow-hidden shadow-card">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-mono uppercase text-[11px]">
-                  <tr>
-                    <th className="py-3.5 px-4">Komponen</th>
-                    <th className="py-3.5 px-4">Merek / SKU</th>
-                    <th className="py-3.5 px-4 hidden md:table-cell">Kategori</th>
-                    <th className="py-3.5 px-4 hidden sm:table-cell">Spesifikasi Singkat</th>
-                    <th className="py-3.5 px-4 text-center">Stok</th>
-                    <th className="py-3.5 px-4 text-right">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 text-slate-800">
-                  {products.map((product) => (
-                    <tr
-                      key={product.id}
-                      className="hover:bg-amber-50/30 transition-colors group cursor-pointer"
-                    >
-                      <td
-                        onClick={() => onSelectProduct(product)}
-                        className="py-3 px-4 font-bold max-w-xs"
-                      >
-                        <div className="flex items-center gap-3">
-                          <img
-                            src={product.image}
-                            alt=""
-                            className="w-10 h-10 object-contain rounded-lg bg-slate-50 p-1 border border-slate-200 shrink-0"
-                          />
-                          <div className="font-extrabold text-slate-900 group-hover:text-[#DF9235] line-clamp-1">
-                            {product.name}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4 font-mono">
-                        <span className="font-bold text-slate-900">{product.brand}</span>
-                        <div className="text-[11px] text-slate-500">{product.sku}</div>
-                      </td>
-                      <td className="py-3 px-4 hidden md:table-cell text-slate-600">
-                        {product.category}
-                      </td>
-                      <td className="py-3 px-4 hidden sm:table-cell text-slate-500 font-mono text-[11px] max-w-xs truncate">
-                        {product.specsBadge}
-                      </td>
-                      <td className="py-3 px-4 text-center">
-                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold border border-emerald-200 inline-block">
-                          {product.stockStatus}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4 text-right">
-                        <div className="flex items-center justify-end gap-1.5">
-                          <a
-                            href={getProductWhatsAppUrl(product)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-slate-900 text-white hover:bg-black transition-colors"
-                            title="Chat WhatsApp"
-                          >
-                            <i className="fa-brands fa-whatsapp text-xs text-[#DF9235]"></i>
-                          </a>
-                          <button
-                            onClick={() => handleQuickAddRfq(product)}
-                            className="p-2 rounded-lg bg-amber-100 text-amber-800 hover:bg-amber-200 transition-colors"
-                            title="Tambah ke RFQ"
-                          >
-                            <i className="fa-solid fa-file-circle-plus text-xs"></i>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
+
 
         {/* Empty State */}
         {products.length === 0 && (
@@ -446,7 +334,7 @@ export default function ProductCatalogSection({
               Tidak ada produk yang cocok dengan pencarian "{searchQuery}". KMP memiliki ribuan SKU offline yang siap kami carikan langsung untuk mesin Anda.
             </p>
             <a
-              href={`https://wa.me/${defaultWhatsAppNumber}?text=${encodeURIComponent(`Halo CV. Krisna Mandiri Perkasa, saya sedang mencari part: ${searchQuery}. Apakah ada stoknya atau tipe alternatifnya?`)}`}
+              href={`https://wa.me/${defaultWhatsAppNumber}?text=${encodeURIComponent(`Halo CV. Krisna Mandiri Perkasa, saya sedang mencari part: ${searchQuery}. Apakah bisa dipesan atau ada rekomendasi tipe ekuivalennya?`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 text-white font-bold text-xs shadow-sm hover:bg-black transition-all"

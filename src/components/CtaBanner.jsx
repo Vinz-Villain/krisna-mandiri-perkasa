@@ -25,7 +25,7 @@ export default function CtaBanner({ onOpenRfq }) {
         </h2>
 
         <p className="mt-4 text-xs sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          Dapatkan suku cadang orisinal berkualitas tinggi, kepastian stok siap kirim, dan respon surat penawaran harga resmi (Quotation) dalam hitungan menit.
+          Dapatkan suku cadang orisinal berkualitas tinggi, kepastian pengadaan terpercaya, dan respon surat penawaran harga resmi (Quotation) dalam hitungan menit.
         </p>
 
         {/* CTA Buttons Row */}

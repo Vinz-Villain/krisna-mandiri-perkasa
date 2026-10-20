@@ -6,11 +6,11 @@ export default function BentoFeatures({ onOpenRfq }) {
   const tabContents = {
     kecepatan: {
       badge: 'Zero Downtime',
-      title: 'Distribusi Kilat & Siap Kirim Hari Ini',
+      title: 'Pengadaan Kilat & Distribusi Tepat Waktu',
       description:
-        'Pemberhentian lini mesin pabrik bernilai jutaan rupiah per menit. KMP mempertahankan ribuan SKU komponen pneumatik dan suku cadang siap kirim dari gudang Cikarang & Jakarta dengan opsi Same-Day Dispatch.',
+        'Pemberhentian lini mesin pabrik bernilai jutaan rupiah per menit. KMP siap mendukung kebutuhan pengadaan suku cadang otomasi pabrik Anda dengan respon cepat dan pengiriman tepat waktu.',
       metrics: [
-        { label: 'Dispatch Gudang', val: '< 2 Jam' },
+        { label: 'Respon RFQ', val: '< 30 Menit' },
         { label: 'Ketepatan Lead Time', val: '99.4%' },
       ],
     },
@@ -54,7 +54,7 @@ export default function BentoFeatures({ onOpenRfq }) {
             </h2>
           </div>
           <p className="text-sm text-slate-600 max-w-md text-left">
-            Kombinasi stok gudang melimpah, keaslian terjamin, serta kecepatan respon surat penawaran harga (RFQ) menjadikan kami mitra andalan departemen pengadaan pabrik di seluruh Indonesia.
+            Jaringan rantai pasok luas, keaslian terjamin, serta kecepatan respon surat penawaran harga (RFQ) menjadikan kami mitra andalan departemen pengadaan pabrik di seluruh Indonesia.
           </p>
         </div>
 
@@ -197,7 +197,7 @@ export default function BentoFeatures({ onOpenRfq }) {
                 Konsultasi Spesifikasi & Sebut Harga Kilat
               </h4>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Kirimkan foto nameplate part lama atau nomor katalog yang Anda cari via WhatsApp. Tim teknisi kami akan merespon ketersediaan stok, harga, dan alternatifnya dalam hitungan menit.
+                Kirimkan foto nameplate part lama atau nomor katalog yang Anda cari via WhatsApp. Tim teknisi kami akan merespon estimasi pengadaan, harga penawaran resmi, dan alternatifnya dalam hitungan menit.
               </p>
             </div>
 
