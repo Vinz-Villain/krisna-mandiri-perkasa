@@ -562,7 +562,6 @@ export default function AdminDashboardModal({
           <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
             <span className="flex items-center gap-1">
               <i className="fa-solid fa-key text-[10px]"></i>
-              <span>Default PIN: <code className="font-mono font-bold text-slate-600">kmpadmin2026</code></span>
             </span>
             <span className="text-slate-400">CV. KMP Security</span>
           </div>
