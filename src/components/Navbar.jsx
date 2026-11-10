@@ -28,12 +28,12 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
           : 'bg-white/85 backdrop-blur-md py-2.5 sm:py-3.5 border-b border-slate-100/80'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:pl-5 lg:pr-8">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo & Brand Identity */}
           <div
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2 sm:gap-3 cursor-pointer group min-w-0"
+            className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer group min-w-0 shrink-0"
           >
             <div className="shrink-0">
               <img

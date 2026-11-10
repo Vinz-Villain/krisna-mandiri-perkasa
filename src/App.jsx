@@ -288,7 +288,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans antialiased selection:bg-[#DC2626]/25 selection:text-slate-900 flex flex-col relative">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans antialiased selection:bg-[#DC2626]/25 selection:text-slate-900 flex flex-col relative w-full max-w-full overflow-x-hidden">
       {/* 1. Floating Modern Header / Navbar */}
       <Navbar
         rfqCount={rfqCart.length}

@@ -92,8 +92,22 @@
         }
       }
     </script>
+    <style>
+      html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+        margin: 0;
+        padding: 0;
+      }
+      #root {
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+      }
+    </style>
   </head>
-  <body class="antialiased selection:bg-[#DC2626]/25 selection:text-slate-900 text-slate-800 bg-[#F8FAFC]">
+  <body class="antialiased selection:bg-[#DC2626]/25 selection:text-slate-900 text-slate-800 bg-[#F8FAFC] overflow-x-hidden w-full max-w-full">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

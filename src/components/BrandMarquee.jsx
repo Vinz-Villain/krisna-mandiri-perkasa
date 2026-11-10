@@ -60,7 +60,7 @@ export default function BrandMarquee({ onSelectBrand }) {
   };
 
   return (
-    <section className="py-14 sm:py-20 bg-white relative overflow-hidden border-b border-slate-100">
+    <section className="py-14 sm:py-20 bg-white relative overflow-hidden overflow-x-clip max-w-full border-b border-slate-100">
       {/* Centered Section Header inspired by SMK Telkom */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10 sm:mb-14">
         <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-red-600 tracking-tight leading-tight mb-3 font-sans">
@@ -72,13 +72,13 @@ export default function BrandMarquee({ onSelectBrand }) {
       </div>
 
       {/* Marquee Carousel Container */}
-      <div className="relative w-full overflow-hidden space-y-4 sm:space-y-6">
+      <div className="relative w-full max-w-full overflow-hidden overflow-x-clip space-y-4 sm:space-y-6">
         {/* Left & Right Soft Fade Masks */}
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-36 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
 
         {/* Row 1: Scrolling Left */}
-        <div className="marquee-group relative w-full overflow-hidden">
+        <div className="marquee-group relative w-full max-w-full overflow-hidden overflow-x-clip">
           <div className="flex items-center gap-3.5 sm:gap-6 animate-marquee-left w-max py-1">
             {row1Items.map((brand, idx) => (
               <div
@@ -96,7 +96,7 @@ export default function BrandMarquee({ onSelectBrand }) {
         </div>
 
         {/* Row 2: Scrolling Right (Reverse) */}
-        <div className="marquee-group relative w-full overflow-hidden">
+        <div className="marquee-group relative w-full max-w-full overflow-hidden overflow-x-clip">
           <div className="flex items-center gap-3.5 sm:gap-6 animate-marquee-right w-max py-1">
             {row2Items.map((brand, idx) => (
               <div

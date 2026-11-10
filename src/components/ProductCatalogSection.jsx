@@ -194,21 +194,21 @@ export default function ProductCatalogSection({
         </div>
 
         {/* Live Status Bar */}
-        <div className="flex items-center justify-between px-2 mb-6 text-xs text-slate-500 font-mono">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-2 mb-6 text-xs text-slate-500 font-mono">
           <div>
             Menampilkan <strong>{products.length}</strong> jenis komponen industri
           </div>
           <div className="flex items-center gap-2 text-slate-500 font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
+            <span className="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>
             <span>Pengadaan Komponen Resmi (Pengiriman Nasional)</span>
           </div>
         </div>
 
         {/* ============================================================== */}
-        {/* VIEW 1: GRID VIEW (2 cols on mobile, 2 on tablet, 3 on desktop)*/}
+        {/* VIEW 1: GRID VIEW (1 col on narrow mobile, 2 cols on tablet, 3 on desktop)*/}
         {/* ============================================================== */}
         
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5 md:gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5 md:gap-7">
             {products.map((product) => (
               <div
                 key={product.id}

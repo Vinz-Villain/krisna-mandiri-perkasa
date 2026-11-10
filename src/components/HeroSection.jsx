@@ -589,12 +589,10 @@ function Curved3DCarouselStage({ onSelectProduct }) {
       onMouseLeave={() => { isInteracting.current = false; }}
 
       className="absolute inset-x-0 top-[38%] sm:top-[44%] md:top-1/2 -translate-y-1/2 h-[320px] sm:h-[480px] md:h-[620px] pointer-events-none select-none overflow-hidden z-[1]"
-
+      style={{ contain: 'paint', overflow: 'clip' }}
       aria-hidden="true"
-
     >
-
-      <div style={{ position: 'absolute', inset: 0, perspective: '1100px', perspectiveOrigin: '50% 50%' }}>
+      <div style={{ position: 'absolute', inset: 0, perspective: '1100px', perspectiveOrigin: '50% 50%', contain: 'paint', overflow: 'clip' }}>
 
         <div
 
@@ -708,60 +706,32 @@ export default function HeroSection({
 
   return (
 
-    <section className="relative min-h-[90vh] sm:min-h-[96dvh] w-full flex flex-col justify-center overflow-hidden bg-[#F8FAFC] pt-24 pb-14 sm:pt-28 sm:pb-16 font-sans">
-
-      
+    <section className="relative min-h-[90vh] sm:min-h-[96dvh] w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible bg-[#F8FAFC] pt-24 pb-14 sm:pt-28 sm:pb-16 font-sans">
 
       {/* 1. Atmospheric Ambient Lighting & Grid */}
-
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none select-none overflow-hidden">
-
         <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-[#F8FAFC]/95" />
-
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-red-500/12 via-[#3B49DF]/8 to-indigo-500/8 rounded-full blur-3xl pointer-events-none" />
-
         <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-
       </div>
 
-
-
       {/* 2. Genuine 3D Curved Cylindrical Carousel with Real Product Photos */}
-
       <Curved3DCarouselStage onSelectProduct={onSelectProduct} />
 
-
-
       {/* 3. Radial Soft Vignette Mask */}
-
       <div className="absolute inset-0 z-[5] pointer-events-none select-none bg-[radial-gradient(ellipse_70%_58%_at_50%_46%,rgba(248,250,252,0.92)_0%,rgba(248,250,252,0.55)_50%,transparent_85%)]" />
 
-
-
       {/* 4. Center Stage Content (Matching Screenshot 2026-10-15 230726.png) */}
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
-
-        
-
-
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center w-full">
 
         {/* Headline: Clean, Non-Tilted (Suku Cadang Industri in Slate, Presisi & Otomasi Pabrik in Amber) */}
-
-        <div className="flex flex-col items-center justify-center space-y-0.5 sm:space-y-1">
-
-          <h1 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-slate-900 leading-tight">
-
+        <div className="flex flex-col items-center justify-center space-y-0.5 sm:space-y-1 w-full">
+          <h1 className="text-3xl min-[380px]:text-4xl min-[480px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-slate-900 leading-tight">
             General Supplier &
-
           </h1>
-
-          <h2 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-[#DC2626] leading-tight pb-1">
-
+          <h2 className="text-3xl min-[380px]:text-4xl min-[480px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-[#DC2626] leading-tight pb-1">
             Sparepart Mesin Industri
-
           </h2>
-
         </div>
 
 
@@ -832,24 +802,15 @@ export default function HeroSection({
 
           {/* Search Pill Input Bar */}
 
-          <div className="bg-white/95 backdrop-blur-md rounded-full p-2 pl-5 sm:pl-6 shadow-md border border-slate-200/90 flex items-center justify-between gap-3 transition-all focus-within:ring-2 focus-within:ring-[#DC2626]/40 focus-within:border-[#DC2626]">
-
-            <div className="flex items-center gap-3 w-full">
-
-              <i className="fa-solid fa-magnifying-glass text-slate-400 text-sm" />
-
+          <div className="bg-white/95 backdrop-blur-md rounded-full p-1.5 sm:p-2 pl-4 sm:pl-6 shadow-md border border-slate-200/90 flex items-center justify-between gap-2 sm:gap-3 transition-all focus-within:ring-2 focus-within:ring-[#DC2626]/40 focus-within:border-[#DC2626] w-full min-w-0">
+            <div className="flex items-center gap-2 sm:gap-3 w-full min-w-0">
+              <i className="fa-solid fa-magnifying-glass text-slate-400 text-sm shrink-0" />
               <input
-
                 type="text"
-
-                placeholder="Cari nomor SKU, tipe part (ISO 15552, 4V210, GFR300), atau merek..."
-
+                placeholder="Cari nomor SKU, tipe part..."
                 value={searchQuery}
-
                 onChange={(e) => setSearchQuery(e.target.value)}
-
-                className="w-full bg-transparent text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none font-medium"
-
+                className="w-full min-w-0 bg-transparent text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none font-medium"
               />
 
               {searchQuery && (
