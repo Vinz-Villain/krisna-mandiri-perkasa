@@ -205,29 +205,29 @@ export default function ProductCatalogSection({
         </div>
 
         {/* ============================================================== */}
-        {/* VIEW 1: GRID VIEW (1 col on narrow mobile, 2 cols on tablet, 3 on desktop)*/}
+        {/* VIEW 1: GRID VIEW (2 cols on mobile side-by-side, 2 on tablet, 3 on desktop)*/}
         {/* ============================================================== */}
         
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5 md:gap-7">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-5 md:gap-7">
             {products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-2xl sm:rounded-[28px] border border-slate-200 p-2 sm:p-4 md:p-5 flex flex-col justify-between hover:shadow-card-hover hover:border-[#DC2626]/60 transition-all duration-300 group relative"
+                className="bg-white rounded-xl sm:rounded-[28px] border border-slate-200 p-2 sm:p-4 md:p-5 flex flex-col justify-between hover:shadow-card-hover hover:border-[#DC2626]/60 transition-all duration-300 group relative"
               >
                 <div>
                   {/* Photo & Badges */}
                   <div
                     onClick={() => onSelectProduct(product)}
-                    className="relative h-28 xs:h-36 sm:h-48 md:h-56 bg-slate-50 rounded-xl sm:rounded-[22px] border border-slate-100 p-1.5 sm:p-4 flex items-center justify-center overflow-hidden cursor-pointer group-hover:bg-red-50/20 transition-colors"
+                    className="relative h-24 sm:h-44 md:h-56 bg-slate-50 rounded-lg sm:rounded-[22px] border border-slate-100 p-1 sm:p-4 flex items-center justify-center overflow-hidden cursor-pointer group-hover:bg-red-50/20 transition-colors"
                   >
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="max-h-24 xs:max-h-32 sm:max-h-40 md:max-h-48 object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
+                      className="max-h-20 sm:max-h-36 md:max-h-48 object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
                     />
 
                     {/* Brand Pill */}
-                    <span className="absolute top-1.5 left-1.5 sm:top-3.5 sm:left-3.5 bg-slate-900 text-white text-[8px] sm:text-[10px] font-mono font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded sm:rounded-full shadow-sm">
+                    <span className="absolute top-1 left-1 sm:top-3.5 sm:left-3.5 bg-slate-900 text-white text-[7.5px] sm:text-[10px] font-mono font-bold px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded sm:rounded-full shadow-sm">
                       {product.brand}
                     </span>
 
@@ -241,8 +241,8 @@ export default function ProductCatalogSection({
                   </div>
 
                   {/* Product Details */}
-                  <div className="pt-2 sm:pt-4 space-y-1 sm:space-y-2 text-left">
-                    <div className="flex items-center justify-between text-[9px] sm:text-[11px] font-mono">
+                  <div className="pt-1.5 sm:pt-4 space-y-0.5 sm:space-y-2 text-left">
+                    <div className="flex items-center justify-between text-[8px] sm:text-[11px] font-mono">
                       <span className="font-bold text-[#DC2626] tracking-wider uppercase truncate max-w-full">
                         SKU: {product.sku}
                       </span>
@@ -253,7 +253,7 @@ export default function ProductCatalogSection({
 
                     <h3
                       onClick={() => onSelectProduct(product)}
-                      className="font-extrabold text-[11px] sm:text-sm md:text-base text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug cursor-pointer line-clamp-2 min-h-[1.75rem] sm:min-h-[2.5rem]"
+                      className="font-extrabold text-[10.5px] sm:text-sm md:text-base text-slate-900 group-hover:text-[#DC2626] transition-colors leading-tight cursor-pointer line-clamp-2 min-h-[1.75rem] sm:min-h-[2.5rem]"
                       title={product.name}
                     >
                       {product.name}
@@ -264,21 +264,21 @@ export default function ProductCatalogSection({
                     </p>
 
                     {/* Specs Badge */}
-                    <div className="bg-slate-50 p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border border-slate-200/80 font-mono text-[8px] sm:text-[11px] text-slate-700 truncate">
+                    <div className="bg-slate-50 p-1 sm:p-2.5 rounded sm:rounded-xl border border-slate-200/80 font-mono text-[7.5px] sm:text-[11px] text-slate-700 truncate">
                       {product.specsBadge}
                     </div>
                   </div>
                 </div>
 
                 {/* Actions Row */}
-                <div className="pt-2 sm:pt-4 mt-2 sm:mt-4 border-t border-slate-100 space-y-1 sm:space-y-2">
+                <div className="pt-1.5 sm:pt-4 mt-1.5 sm:mt-4 border-t border-slate-100 space-y-1 sm:space-y-2">
                   <div className="grid grid-cols-2 gap-1 sm:gap-2">
                     {/* Tanya WA */}
                     <a
                       href={getProductWhatsAppUrl(product)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="py-1.5 sm:py-2.5 px-1 sm:px-3 rounded-lg sm:rounded-full bg-slate-900 hover:bg-black text-white font-bold text-[9px] sm:text-xs flex items-center justify-center gap-1 sm:gap-1.5 shadow-sm transition-all text-center active:scale-95"
+                      className="py-1 sm:py-2.5 px-0.5 sm:px-3 rounded-lg sm:rounded-full bg-slate-900 hover:bg-black text-white font-bold text-[8.5px] sm:text-xs flex items-center justify-center gap-1 sm:gap-1.5 shadow-sm transition-all text-center active:scale-95"
                     >
                       <i className="fa-brands fa-whatsapp text-xs sm:text-sm text-[#DC2626]"></i>
                       <span className="truncate">WA</span>
@@ -287,7 +287,7 @@ export default function ProductCatalogSection({
                     {/* Tambah ke RFQ */}
                     <button
                       onClick={() => handleQuickAddRfq(product)}
-                      className={`py-1.5 sm:py-2.5 px-1 sm:px-3 rounded-lg sm:rounded-full border text-[9px] sm:text-xs font-bold flex items-center justify-center gap-1 sm:gap-1.5 transition-all text-center active:scale-95 ${
+                      className={`py-1 sm:py-2.5 px-0.5 sm:px-3 rounded-lg sm:rounded-full border text-[8.5px] sm:text-xs font-bold flex items-center justify-center gap-1 sm:gap-1.5 transition-all text-center active:scale-95 ${
                         addedAnimationId === product.id
                           ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
                           : 'bg-red-50 hover:bg-red-100 text-red-800 border-red-200'
@@ -309,7 +309,7 @@ export default function ProductCatalogSection({
                   {/* Detail Link */}
                   <button
                     onClick={() => onSelectProduct(product)}
-                    className="w-full text-center text-[9px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-800 py-0.5 sm:py-1 transition-colors flex items-center justify-center gap-1"
+                    className="w-full text-center text-[8.5px] sm:text-[11px] font-bold text-slate-500 hover:text-slate-800 py-0.5 transition-colors flex items-center justify-center gap-0.5"
                   >
                     <span>Rincian & Foto</span>
                     <i className="fa-solid fa-chevron-right text-[7px] sm:text-[9px]"></i>
