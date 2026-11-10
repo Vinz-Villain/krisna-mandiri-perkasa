@@ -18,7 +18,7 @@ export default function BentoFeatures({ onOpenRfq }) {
       badge: '100% Genuine Certified',
       title: 'Sertifikasi Pabrikan Asli & Garansi Resmi',
       description:
-        'Seluruh komponen ASCO, Numatics, Aventics, Norgren, Airtac, dan brand lainnya didatangkan melalui rantai pasok manufaktur terverifikasi dengan Certificate of Conformance (CoC) dan garansi produk pabrik.',
+        'Seluruh komponen ASCO, Numatics, Aventics, Airtac, dan brand lainnya didatangkan melalui rantai pasok manufaktur terverifikasi dengan Certificate of Conformance (CoC) dan garansi produk pabrik.',
       metrics: [
         { label: 'Jaminan Orisinal', val: '100%' },
         { label: 'Dokumen Sertifikasi', val: 'Lengkap' },

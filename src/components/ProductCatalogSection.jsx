@@ -45,7 +45,7 @@ export default function ProductCatalogSection({
             Katalog Komponen <span className="text-[#DC2626]">& Suku Cadang</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600">
-            Telusuri suku cadang pneumatik, katup solenoid, unit FRL, dan aksesoris industri dari brand resmi terkemuka dengan spesifikasi teknis lengkap.
+            Telusuri suku cadang pneumatik; Air Cylinder, Solenoid Valve, Filter - Regulator & Lubricator (FRL), Pressure Switch, Pneumatic Turbine Vibrators, Knocker, Fitting, Tubing & Acessories industri dari brand resmi terkemuka dengan spesifikasi teknis lengkap.
           </p>
         </div>
 

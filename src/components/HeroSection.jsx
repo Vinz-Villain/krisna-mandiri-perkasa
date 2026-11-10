@@ -6,167 +6,6 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 const FEATURED_ITEMS = [
 
-  {
-
-    id: 'NORGREN-RM8000',
-
-    badge: 'SILINDER PNEUMATIK',
-
-    title: 'Norgren - Air Cylinder RM8000 Series',
-
-    specs: 'RM/8000 Series • Double Acting • Standar ISO',
-
-    image: '/products/norgren-air-cylinder-rm8000.jpg',
-
-    category: 'Silinder Pneumatik',
-
-    sku: 'RM/8025/M/100'
-
-  },
-
-  {
-
-    id: 'NORGREN-ISO-STAR',
-
-    badge: 'KATUP SOLENOID',
-
-    title: 'Norgren - Iso Star Solenoid Valve',
-
-    specs: 'ISO*Star Valve • Spool & Sleeve Presisi Tinggi',
-
-    image: '/products/norgren-iso-star-solenoid-valve.jpg',
-
-    category: 'Katup Solenoid',
-
-    sku: 'SXE9573-A70-00'
-
-  },
-
-  {
-
-    id: 'NORGREN-B64G-REG',
-
-    badge: 'FILTER & REGULATOR',
-
-    title: 'Norgren - Olympian Plus Filter or Regulator B64G Series',
-
-    specs: 'B64G Olympian Plus • Plug-in Modular FRL',
-
-    image: '/products/norgren-olympian-plus-b64g.jpg',
-
-    category: 'Filter & Regulator (FRL)',
-
-    sku: 'B64G-4GK-AD3-RMN'
-
-  },
-
-  {
-
-    id: 'NORGREN-B68G-REG',
-
-    badge: 'FILTER & REGULATOR',
-
-    title: 'Norgren - Olympian Plus FilterRegulator B68G Series',
-
-    specs: 'B68G Olympian Plus • Heavy Duty Aliran Tinggi',
-
-    image: '/products/norgren-olympian-plus-b68g.jpg',
-
-    category: 'Filter & Regulator (FRL)',
-
-    sku: 'B68G-8GK-AR3-RLN'
-
-  },
-
-  {
-
-    id: 'NORGREN-VCB',
-
-    badge: 'KATUP SOLENOID',
-
-    title: 'Norgren - Solenoid Valve VCB Series',
-
-    specs: 'VCB22D517A-AD213L • DC24V 3W • IP65',
-
-    image: '/products/norgren-solenoid-valve-vcb.jpg',
-
-    category: 'Katup Solenoid',
-
-    sku: 'VCB22D517A-AD213L'
-
-  },
-
-  {
-
-    id: 'NORGREN-V51',
-
-    badge: 'KATUP SOLENOID',
-
-    title: 'Norgren - Solenoid Valve V51 Series',
-
-    specs: 'V51B517A-A2000 • Pmax 8 Bar • Respon Cepat',
-
-    image: '/products/norgren-solenoid-valve-v51.jpg',
-
-    category: 'Katup Solenoid',
-
-    sku: 'V51B517A-A2000'
-
-  },
-
-  {
-
-    id: 'NORGREN-V61',
-
-    badge: 'KATUP SOLENOID',
-
-    title: 'Norgren - Solenoid Valve V61 Series',
-
-    specs: 'V61B513A • Profil Ramping Manifold Blok',
-
-    image: '/products/norgren-solenoid-valve-v61.jpg',
-
-    category: 'Katup Solenoid',
-
-    sku: 'V61B513A-A213J'
-
-  },
-
-  {
-
-    id: 'NORGREN-B64G',
-
-    badge: 'AIR PREPARATION',
-
-    title: 'Norgren - B64G Series',
-
-    specs: 'B64G Series • Filter Udara Presisi Tinggi',
-
-    image: '/products/norgren-b64g-series.jpg',
-
-    category: 'Filter & Regulator (FRL)',
-
-    sku: 'B64G-2GK-AD1-RMN'
-
-  },
-
-  {
-
-    id: 'NORGREN-B68G',
-
-    badge: 'AIR PREPARATION',
-
-    title: 'Norgren - B68G Series',
-
-    specs: 'B68G Series • Kapasitas Aliran Industri Berat',
-
-    image: '/products/norgren-b68g-series.jpg',
-
-    category: 'Filter & Regulator (FRL)',
-
-    sku: 'B68G-6GK-AR1-RLN'
-
-  },
 
   {
 
@@ -913,13 +752,13 @@ export default function HeroSection({
 
           <h1 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-slate-900 leading-tight">
 
-            Suku Cadang Industri
+            General Supplier &
 
           </h1>
 
           <h2 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-[#DC2626] leading-tight pb-1">
 
-            Presisi & Otomasi Pabrik
+            Sparepart Mesin Industri
 
           </h2>
 
@@ -931,7 +770,7 @@ export default function HeroSection({
 
         <p className="mt-3.5 sm:mt-4 text-xs sm:text-sm md:text-base text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
 
-          Pemasok terpercaya silinder pneumatik, katup solenoid presisi tinggi, dan unit FRL berstandar ISO dunia langsung ke lini produksi Anda tanpa jeda.
+          Pemasok terpercaya Air Cylinder Pneumatic, Solenoid Valve, Filter - Regulator & Lubricator (FRL), Pressure Switch, Fitting, Tubing & Acessories.
 
         </p>
 

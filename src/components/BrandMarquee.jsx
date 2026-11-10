@@ -31,22 +31,20 @@ function BrandLogoRenderer({ brand }) {
 }
 
 export default function BrandMarquee({ onSelectBrand }) {
-  // Baris 1: 5 Merek resmi terverifikasi dari folder Logo Merk
+  // Baris 1: Merek resmi terverifikasi (4 merek)
   const row1Brands = [
     { name: 'ASCO' },
-    { name: 'Norgren' },
     { name: 'Aventics' },
     { name: 'Numatics' },
     { name: 'Airtac' },
   ];
 
-  // Baris 2: 5 Merek resmi terverifikasi dari folder Logo Merk
+  // Baris 2: Merek resmi terverifikasi (4 merek)
   const row2Brands = [
     { name: 'Winters' },
     { name: 'HYDAC' },
     { name: 'Barksdale' },
     { name: 'Findeva' },
-    { name: 'Camozzi' },
   ];
 
   // Duplikat array agar continuous seamless loop saat animasi marquee berjalan

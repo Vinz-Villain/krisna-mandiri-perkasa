@@ -76,12 +76,6 @@ export const DEFAULT_BRANDS = [
     description: 'Komponen pneumatik standar Jerman untuk industri berat dan perakitan.',
   },
   {
-    id: 'brand-norgren',
-    name: 'Norgren',
-    origin: 'UK',
-    description: 'Sistem persiapan udara Excelon/Olympian dan aktuator ISO.',
-  },
-  {
     id: 'brand-airtac',
     name: 'Airtac',
     origin: 'Taiwan',
@@ -111,13 +105,20 @@ export const DEFAULT_BRANDS = [
     origin: 'Germany',
     description: 'Teknologi filtrasi, hidrolik, dan instrumen fluida presisi.',
   },
-  {
-    id: 'brand-camozzi',
-    name: 'Camozzi',
-    origin: 'Italy',
-    description: 'Solusi otomasi pneumatik presisi standar industri Eropa.',
-  },
 ];
+
+// Helper validasi filter merek & produk yang dinonaktifkan
+export function isDisallowedBrand(nameOrBrand) {
+  if (!nameOrBrand) return false;
+  const lower = nameOrBrand.trim().toLowerCase();
+  return lower === 'norgren' || lower === 'camozzi';
+}
+
+export function isDisallowedProductId(id) {
+  if (!id) return false;
+  const upper = id.trim().toUpperCase();
+  return upper.startsWith('NORGREN') || upper.startsWith('CAMOZZI');
+}
 
 // Inisialisasi IndexedDB dengan promise wrapper
 function openDB() {
@@ -267,6 +268,38 @@ export async function initStorage() {
 
       const bStore = tx.objectStore(STORE_BRANDS);
       DEFAULT_BRANDS.forEach((b) => bStore.put(b));
+    } else {
+      // Bersihkan produk & merek non-aktif (Norgren, Camozzi) jika pernah tersimpan di cache lokal IndexedDB
+      try {
+        const tx = db.transaction([STORE_PRODUCTS, STORE_BRANDS], 'readwrite');
+        const pStore = tx.objectStore(STORE_PRODUCTS);
+        const req = pStore.getAll();
+        req.onsuccess = () => {
+          (req.result || []).forEach((prod) => {
+            if (isDisallowedBrand(prod.brand) || isDisallowedProductId(prod.id)) {
+              pStore.delete(prod.id);
+            }
+          });
+        };
+        const bStore = tx.objectStore(STORE_BRANDS);
+        bStore.delete('brand-norgren');
+        bStore.delete('brand-camozzi');
+      } catch {
+        // ignore
+      }
+    }
+
+    // Bersihkan fallback LocalStorage dari Norgren & Camozzi
+    try {
+      const localProds = JSON.parse(localStorage.getItem('kmp_products') || '[]');
+      const filteredProds = localProds.filter((p) => !isDisallowedBrand(p.brand));
+      localStorage.setItem('kmp_products', JSON.stringify(filteredProds));
+
+      const localBrands = JSON.parse(localStorage.getItem('kmp_brands') || '[]');
+      const filteredBrands = localBrands.filter((b) => !isDisallowedBrand(b.name));
+      localStorage.setItem('kmp_brands', JSON.stringify(filteredBrands));
+    } catch {
+      // ignore
     }
   } catch (err) {
     console.warn('Init IndexedDB failed, fallback to defaults:', err);
@@ -286,9 +319,39 @@ export async function refreshCatalogFromCloud() {
   if (!isGoogleSheetActive()) return null;
   try {
     const cloud = await fetchAllFromGoogleSheet();
-    if (cloud.products && cloud.products.length > 0) {
+
+    // Identifikasi dan bersihkan produk non-aktif jika masih tersisa di Google Sheet
+    const purgedProducts = (cloud.products || []).filter(
+      (p) => isDisallowedBrand(p.brand) || isDisallowedProductId(p.id)
+    );
+    if (purgedProducts.length > 0) {
+      // Hapus dari Google Sheet di background
+      Promise.all(purgedProducts.map((p) => deleteProductFromGSheet(p.id))).catch((err) =>
+        console.warn('Gagal menghapus produk non-aktif dari Google Sheet:', err)
+      );
+    }
+
+    const purgedBrands = (cloud.brands || []).filter(
+      (b) => isDisallowedBrand(b.name) || b.id === 'brand-norgren' || b.id === 'brand-camozzi'
+    );
+    if (purgedBrands.length > 0) {
+      // Hapus merek dari Google Sheet di background
+      Promise.all(purgedBrands.map((b) => deleteBrandFromGSheet(b.id))).catch((err) =>
+        console.warn('Gagal menghapus merek non-aktif dari Google Sheet:', err)
+      );
+    }
+
+    // Filter bersih data cloud sebelum disimpan ke IndexedDB
+    const cleanProducts = (cloud.products || []).filter(
+      (p) => !isDisallowedBrand(p.brand)
+    );
+    const cleanBrands = (cloud.brands || []).filter(
+      (b) => !isDisallowedBrand(b.name)
+    );
+
+    if (cleanProducts && cleanProducts.length > 0) {
       await clearStore(STORE_PRODUCTS);
-      for (const p of cloud.products) {
+      for (const p of cleanProducts) {
         await putToStore(STORE_PRODUCTS, p, 'kmp_products');
       }
     }
@@ -298,13 +361,17 @@ export async function refreshCatalogFromCloud() {
         await putToStore(STORE_CATEGORIES, c, 'kmp_categories');
       }
     }
-    if (cloud.brands && cloud.brands.length > 0) {
+    if (cleanBrands && cleanBrands.length > 0) {
       await clearStore(STORE_BRANDS);
-      for (const b of cloud.brands) {
+      for (const b of cleanBrands) {
         await putToStore(STORE_BRANDS, b, 'kmp_brands');
       }
     }
-    return cloud;
+    return {
+      products: cleanProducts,
+      categories: cloud.categories || [],
+      brands: cleanBrands,
+    };
   } catch (err) {
     console.warn('Gagal sinkronisasi data dari Google Sheet:', err);
     return null;
@@ -313,7 +380,8 @@ export async function refreshCatalogFromCloud() {
 
 // ==================== PRODUCTS CRUD ====================
 export async function getProducts() {
-  return await getAllFromStore(STORE_PRODUCTS, 'kmp_products', PRODUCTS_CATALOG);
+  const prods = await getAllFromStore(STORE_PRODUCTS, 'kmp_products', PRODUCTS_CATALOG);
+  return (prods || []).filter((p) => !isDisallowedBrand(p.brand));
 }
 
 export async function saveProduct(product) {
@@ -405,7 +473,8 @@ export async function deleteCategory(id) {
 
 // ==================== BRANDS CRUD ====================
 export async function getBrands() {
-  return await getAllFromStore(STORE_BRANDS, 'kmp_brands', DEFAULT_BRANDS);
+  const brands = await getAllFromStore(STORE_BRANDS, 'kmp_brands', DEFAULT_BRANDS);
+  return (brands || []).filter((b) => !isDisallowedBrand(b.name));
 }
 
 export async function saveBrand(brand) {

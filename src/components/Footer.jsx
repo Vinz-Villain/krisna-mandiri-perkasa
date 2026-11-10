@@ -14,25 +14,25 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
               <img
                 src={kmpLogo}
                 alt="Logo CV. Krisna Mandiri Perkasa"
-                className="h-12 w-auto object-contain bg-white rounded-xl p-1.5 shadow-sm"
+                className="h-14 sm:h-16 w-auto object-contain bg-white rounded-2xl p-1.5 shadow-sm"
               />
               <div>
-                <div className="font-black text-white text-sm tracking-tight">
+                <div className="font-black text-white text-base sm:text-lg tracking-tight">
                   CV. KRISNA MANDIRI PERKASA
                 </div>
-                <div className="text-[11px] text-slate-400">
+                <div className="text-xs text-slate-400 mt-0.5">
                   Mitra Pengadaan Suku Cadang Industri
                 </div>
               </div>
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed">
-              Distributor spesialis pengadaan komponen pneumatik, silinder ISO aktuator, katup solenoid kendali fluida, unit FRL, dan suku cadang mesin otomasi pabrik berstandar internasional di Indonesia.
+              Spesialis pengadaan komponen pneumatik;  Air Cylinder, Solenoid Valve, Filter - Regulator & Lubricator (FRL), Pressure Switch, Pneumatic Turbine Vibrators, Knocker, Fitting, Tubing & Acessories mesin otomasi pabrik berstandar internasional di Indonesia.
             </p>
 
             <div className="pt-2 text-[11px] font-mono text-slate-400 space-y-1">
-              <div>📍 Layanan Pengadaan: Kawasan Industri Nasional & Seluruh Indonesia</div>
-              <div>⚡ Status Badan Usaha: CV Resmi • PKP & e-Faktur</div>
+              <div>📍 <br /> Head Office: <br /> Kemantren II RT. 03 / IV, Jl. Koptu Suyono - Semarang <br />
+Branch Office: <br /> Gading Fajar 1, Siwalanpanji, Buduran - Sidoarjo</div>
             </div>
           </div>
 
@@ -43,11 +43,15 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
             </h4>
             <ul className="space-y-2 text-xs">
               {[
-                'Silinder Pneumatik',
-                'Katup Solenoid',
-                'Filter & Regulator (FRL)',
-                'Fitting & Selang Udara',
-                'Sensor & Pressure Gauge',
+                'Air Cylinder Pneumatic',
+                'Solenoid Valve',
+                'Filter - Regulator & Lubricator (FRL)',
+                'Pressure Switch',
+                'Pneumatic Turbine Vibrators',
+                'Knocker',
+                'Fitting',
+                'Tubing',
+                'Acessories',
               ].map((cat) => (
                 <li key={cat}>
                   <button
@@ -71,8 +75,16 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
               Merek Resmi
             </h4>
             <ul className="space-y-1.5 text-xs">
-              {['ASCO', 'Numatics', 'Aventics', 'Norgren', 'Airtac', 'Camozzi'].map(
-                (brand) => (
+              {[
+                'ASCO',
+                'Numatics',
+                'Aventics',
+                'Airtac',
+                'Barksdale',
+                'Findeva',
+                'Winters',
+                'HYDAC',
+              ].map((brand) => (
                   <li key={brand}>
                     <button
                       onClick={() => {
@@ -100,9 +112,6 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
               <div className="font-mono font-bold text-white text-sm">
                 {displayWhatsApp}
               </div>
-              <div className="text-[11px] text-slate-400">
-                Jam Kerja: Senin - Sabtu (08:30 - 17:00 WIB)
-              </div>
               <a
                 href="https://wa.me/6289659586363"
                 target="_blank"
@@ -119,12 +128,10 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
         {/* Bottom copyright row */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            &copy; {new Date().getFullYear()} CV. Krisna Mandiri Perkasa (KMP). Hak cipta dilindungi undang-undang.
+            &copy; {new Date().getFullYear()} CV. Krisna Mandiri Perkasa (KMP).
           </div>
           <div className="flex items-center gap-6">
             <a href="#katalog" className="hover:text-slate-300">Katalog Online</a>
-            <a href="#keunggulan" className="hover:text-slate-300">Keunggulan</a>
-            <a href="#sektor" className="hover:text-slate-300">Sektor Industri</a>
             <a href="#faq" className="hover:text-slate-300">FAQ</a>
           </div>
         </div>

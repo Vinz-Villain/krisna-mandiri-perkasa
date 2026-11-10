@@ -5,24 +5,24 @@ export default function FaqSection({ onOpenRfq }) {
 
   const faqs = [
     {
-      q: 'Apakah semua suku cadang & komponen dijamin 100% original?',
-      a: 'Ya, seluruh produk merek ASCO, Numatics, Aventics, Norgren, Airtac, Barksdale, Findeva, Winters, HYDAC, dan Camozzi didatangkan langsung dari jalur manufaktur resmi bersertifikat dengan jaminan keaslian penuh dan dokumen Certificate of Conformance (CoC).',
+      q: 'Apakah produk yang dijual 100% original?',
+      a: 'KMP berkomitmen menyediakan produk original dari merek-merek industri terpercaya. Setiap pengadaan produk dilakukan melalui sumber pemasok yang dapat dipertanggungjawabkan untuk memastikan keaslian dan kualitas produk yang diterima pelanggan.',
     },
     {
-      q: 'Bagaimana cara meminta Surat Penawaran Resmi (Quotation / RFQ)?',
-      a: 'Anda dapat menekan tombol "Minta Penawaran (RFQ)", memilih komponen yang dibutuhkan, lalu mengirimkannya langsung melalui sistem formulir atau WhatsApp. Tim Sales Engineer KMP akan menerbitkan dokumen penawaran resmi berstempel perusahaan dalam waktu kurang dari 15-30 menit.',
+      q: 'Apa saja brand yang didistribusikan KMP?',
+      a: 'KMP menyediakan berbagai produk dari merek-merek ternama di bidang otomasi dan komponen industri, seperti ASCO, Numatics, Aventics, AirTAC, Barksdale, Findeva, Winters, HYDAC, dan brand ternama lainnya. Ketersediaan produk menyesuaikan kebutuhan dan permintaan pelanggan.',
     },
     {
-      q: 'Apakah KMP melayani pengiriman darurat (Same-Day Dispatch)?',
-      a: 'Tentu. Kami memahami bahwa penghentian mesin pabrik (downtime) menyebabkan kerugian besar. Kami siap memprioritaskan kebutuhan suku cadang mesin Anda dengan pengiriman kilat ke kawasan industri Jabodetabek, Cikarang, Karawang, dan seluruh Indonesia.',
+      q: 'Bagaimana cara membeli produk KMP?',
+      a: 'Pelanggan dapat menghubungi tim KMP melalui WhatsApp atau saluran komunikasi resmi yang tersedia. Silakan informasikan nama produk, merek, tipe, atau nomor part yang dibutuhkan. Tim kami akan membantu memeriksa ketersediaan produk, memberikan informasi harga, serta mengarahkan proses pemesanan hingga pengiriman.',
     },
     {
-      q: 'Bagaimana jika nomor part yang kami butuhkan sudah diskontinu / tidak diproduksi?',
-      a: 'KMP memiliki layanan Cross-Reference Engineering. Cukup kirimkan foto nameplate part lama atau spesifikasi teknisnya (port size, voltage, pressure, stroke). Tim teknis kami akan mencarikan part pengganti generasi terbaru dengan dudukan dan performa yang 100% kompatibel.',
+      q: 'Apakah KMP dapat membantu mencarikan persamaan produk?',
+      a: 'Ya. KMP dapat membantu pelanggan mencari produk alternatif atau persamaan (equivalent product) berdasarkan merek, tipe, maupun spesifikasi teknis produk yang dibutuhkan. Tim kami akan membantu mengidentifikasi alternatif yang sesuai dengan mempertimbangkan spesifikasi, fungsi, dan kompatibilitas produk.',
     },
     {
-      q: 'Apakah CV. Krisna Mandiri Perkasa menerbitkan Faktur Pajak resmi?',
-      a: 'Ya, kami adalah Pengusaha Kena Pajak (PKP) resmi. Semua transaksi dapat disertai Faktur Pajak elektronik (e-Faktur PPN), surat jalan resmi, dan invoice formal untuk keperluan audit dan administrasi procurement perusahaan Anda.',
+      q: 'Apakah pelanggan dapat meminta penawaran harga (quotation)?',
+      a: 'Tentu. Pelanggan dapat mengajukan permintaan penawaran harga (quotation) dengan menyampaikan detail produk, nomor part, jumlah kebutuhan, serta informasi pendukung lainnya. Tim KMP akan membantu menyiapkan penawaran harga sesuai dengan spesifikasi dan kebutuhan pengadaan pelanggan.',
     },
   ];
 
@@ -43,7 +43,7 @@ export default function FaqSection({ onOpenRfq }) {
             Pertanyaan Seputar <span className="text-[#DC2626]">Pengadaan KMP</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
-            Informasi lengkap mengenai jaminan suku cadang, prosedur RFQ, kepatuhan perpajakan, dan pengiriman darurat pabrik.
+            Seputar informasi mengenai suku cadang, prosedur RFQ dan pengiriman barang.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export default function FaqSection({ onOpenRfq }) {
               Ada pertanyaan teknis spesifik yang belum terjawab?
             </div>
             <div className="text-[11px] text-slate-500">
-              Konsultasikan langsung dengan teknisi suku cadang kami via WhatsApp.
+              Konsultasikan langsung dengan tim kami via WhatsApp.
             </div>
           </div>
           <a
@@ -107,7 +107,7 @@ export default function FaqSection({ onOpenRfq }) {
             className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center gap-2 transition-transform active:scale-95 shadow-sm shrink-0"
           >
             <i className="fa-brands fa-whatsapp text-[#DC2626]"></i>
-            <span>Chat Tim Teknis</span>
+            <span>Chat Tim KMP</span>
           </a>
         </div>
       </div>

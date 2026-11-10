@@ -10,6 +10,7 @@ import {
   refreshCatalogFromCloud,
   DEFAULT_CATEGORIES,
   DEFAULT_BRANDS,
+  isDisallowedBrand,
 } from './services/storageService';
 import ProductDetailModal from './ProductDetailModal';
 import RfqModal from './RfqModal';
@@ -63,16 +64,24 @@ export default function App() {
         getCategories(),
         getBrands(),
       ]);
-      if (prodList && prodList.length > 0) setProducts(prodList);
+      if (prodList && prodList.length > 0) {
+        setProducts(prodList.filter((p) => !isDisallowedBrand(p.brand)));
+      }
       if (catList && catList.length > 0) setCategories(catList);
-      if (brandList && brandList.length > 0) setBrands(brandList);
+      if (brandList && brandList.length > 0) {
+        setBrands(brandList.filter((b) => !isDisallowedBrand(b.name)));
+      }
 
       // Sinkronisasi data live cloud Google Sheet di latar belakang
       const cloudData = await refreshCatalogFromCloud();
       if (cloudData) {
-        if (cloudData.products && cloudData.products.length > 0) setProducts(cloudData.products);
+        if (cloudData.products && cloudData.products.length > 0) {
+          setProducts(cloudData.products.filter((p) => !isDisallowedBrand(p.brand)));
+        }
         if (cloudData.categories && cloudData.categories.length > 0) setCategories(cloudData.categories);
-        if (cloudData.brands && cloudData.brands.length > 0) setBrands(cloudData.brands);
+        if (cloudData.brands && cloudData.brands.length > 0) {
+          setBrands(cloudData.brands.filter((b) => !isDisallowedBrand(b.name)));
+        }
       }
     } catch (err) {
       console.error('Failed to load storage catalog:', err);
@@ -90,17 +99,25 @@ export default function App() {
           getBrands(),
         ]);
         if (isMounted) {
-          if (prodList && prodList.length > 0) setProducts(prodList);
+          if (prodList && prodList.length > 0) {
+            setProducts(prodList.filter((p) => !isDisallowedBrand(p.brand)));
+          }
           if (catList && catList.length > 0) setCategories(catList);
-          if (brandList && brandList.length > 0) setBrands(brandList);
+          if (brandList && brandList.length > 0) {
+            setBrands(brandList.filter((b) => !isDisallowedBrand(b.name)));
+          }
         }
 
         // Ambil data live cloud Google Sheet
         const cloudData = await refreshCatalogFromCloud();
         if (isMounted && cloudData) {
-          if (cloudData.products && cloudData.products.length > 0) setProducts(cloudData.products);
+          if (cloudData.products && cloudData.products.length > 0) {
+            setProducts(cloudData.products.filter((p) => !isDisallowedBrand(p.brand)));
+          }
           if (cloudData.categories && cloudData.categories.length > 0) setCategories(cloudData.categories);
-          if (cloudData.brands && cloudData.brands.length > 0) setBrands(cloudData.brands);
+          if (cloudData.brands && cloudData.brands.length > 0) {
+            setBrands(cloudData.brands.filter((b) => !isDisallowedBrand(b.name)));
+          }
         }
       } catch (err) {
         console.error('Failed to load storage catalog:', err);
@@ -224,21 +241,29 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
     smoothScrollTo('#katalog');
   };
 
+  // Pastikan jika ada state brand non-aktif (norgren, camozzi), otomatis di-fallback ke 'all'
+  const activeSelectedBrand =
+    selectedBrand && isDisallowedBrand(selectedBrand)
+      ? 'all'
+      : selectedBrand;
+
   // Filtering Produk
-  const filteredProducts = products.filter((product) => {
-    const matchesCat =
-      selectedCategory === 'all' || product.category === selectedCategory;
-    const matchesBrand =
-      selectedBrand === 'all' ||
-      product.brand.toLowerCase().includes(selectedBrand.toLowerCase());
-    const matchesQuery =
-      searchQuery === '' ||
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.sku.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.brand.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCat && matchesBrand && matchesQuery;
-  });
+  const filteredProducts = products
+    .filter((p) => !isDisallowedBrand(p.brand))
+    .filter((product) => {
+      const matchesCat =
+        selectedCategory === 'all' || product.category === selectedCategory;
+      const matchesBrand =
+        activeSelectedBrand === 'all' ||
+        product.brand.toLowerCase().includes(activeSelectedBrand.toLowerCase());
+      const matchesQuery =
+        searchQuery === '' ||
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.sku.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.brand.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCat && matchesBrand && matchesQuery;
+    });
 
   const categoriesList = [
     'all',
@@ -257,7 +282,9 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
         ...brands.map((b) => b.name),
         ...products.map((p) => p.brand),
       ])
-    ).filter(Boolean),
+    )
+      .filter(Boolean)
+      .filter((b) => !isDisallowedBrand(b)),
   ];
 
   return (
@@ -294,7 +321,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
         setSearchQuery={setSearchQuery}
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
-        selectedBrand={selectedBrand}
+        selectedBrand={activeSelectedBrand}
         setSelectedBrand={setSelectedBrand}
         categoriesList={categoriesList}
         brandsList={brandsList}
@@ -396,9 +423,9 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
             window.history.pushState('', document.title, '/');
           }
         }}
-        products={products}
+        products={products.filter((p) => !isDisallowedBrand(p.brand))}
         categories={categories}
-        brands={brands}
+        brands={brands.filter((b) => !isDisallowedBrand(b.name))}
         onRefreshData={loadCatalogData}
       />
     </div>
