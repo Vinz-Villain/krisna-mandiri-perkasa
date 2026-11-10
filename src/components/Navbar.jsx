@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import kmpLogo from '../assets/logo-kmp.png';
 
-export default function Navbar({ rfqCount, onOpenRfq, onOpenAdmin }) {
+export default function Navbar({ rfqCount, onOpenRfq }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const defaultWhatsAppNumber = '6289659586363';
@@ -87,17 +87,6 @@ export default function Navbar({ rfqCount, onOpenRfq, onOpenAdmin }) {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-            {/* Tombol Kelola Produk / Admin */}
-            <button
-              onClick={onOpenAdmin}
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full border border-slate-200/90 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 transition-all hover:border-[#DC2626]/60 shadow-xs active:scale-95 cursor-pointer shrink-0"
-              title="Kelola Produk, Kategori & Merek (CRUD)"
-            >
-              <i className="fa-solid fa-sliders text-[#DC2626] text-xs"></i>
-              <span className="hidden sm:inline">Kelola Produk</span>
-              <span className="sm:hidden text-[11px]">Admin</span>
-            </button>
-
             {/* Tombol RFQ Cart */}
             <button
               onClick={onOpenRfq}
@@ -156,19 +145,6 @@ export default function Navbar({ rfqCount, onOpenRfq, onOpenAdmin }) {
                   {link.label}
                 </a>
               ))}
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenAdmin();
-                }}
-                className="px-3.5 py-2 rounded-xl hover:bg-slate-50 text-left flex items-center justify-between text-slate-800 font-bold cursor-pointer"
-              >
-                <div className="flex items-center gap-2">
-                  <i className="fa-solid fa-sliders text-[#DC2626]"></i>
-                  <span>Kelola Produk (CRUD)</span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-50 text-red-700 font-bold">Admin</span>
-              </button>
             </div>
 
             {/* Mobile Minta Penawaran CTA Button */}

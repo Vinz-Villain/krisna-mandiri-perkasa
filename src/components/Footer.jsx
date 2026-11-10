@@ -1,7 +1,7 @@
 import React from 'react';
 import kmpLogo from '../assets/logo-kmp.png';
 
-export default function Footer({ onFilterCategory, onFilterBrand, onOpenAdmin }) {
+export default function Footer({ onFilterCategory, onFilterBrand }) {
   const displayWhatsApp = '+62 896 5958 6363';
 
   return (
@@ -126,15 +126,6 @@ export default function Footer({ onFilterCategory, onFilterBrand, onOpenAdmin })
             <a href="#keunggulan" className="hover:text-slate-300">Keunggulan</a>
             <a href="#sektor" className="hover:text-slate-300">Sektor Industri</a>
             <a href="#faq" className="hover:text-slate-300">FAQ</a>
-            {onOpenAdmin && (
-              <button
-                onClick={onOpenAdmin}
-                className="hover:text-red-400 font-bold flex items-center gap-1.5 transition-colors cursor-pointer text-slate-400"
-              >
-                <i className="fa-solid fa-sliders text-[10px] text-[#DC2626]"></i>
-                <span>Panel Kelola Data (CRUD)</span>
-              </button>
-            )}
           </div>
         </div>
       </div>

@@ -39,9 +39,14 @@ export default function App() {
   // Modal & Cart States
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isRfqOpen, setIsRfqOpen] = useState(false);
-  const [isAdminOpen, setIsAdminOpen] = useState(
-    () => typeof window !== 'undefined' && window.location.hash === '#admin'
-  );
+  const [isAdminOpen, setIsAdminOpen] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.location.hash === '#admin' ||
+      window.location.pathname === '/admin' ||
+      window.location.pathname === '/admin/'
+    );
+  });
   const [rfqCart, setRfqCart] = useState([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -86,16 +91,34 @@ export default function App() {
       }
     })();
 
-    // Dukung akses langsung via URL hash #admin
-    const handleHashChange = () => {
-      if (window.location.hash === '#admin') {
+    // Dukung akses privat admin via URL (#admin atau /admin) serta shortcut rahasia Ctrl+Shift+A
+    const handleUrlCheck = () => {
+      if (
+        window.location.hash === '#admin' ||
+        window.location.pathname === '/admin' ||
+        window.location.pathname === '/admin/'
+      ) {
         setIsAdminOpen(true);
       }
     };
-    window.addEventListener('hashchange', handleHashChange);
+
+    const handleKeyDown = (e) => {
+      // Shortcut rahasia: Ctrl + Shift + A (atau Cmd + Shift + A)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        setIsAdminOpen(true);
+      }
+    };
+
+    window.addEventListener('hashchange', handleUrlCheck);
+    window.addEventListener('popstate', handleUrlCheck);
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       isMounted = false;
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('hashchange', handleUrlCheck);
+      window.removeEventListener('popstate', handleUrlCheck);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -227,7 +250,6 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
       <Navbar
         rfqCount={rfqCart.length}
         onOpenRfq={() => setIsRfqOpen(true)}
-        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* 2. Hero Section Interaktif & Fresh */}
@@ -287,7 +309,6 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
           setSelectedBrand(brand);
           smoothScrollTo('#katalog');
         }}
-        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* 8. Floating Smart Industrial Assistant Widget */}
@@ -363,8 +384,13 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
             window.history.pushState(
               '',
               document.title,
-              window.location.pathname + window.location.search
+              window.location.pathname + window.location.search.replace(/#.*$/, '')
             );
+          } else if (
+            window.location.pathname === '/admin' ||
+            window.location.pathname === '/admin/'
+          ) {
+            window.history.pushState('', document.title, '/');
           }
         }}
         products={products}
