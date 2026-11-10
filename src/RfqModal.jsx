@@ -80,10 +80,10 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
           className="relative bg-white rounded-[32px] shadow-2xl max-w-2xl w-full max-h-[92vh] flex flex-col overflow-hidden border border-slate-200 z-10 text-left"
         >
           {/* Header */}
-          <div className="px-6 py-4.5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+          <div className="px-6 py-4 sm:py-5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
             <div>
               <h3 className="font-black text-base sm:text-lg text-white flex items-center gap-2">
-                <i className="fa-solid fa-file-invoice text-[#DF9235]"></i>
+                <i className="fa-solid fa-file-invoice text-[#DC2626]"></i>
                 <span>Permintaan Penawaran Resmi (RFQ)</span>
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
@@ -165,7 +165,7 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
                   placeholder="Nama Penanggung Jawab"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DF9235]/30 focus:border-[#DF9235]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/30 focus:border-[#DC2626]"
                 />
               </div>
 
@@ -177,7 +177,7 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
                   placeholder="PT / CV / Pabrik"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DF9235]/30 focus:border-[#DF9235]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/30 focus:border-[#DC2626]"
                 />
               </div>
 
@@ -189,7 +189,7 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
                   placeholder="0812xxxxxxx"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DF9235]/30 focus:border-[#DF9235]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/30 focus:border-[#DC2626]"
                 />
               </div>
 
@@ -200,7 +200,7 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
                   placeholder="procurement@perusahaan.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DF9235]/30 focus:border-[#DF9235]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/30 focus:border-[#DC2626]"
                 />
               </div>
 
@@ -211,7 +211,7 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
                   placeholder="Contoh: Kawasan MM2100 Cikarang, KIIC Karawang, SIER Surabaya, dll"
                   value={formData.projectLocation}
                   onChange={(e) => setFormData({ ...formData, projectLocation: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DF9235]/30 focus:border-[#DF9235]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/30 focus:border-[#DC2626]"
                 />
               </div>
 
@@ -222,7 +222,7 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
                   placeholder="Tuliskan spesifikasi voltase, port size, kebutuhan part pengganti diskontinu..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DF9235]/30 focus:border-[#DF9235]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/30 focus:border-[#DC2626]"
                 ></textarea>
               </div>
             </div>
@@ -233,7 +233,7 @@ Mohon dikirimkan surat penawaran harga resmi (Quotation) segera. Terima kasih.`;
               </span>
               <button
                 type="submit"
-                className="w-full sm:w-auto bg-[#DF9235] hover:bg-[#C97E25] text-white font-bold py-3 px-6 rounded-full text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
+                className="w-full sm:w-auto bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold py-3 px-6 rounded-full text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md active:scale-95"
               >
                 <i className="fa-brands fa-whatsapp text-base"></i>
                 <span>Kirim RFQ ke WhatsApp KMP</span>

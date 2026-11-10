@@ -44,13 +44,13 @@ export default function BentoFeatures({ onOpenRfq }) {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="max-w-xl text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200/80 text-amber-700 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-red-700 text-xs font-bold mb-3">
               <i className="fa-solid fa-shield-halved text-xs"></i>
               <span>Keunggulan Kompetitif KMP</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
               Mengapa Pabrik Terkemuka <br />
-              <span className="text-[#DF9235]">Mempercayakan KMP?</span>
+              <span className="text-[#DC2626]">Mempercayakan KMP?</span>
             </h2>
           </div>
           <p className="text-sm text-slate-600 max-w-md text-left">
@@ -79,7 +79,7 @@ export default function BentoFeatures({ onOpenRfq }) {
                         : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70'
                     }`}
                   >
-                    <i className={`fa-solid ${tab.icon} text-[11px] text-[#DF9235]`}></i>
+                    <i className={`fa-solid ${tab.icon} text-[11px] text-[#DC2626]`}></i>
                     <span>{tab.label}</span>
                   </button>
                 ))}
@@ -87,7 +87,7 @@ export default function BentoFeatures({ onOpenRfq }) {
 
               {/* Tab Content Display */}
               <div className="space-y-3 pt-2">
-                <span className="text-[11px] font-mono font-bold text-[#DF9235] uppercase tracking-wider bg-amber-50 px-3 py-1 rounded-full border border-amber-200/60 inline-block">
+                <span className="text-[11px] font-mono font-bold text-[#DC2626] uppercase tracking-wider bg-red-50 px-3 py-1 rounded-full border border-red-200/60 inline-block">
                   {currentTab.badge}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-black text-slate-900 leading-snug">
@@ -111,7 +111,7 @@ export default function BentoFeatures({ onOpenRfq }) {
               </div>
               <button
                 onClick={onOpenRfq}
-                className="px-5 py-2.5 rounded-full bg-[#DF9235] hover:bg-[#C97E25] text-white text-xs font-bold transition-all shadow-sm active:scale-95 flex items-center gap-2"
+                className="px-5 py-2.5 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold transition-all shadow-sm active:scale-95 flex items-center gap-2"
               >
                 <span>Ajukan Penawaran Resmi</span>
                 <i className="fa-solid fa-arrow-right text-xs"></i>
@@ -122,10 +122,10 @@ export default function BentoFeatures({ onOpenRfq }) {
           {/* Bento Card 2: Legalitas & Faktur Pajak Resmi (Kanan Atas - Span 5) */}
           <div className="md:col-span-5 bg-slate-900 text-white rounded-[32px] p-7 sm:p-9 border border-slate-800 shadow-card flex flex-col justify-between relative overflow-hidden group">
             {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-48 h-48 bg-[#DF9235]/15 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-48 h-48 bg-[#DC2626]/15 rounded-full blur-2xl pointer-events-none"></div>
 
             <div className="space-y-4 relative z-10">
-              <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-[#DF9235] text-xl shadow-inner">
+              <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-[#DC2626] text-xl shadow-inner">
                 <i className="fa-solid fa-file-shield"></i>
               </div>
               <div className="space-y-2">
@@ -151,7 +151,7 @@ export default function BentoFeatures({ onOpenRfq }) {
           <div className="md:col-span-6 bg-white rounded-[32px] p-7 sm:p-8 border border-slate-200/90 shadow-card flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-11 h-11 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-center text-[#DF9235] text-lg">
+                <div className="w-11 h-11 rounded-2xl bg-red-50 border border-red-200/80 flex items-center justify-center text-[#DC2626] text-lg">
                   <i className="fa-solid fa-industry"></i>
                 </div>
                 <span className="text-xs font-mono font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
@@ -182,10 +182,10 @@ export default function BentoFeatures({ onOpenRfq }) {
           </div>
 
           {/* Bento Card 4: Konsultasi Teknis & Layanan Kilat RFQ (Bawah Kanan - Span 6) */}
-          <div className="md:col-span-6 bg-gradient-to-br from-amber-500/10 via-white to-white rounded-[32px] p-7 sm:p-8 border border-[#DF9235]/30 shadow-card flex flex-col justify-between">
+          <div className="md:col-span-6 bg-gradient-to-br from-red-500/10 via-white to-white rounded-[32px] p-7 sm:p-8 border border-[#DC2626]/30 shadow-card flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-11 h-11 rounded-2xl bg-[#DF9235] text-white flex items-center justify-center text-lg shadow-md shadow-[#DF9235]/30">
+                <div className="w-11 h-11 rounded-2xl bg-[#DC2626] text-white flex items-center justify-center text-lg shadow-md shadow-[#DC2626]/30">
                   <i className="fa-solid fa-headset"></i>
                 </div>
                 <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full flex items-center gap-1.5">
@@ -211,7 +211,7 @@ export default function BentoFeatures({ onOpenRfq }) {
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center gap-2 transition-transform active:scale-95 shadow-sm"
               >
-                <i className="fa-brands fa-whatsapp text-[#DF9235]"></i>
+                <i className="fa-brands fa-whatsapp text-[#DC2626]"></i>
                 <span>Tanya Engineer</span>
               </a>
             </div>

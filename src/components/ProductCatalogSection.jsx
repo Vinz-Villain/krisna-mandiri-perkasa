@@ -42,7 +42,7 @@ export default function ProductCatalogSection({
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            Katalog Komponen <span className="text-[#DF9235]">& Suku Cadang</span>
+            Katalog Komponen <span className="text-[#DC2626]">& Suku Cadang</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-600">
             Telusuri suku cadang pneumatik, katup solenoid, unit FRL, dan aksesoris industri dari brand resmi terkemuka dengan spesifikasi teknis lengkap.
@@ -55,7 +55,7 @@ export default function ProductCatalogSection({
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-center">
             {/* Search Input */}
             <div className="md:col-span-5 relative">
-              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200 focus-within:border-[#DF9235] focus-within:ring-2 focus-within:ring-[#DF9235]/20 transition-all">
+              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200 focus-within:border-[#DC2626] focus-within:ring-2 focus-within:ring-[#DC2626]/20 transition-all">
                 <i className="fa-solid fa-magnifying-glass text-slate-400 text-xs"></i>
                 <input
                   type="text"
@@ -157,7 +157,7 @@ export default function ProductCatalogSection({
                   <i
                     className={`fa-solid ${
                       categoryIcons[cat] || 'fa-folder'
-                    } text-[10px] text-[#DF9235]`}
+                    } text-[10px] text-[#DC2626]`}
                   ></i>
                   <span>{cat === 'all' ? 'Semua Kategori' : cat}</span>
                   <span
@@ -183,7 +183,7 @@ export default function ProductCatalogSection({
                 onClick={() => setSelectedBrand(brand)}
                 className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all ${
                   selectedBrand === brand
-                    ? 'bg-[#DF9235] text-white font-bold shadow-sm'
+                    ? 'bg-[#DC2626] text-white font-bold shadow-sm'
                     : 'bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200'
                 }`}
               >
@@ -199,7 +199,7 @@ export default function ProductCatalogSection({
             Menampilkan <strong>{products.length}</strong> jenis komponen industri
           </div>
           <div className="flex items-center gap-2 text-slate-500 font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#DF9235]"></span>
+            <span className="w-2 h-2 rounded-full bg-[#DC2626]"></span>
             <span>Pengadaan Komponen Resmi (Pengiriman Nasional)</span>
           </div>
         </div>
@@ -212,13 +212,13 @@ export default function ProductCatalogSection({
             {products.map((product) => (
               <div
                 key={product.id}
-                className="bg-white rounded-2xl sm:rounded-[28px] border border-slate-200 p-2 sm:p-4 md:p-5 flex flex-col justify-between hover:shadow-card-hover hover:border-[#DF9235]/60 transition-all duration-300 group relative"
+                className="bg-white rounded-2xl sm:rounded-[28px] border border-slate-200 p-2 sm:p-4 md:p-5 flex flex-col justify-between hover:shadow-card-hover hover:border-[#DC2626]/60 transition-all duration-300 group relative"
               >
                 <div>
                   {/* Photo & Badges */}
                   <div
                     onClick={() => onSelectProduct(product)}
-                    className="relative h-28 xs:h-36 sm:h-48 md:h-56 bg-slate-50 rounded-xl sm:rounded-[22px] border border-slate-100 p-1.5 sm:p-4 flex items-center justify-center overflow-hidden cursor-pointer group-hover:bg-amber-50/20 transition-colors"
+                    className="relative h-28 xs:h-36 sm:h-48 md:h-56 bg-slate-50 rounded-xl sm:rounded-[22px] border border-slate-100 p-1.5 sm:p-4 flex items-center justify-center overflow-hidden cursor-pointer group-hover:bg-red-50/20 transition-colors"
                   >
                     <img
                       src={product.image}
@@ -234,7 +234,7 @@ export default function ProductCatalogSection({
                     {/* Hover Quick Zoom Hint */}
                     <div className="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:flex items-center justify-center pointer-events-none">
                       <span className="bg-white/90 text-slate-800 text-[11px] font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm flex items-center gap-1.5">
-                        <i className="fa-solid fa-eye text-[#DF9235]"></i>
+                        <i className="fa-solid fa-eye text-[#DC2626]"></i>
                         Lihat Spesifikasi
                       </span>
                     </div>
@@ -243,7 +243,7 @@ export default function ProductCatalogSection({
                   {/* Product Details */}
                   <div className="pt-2 sm:pt-4 space-y-1 sm:space-y-2 text-left">
                     <div className="flex items-center justify-between text-[9px] sm:text-[11px] font-mono">
-                      <span className="font-bold text-[#DF9235] tracking-wider uppercase truncate max-w-full">
+                      <span className="font-bold text-[#DC2626] tracking-wider uppercase truncate max-w-full">
                         SKU: {product.sku}
                       </span>
                       <span className="text-slate-400 truncate hidden sm:inline max-w-[140px]">
@@ -253,7 +253,7 @@ export default function ProductCatalogSection({
 
                     <h3
                       onClick={() => onSelectProduct(product)}
-                      className="font-extrabold text-[11px] sm:text-sm md:text-base text-slate-900 group-hover:text-[#DF9235] transition-colors leading-snug cursor-pointer line-clamp-2 min-h-[1.75rem] sm:min-h-[2.5rem]"
+                      className="font-extrabold text-[11px] sm:text-sm md:text-base text-slate-900 group-hover:text-[#DC2626] transition-colors leading-snug cursor-pointer line-clamp-2 min-h-[1.75rem] sm:min-h-[2.5rem]"
                       title={product.name}
                     >
                       {product.name}
@@ -280,7 +280,7 @@ export default function ProductCatalogSection({
                       rel="noopener noreferrer"
                       className="py-1.5 sm:py-2.5 px-1 sm:px-3 rounded-lg sm:rounded-full bg-slate-900 hover:bg-black text-white font-bold text-[9px] sm:text-xs flex items-center justify-center gap-1 sm:gap-1.5 shadow-sm transition-all text-center active:scale-95"
                     >
-                      <i className="fa-brands fa-whatsapp text-xs sm:text-sm text-[#DF9235]"></i>
+                      <i className="fa-brands fa-whatsapp text-xs sm:text-sm text-[#DC2626]"></i>
                       <span className="truncate">WA</span>
                     </a>
 
@@ -290,7 +290,7 @@ export default function ProductCatalogSection({
                       className={`py-1.5 sm:py-2.5 px-1 sm:px-3 rounded-lg sm:rounded-full border text-[9px] sm:text-xs font-bold flex items-center justify-center gap-1 sm:gap-1.5 transition-all text-center active:scale-95 ${
                         addedAnimationId === product.id
                           ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
-                          : 'bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200'
+                          : 'bg-red-50 hover:bg-red-100 text-red-800 border-red-200'
                       }`}
                     >
                       <i
@@ -339,7 +339,7 @@ export default function ProductCatalogSection({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 text-white font-bold text-xs shadow-sm hover:bg-black transition-all"
             >
-              <i className="fa-brands fa-whatsapp text-sm text-[#DF9235]"></i>
+              <i className="fa-brands fa-whatsapp text-sm text-[#DC2626]"></i>
               <span>Tanyakan Suku Cadang Ini via WhatsApp</span>
             </a>
           </div>

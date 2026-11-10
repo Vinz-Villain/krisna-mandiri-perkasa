@@ -59,17 +59,17 @@ export default function IndustrySectorsSection({ onFilterCategory }) {
   return (
     <section id="sektor" className="py-16 sm:py-20 bg-slate-900 text-white relative overflow-hidden">
       {/* Glow Ambient */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#DF9235]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#DC2626]/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-amber-400 text-xs font-bold font-mono">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-red-400 text-xs font-bold font-mono">
             <i className="fa-solid fa-industry"></i>
             <span>APLIKASI LINTAS SEKTOR</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-            Dipercaya di Berbagai <span className="text-[#DF9235]">Lini Industri</span>
+            Dipercaya di Berbagai <span className="text-[#DC2626]">Lini Industri</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
             Setiap industri memiliki spesifikasi lingkungan mekanis yang unik. KMP menyediakan portofolio komponen yang telah teruji memenuhi standar masing-masing sektor pabrik.
@@ -84,7 +84,7 @@ export default function IndustrySectorsSection({ onFilterCategory }) {
               onClick={() => setActiveSector(idx)}
               className={`px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2.5 ${
                 activeSector === idx
-                  ? 'bg-[#DF9235] text-white shadow-lg shadow-[#DF9235]/30 scale-105'
+                  ? 'bg-[#DC2626] text-white shadow-lg shadow-[#DC2626]/30 scale-105'
                   : 'bg-slate-800/90 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-700/80'
               }`}
             >
@@ -106,7 +106,7 @@ export default function IndustrySectorsSection({ onFilterCategory }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
               <div className="absolute bottom-4 left-4 right-4">
-                <span className="text-[10px] font-mono uppercase tracking-wider bg-[#DF9235] text-white px-3 py-1 rounded-full font-bold">
+                <span className="text-[10px] font-mono uppercase tracking-wider bg-[#DC2626] text-white px-3 py-1 rounded-full font-bold">
                   {current.highlight}
                 </span>
               </div>
@@ -115,7 +115,7 @@ export default function IndustrySectorsSection({ onFilterCategory }) {
             {/* Information & Recommendations */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <div className="space-y-3">
-                <div className="text-xs font-mono text-[#DF9235] font-bold">
+                <div className="text-xs font-mono text-[#DC2626] font-bold">
                   Sektor Manufaktur: {current.name}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black text-white leading-snug">
@@ -151,7 +151,7 @@ export default function IndustrySectorsSection({ onFilterCategory }) {
                   className="px-5 py-2.5 rounded-full bg-white hover:bg-slate-100 text-slate-900 text-xs font-black transition-all flex items-center gap-2 shadow-sm active:scale-95"
                 >
                   <span>Lihat Katalog untuk Sektor Ini</span>
-                  <i className="fa-solid fa-arrow-right text-xs text-[#DF9235]"></i>
+                  <i className="fa-solid fa-arrow-right text-xs text-[#DC2626]"></i>
                 </button>
               </div>
             </div>

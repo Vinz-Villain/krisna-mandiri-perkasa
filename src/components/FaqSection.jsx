@@ -36,11 +36,11 @@ export default function FaqSection({ onOpenRfq }) {
         {/* Header Section */}
         <div className="text-center mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold font-mono">
-            <i className="fa-solid fa-circle-question text-[#DF9235]"></i>
+            <i className="fa-solid fa-circle-question text-[#DC2626]"></i>
             <span>FREQUENTLY ASKED QUESTIONS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-            Pertanyaan Seputar <span className="text-[#DF9235]">Pengadaan KMP</span>
+            Pertanyaan Seputar <span className="text-[#DC2626]">Pengadaan KMP</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">
             Informasi lengkap mengenai jaminan suku cadang, prosedur RFQ, kepatuhan perpajakan, dan pengiriman darurat pabrik.
@@ -56,22 +56,22 @@ export default function FaqSection({ onOpenRfq }) {
                 key={idx}
                 className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isOpen
-                    ? 'border-[#DF9235] bg-amber-50/20 shadow-soft'
+                    ? 'border-[#DC2626] bg-red-50/20 shadow-soft'
                     : 'border-slate-200 bg-white hover:border-slate-300'
                 }`}
               >
                 <button
                   onClick={() => toggleIndex(idx)}
-                  className="w-full py-4.5 px-5 sm:px-6 flex items-center justify-between gap-4 text-left font-bold text-slate-900 text-sm sm:text-base group"
+                  className="w-full py-4 sm:py-5 px-5 sm:px-6 flex items-center justify-between gap-4 text-left font-bold text-slate-900 text-sm sm:text-base group cursor-pointer"
                 >
-                  <span className="group-hover:text-[#DF9235] transition-colors">
+                  <span className="group-hover:text-[#DC2626] transition-colors leading-snug">
                     {faq.q}
                   </span>
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs transition-transform duration-200 ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs transition-transform duration-200 ${
                       isOpen
-                        ? 'bg-[#DF9235] text-white rotate-180'
-                        : 'bg-slate-100 text-slate-600'
+                        ? 'bg-[#DC2626] text-white rotate-180 shadow-sm'
+                        : 'bg-slate-100 text-slate-600 group-hover:bg-slate-200'
                     }`}
                   >
                     <i className="fa-solid fa-chevron-down"></i>
@@ -79,8 +79,10 @@ export default function FaqSection({ onOpenRfq }) {
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100/60">
-                    {faq.a}
+                  <div className="px-5 sm:px-6 pb-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-red-100/80">
+                    <p className="pt-3.5">
+                      {faq.a}
+                    </p>
                   </div>
                 )}
               </div>
@@ -104,7 +106,7 @@ export default function FaqSection({ onOpenRfq }) {
             rel="noopener noreferrer"
             className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center gap-2 transition-transform active:scale-95 shadow-sm shrink-0"
           >
-            <i className="fa-brands fa-whatsapp text-[#DF9235]"></i>
+            <i className="fa-brands fa-whatsapp text-[#DC2626]"></i>
             <span>Chat Tim Teknis</span>
           </a>
         </div>

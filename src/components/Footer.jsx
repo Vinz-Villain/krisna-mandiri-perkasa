@@ -56,7 +56,7 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
                       const el = document.getElementById('katalog');
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="hover:text-[#DF9235] transition-colors text-left"
+                    className="hover:text-[#DC2626] transition-colors text-left"
                   >
                     • {cat}
                   </button>
@@ -80,7 +80,7 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
                         const el = document.getElementById('katalog');
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }}
-                      className="hover:text-[#DF9235] transition-colors"
+                      className="hover:text-[#DC2626] transition-colors"
                     >
                       {brand}
                     </button>
@@ -107,7 +107,7 @@ export default function Footer({ onFilterCategory, onFilterBrand }) {
                 href="https://wa.me/6289659586363"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-2 rounded-full bg-[#DF9235] hover:bg-[#C97E25] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                className="w-full py-2 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all"
               >
                 <i className="fa-brands fa-whatsapp text-sm"></i>
                 <span>Hubungi Sales WhatsApp</span>

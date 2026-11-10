@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --primary-amber: #DF9235;
-  --primary-amber-dark: #C97E25;
+  --primary-red: #DC2626;
+  --primary-red-dark: #B91C1C;
   --bg-main: #F8FAFC;
   --bg-card: #FFFFFF;
   --text-primary: #0F172A;
@@ -47,8 +47,8 @@ body {
 }
 
 /* Glow Radial Aura */
-.glow-spot-amber {
-  background: radial-gradient(circle, rgba(223, 146, 53, 0.18) 0%, rgba(223, 146, 53, 0) 70%);
+.glow-spot-red {
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.18) 0%, rgba(220, 38, 38, 0) 70%);
 }
 
 .glow-spot-cyan {
@@ -204,31 +204,42 @@ body {
   animation-play-state: paused;
 }
 
+/* Smooth Multi-Row Marquee Support for Brand Carousel */
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  animation: marqueeLeft 34s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marqueeRight 34s linear infinite;
+}
+
+.marquee-group:hover .animate-marquee-left,
+.marquee-group:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
 /* Global Smooth Scrolling Defaults */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
-}
-
-/* Lenis Recommended Smooth Scrolling CSS */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
 }
 
 /* Custom Sleek Scrollbar with Amber Glow */
@@ -246,12 +257,12 @@ html.lenis, html.lenis body {
   transition: background-color 0.2s ease;
 }
 ::-webkit-scrollbar-thumb:hover { 
-  background: #DF9235; 
+  background: #DC2626; 
 }
 
 /* Smooth selection */
 ::selection {
-  background-color: rgba(223, 146, 53, 0.25);
+  background-color: rgba(220, 38, 38, 0.25);
   color: #0F172A;
 }
 

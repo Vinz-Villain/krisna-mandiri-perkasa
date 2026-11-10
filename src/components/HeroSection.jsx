@@ -422,7 +422,7 @@ function CarouselCardItem({
 
       className={`relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-slate-900 group ${
 
-        isVisible ? 'pointer-events-auto cursor-pointer hover:shadow-[0_20px_45px_-10px_rgba(223,146,53,0.4)]' : 'pointer-events-none'
+        isVisible ? 'pointer-events-auto cursor-pointer hover:shadow-[0_20px_45px_-10px_rgba(220,38,38,0.4)]' : 'pointer-events-none'
 
       }`}
 
@@ -476,7 +476,7 @@ function CarouselCardItem({
 
       <div className="absolute top-2.5 sm:top-3 left-2.5 sm:left-3.5 right-2.5 sm:right-3.5 flex items-center justify-between z-10 pointer-events-none">
 
-        <span className="text-[8px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 bg-black/60 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-md border border-amber-400/30">
+        <span className="text-[8px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-red-400 bg-black/60 px-2 sm:px-2.5 py-0.5 rounded-full backdrop-blur-md border border-red-400/30">
 
           {item.badge}
 
@@ -484,7 +484,7 @@ function CarouselCardItem({
 
         <span className="hidden sm:inline-flex text-[9px] font-bold text-slate-300 bg-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm border border-white/10 items-center gap-1.5">
 
-          <span className="w-1.5 h-1.5 rounded-full bg-[#DF9235]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
           ORIGINAL
 
         </span>
@@ -497,7 +497,7 @@ function CarouselCardItem({
 
       <div className="absolute bottom-2 sm:bottom-3.5 inset-x-2.5 sm:inset-x-3.5 flex flex-col items-start text-left z-10 pointer-events-none">
 
-        <h4 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug line-clamp-1 drop-shadow-md group-hover:text-amber-300 transition-colors">
+        <h4 className="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug line-clamp-1 drop-shadow-md group-hover:text-red-300 transition-colors">
 
           {item.title}
 
@@ -879,7 +879,7 @@ export default function HeroSection({
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] via-[#F8FAFC]/80 to-[#F8FAFC]/95" />
 
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-amber-500/12 via-[#3B49DF]/8 to-indigo-500/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[350px] sm:h-[450px] bg-gradient-to-tr from-red-500/12 via-[#3B49DF]/8 to-indigo-500/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="absolute inset-0 bg-grid-pattern opacity-30" />
 
@@ -917,7 +917,7 @@ export default function HeroSection({
 
           </h1>
 
-          <h2 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-[#DF9235] leading-tight pb-1">
+          <h2 className="text-4xl min-[400px]:text-5xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-[#DC2626] leading-tight pb-1">
 
             Presisi & Otomasi Pabrik
 
@@ -951,7 +951,7 @@ export default function HeroSection({
 
             rel="noopener noreferrer"
 
-            className="px-7 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#DF9235] hover:bg-[#C97E25] text-white font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_16px_rgba(223,146,53,0.35)] flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 group"
+            className="px-7 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold text-xs sm:text-sm tracking-wide shadow-[0_4px_16px_rgba(220,38,38,0.35)] flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 group"
 
           >
 
@@ -973,7 +973,7 @@ export default function HeroSection({
 
           >
 
-            <i className="fa-solid fa-layer-group text-xs text-[#DF9235]" />
+            <i className="fa-solid fa-layer-group text-xs text-[#DC2626]" />
 
             <span>JELAJAHI KATALOG</span>
 
@@ -993,7 +993,7 @@ export default function HeroSection({
 
           {/* Search Pill Input Bar */}
 
-          <div className="bg-white/95 backdrop-blur-md rounded-full p-2 pl-5 sm:pl-6 shadow-md border border-slate-200/90 flex items-center justify-between gap-3 transition-all focus-within:ring-2 focus-within:ring-[#DF9235]/40 focus-within:border-[#DF9235]">
+          <div className="bg-white/95 backdrop-blur-md rounded-full p-2 pl-5 sm:pl-6 shadow-md border border-slate-200/90 flex items-center justify-between gap-3 transition-all focus-within:ring-2 focus-within:ring-[#DC2626]/40 focus-within:border-[#DC2626]">
 
             <div className="flex items-center gap-3 w-full">
 
@@ -1043,7 +1043,7 @@ export default function HeroSection({
 
               <span>Cari Part</span>
 
-              <i className="fa-solid fa-arrow-right text-[10px] text-[#DF9235]" />
+              <i className="fa-solid fa-arrow-right text-[10px] text-[#DC2626]" />
 
             </button>
 
@@ -1057,7 +1057,7 @@ export default function HeroSection({
 
             <span className="text-xs font-semibold text-slate-600 mr-1 flex items-center gap-1">
 
-              <i className="fa-solid fa-bolt text-[#DF9235] text-[11px]" />
+              <i className="fa-solid fa-bolt text-[#DC2626] text-[11px]" />
 
               Kategori Cepat:
 
@@ -1075,7 +1075,7 @@ export default function HeroSection({
 
                   activeTabFilter === tab.value
 
-                    ? 'bg-[#DF9235] text-white shadow-xs font-semibold'
+                    ? 'bg-[#DC2626] text-white shadow-xs font-semibold'
 
                     : 'bg-white text-slate-700 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 shadow-xs'
 

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { PRODUCTS_CATALOG } from './catalogData';
 import ProductDetailModal from './ProductDetailModal';
@@ -34,73 +32,37 @@ export default function App() {
   const defaultWhatsAppNumber = '6289659586363';
   const displayWhatsApp = '+62 896 5958 6363';
 
-  // Inisialisasi Lenis Smooth Momentum Scrolling
+  // Pantau scroll untuk tombol Back-to-Top (native listener, passive untuk performa optimal 60/120fps)
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
-    });
-
-    window.lenis = lenis;
-
-    let animationFrameId;
-    function raf(time) {
-      lenis.raf(time);
-      animationFrameId = requestAnimationFrame(raf);
-    }
-    animationFrameId = requestAnimationFrame(raf);
-
-    // Pantau scroll untuk tombol Back-to-Top
-    const onLenisScroll = (e) => {
-      setShowScrollTop(e.scroll > 400);
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
     };
-    lenis.on('scroll', onLenisScroll);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      lenis.destroy();
-      window.lenis = null;
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Hentikan scroll background saat modal aktif
+  // Kunci scroll background saat modal aktif
   useEffect(() => {
     if (selectedProduct || isRfqOpen) {
-      window.lenis?.stop();
+      document.body.style.overflow = 'hidden';
     } else {
-      window.lenis?.start();
+      document.body.style.overflow = '';
     }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [selectedProduct, isRfqOpen]);
 
-  // Framer Motion Spring Scroll Progress Bar
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  // Smooth Scroll Helper
+  // Smooth Scroll Helper (Native browser behavior)
   const smoothScrollTo = (target) => {
-    if (window.lenis) {
-      window.lenis.scrollTo(target, { offset: -80, duration: 1.2 });
-    } else {
-      const el = typeof target === 'string' ? document.querySelector(target) : target;
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const el = typeof target === 'string' ? document.querySelector(target) : target;
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleScrollToTop = () => {
-    if (window.lenis) {
-      window.lenis.scrollTo(0, { duration: 1.2 });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Format link WhatsApp untuk produk spesifik
@@ -192,13 +154,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans antialiased selection:bg-[#DF9235]/25 selection:text-slate-900 flex flex-col relative">
-      {/* 0. Top Ambient Glow Scroll Progress Bar */}
-      <motion.div
-        style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#DF9235] via-amber-400 to-[#DF9235] origin-left z-[70] shadow-[0_0_10px_rgba(223,146,53,0.7)] pointer-events-none"
-      />
-
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans antialiased selection:bg-[#DC2626]/25 selection:text-slate-900 flex flex-col relative">
       {/* 1. Floating Modern Header / Navbar */}
       <Navbar
         rfqCount={rfqCart.length}
@@ -288,7 +244,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
             className="fixed bottom-20 right-4 sm:bottom-24 sm:right-6 z-40 w-11 h-11 rounded-full bg-slate-900/90 hover:bg-slate-900 text-white shadow-lg border border-slate-700/80 backdrop-blur-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 group cursor-pointer"
             title="Kembali ke Atas"
           >
-            <i className="fa-solid fa-arrow-up text-xs text-[#DF9235] group-hover:-translate-y-0.5 transition-transform"></i>
+            <i className="fa-solid fa-arrow-up text-xs text-[#DC2626] group-hover:-translate-y-0.5 transition-transform"></i>
           </motion.button>
         )}
       </AnimatePresence>

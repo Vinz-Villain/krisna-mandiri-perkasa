@@ -66,10 +66,10 @@ export default function InteractiveAssistantWidget({
         <div className="mb-3 w-[340px] sm:w-[380px] bg-white rounded-[28px] border border-slate-200/90 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200 text-left">
           {/* Header */}
           <div className="bg-slate-900 text-white p-4 sm:p-5 flex items-center justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#DF9235]/20 rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#DC2626]/20 rounded-full blur-2xl pointer-events-none"></div>
 
             <div className="flex items-center gap-3 relative z-10">
-              <div className="w-10 h-10 rounded-full bg-white p-1 border-2 border-[#DF9235] shrink-0">
+              <div className="w-10 h-10 rounded-full bg-white p-1 border-2 border-[#DC2626] shrink-0">
                 <img src={kmpLogo} alt="KMP" className="w-full h-full object-contain" />
               </div>
               <div>
@@ -107,15 +107,15 @@ export default function InteractiveAssistantWidget({
                 <button
                   key={idx}
                   onClick={p.action}
-                  className="w-full text-left p-2.5 rounded-xl bg-white hover:bg-amber-50/60 border border-slate-200 hover:border-[#DF9235] transition-all flex items-start justify-between gap-2 group shadow-sm"
+                  className="w-full text-left p-2.5 rounded-xl bg-white hover:bg-red-50/60 border border-slate-200 hover:border-[#DC2626] transition-all flex items-start justify-between gap-2 group shadow-sm"
                 >
                   <div>
-                    <div className="font-bold text-xs text-slate-900 group-hover:text-[#DF9235]">
+                    <div className="font-bold text-xs text-slate-900 group-hover:text-[#DC2626]">
                       {p.title}
                     </div>
                     <div className="text-[10px] text-slate-500 mt-0.5">{p.desc}</div>
                   </div>
-                  <i className="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#DF9235] mt-1"></i>
+                  <i className="fa-solid fa-arrow-right text-[10px] text-slate-400 group-hover:text-[#DC2626] mt-1"></i>
                 </button>
               ))}
             </div>
@@ -125,7 +125,7 @@ export default function InteractiveAssistantWidget({
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold block mb-1.5">
                 Atau Ketik Nomor Part Mesin Anda:
               </label>
-              <div className="flex items-center gap-1.5 bg-slate-100 rounded-full p-1 pl-3 border border-slate-200 focus-within:border-[#DF9235] focus-within:bg-white transition-all">
+              <div className="flex items-center gap-1.5 bg-slate-100 rounded-full p-1 pl-3 border border-slate-200 focus-within:border-[#DC2626] focus-within:bg-white transition-all">
                 <input
                   type="text"
                   placeholder="Contoh: ASCO 8210 24VDC..."
@@ -135,7 +135,7 @@ export default function InteractiveAssistantWidget({
                 />
                 <button
                   type="submit"
-                  className="w-8 h-8 rounded-full bg-[#DF9235] hover:bg-[#C97E25] text-white flex items-center justify-center text-xs shrink-0 transition-transform active:scale-95 shadow-sm"
+                  className="w-8 h-8 rounded-full bg-[#DC2626] hover:bg-[#B91C1C] text-white flex items-center justify-center text-xs shrink-0 transition-transform active:scale-95 shadow-sm"
                   title="Kirim ke WhatsApp"
                 >
                   <i className="fa-solid fa-paper-plane text-[10px]"></i>
@@ -159,10 +159,10 @@ export default function InteractiveAssistantWidget({
         title="Asisten Cerdas Suku Cadang KMP"
       >
         <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#DF9235] opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-[#DF9235]"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#DC2626] opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-[#DC2626]"></span>
         </span>
-        <i className="fa-solid fa-headset text-sm text-[#DF9235] group-hover:rotate-12 transition-transform"></i>
+        <i className="fa-solid fa-headset text-sm text-[#DC2626] group-hover:rotate-12 transition-transform"></i>
         <span className="text-xs font-extrabold tracking-tight hidden sm:inline">
           {isOpen ? 'Tutup Asisten' : 'Konsultasi Suku Cadang'}
         </span>

@@ -32,7 +32,7 @@ export default function ProductDetailModal({ product, onClose, onAddToRfq, onDir
           {/* Header Bar */}
           <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#DF9235] text-white uppercase tracking-wider">
+              <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#DC2626] text-white uppercase tracking-wider">
                 {product.brand}
               </span>
               <span className="text-xs text-slate-300 font-mono tracking-wider">
@@ -75,7 +75,7 @@ export default function ProductDetailModal({ product, onClose, onAddToRfq, onDir
                         onClick={() => setActiveImageIndex(idx)}
                         className={`w-12 h-12 rounded-xl border p-1 transition-all bg-white shrink-0 overflow-hidden cursor-pointer ${
                           activeImageIndex === idx
-                            ? 'border-[#DF9235] ring-2 ring-[#DF9235]/40 shadow-sm'
+                            ? 'border-[#DC2626] ring-2 ring-[#DC2626]/40 shadow-sm'
                             : 'border-slate-200 hover:border-slate-400 opacity-60 hover:opacity-100'
                         }`}
                         title={`Lihat Foto ${idx + 1}`}
@@ -93,7 +93,7 @@ export default function ProductDetailModal({ product, onClose, onAddToRfq, onDir
 
               <div className="md:col-span-7 flex flex-col justify-between space-y-4">
                 <div>
-                  <div className="text-xs font-bold text-[#DF9235] tracking-wider uppercase mb-1">
+                  <div className="text-xs font-bold text-[#DC2626] tracking-wider uppercase mb-1">
                     {product.categoryName || product.category}
                   </div>
                   <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-snug mb-2">
@@ -103,7 +103,7 @@ export default function ProductDetailModal({ product, onClose, onAddToRfq, onDir
                     {product.description}
                   </p>
                   <div className="flex items-center gap-2 text-xs font-mono text-slate-600 bg-slate-50 p-3 rounded-2xl border border-slate-200">
-                    <i className="fa-solid fa-certificate text-[#DF9235]"></i>
+                    <i className="fa-solid fa-certificate text-[#DC2626]"></i>
                     <span>Jaminan Mutu: <strong>100% Suku Cadang Original & Resmi</strong></span>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function ProductDetailModal({ product, onClose, onAddToRfq, onDir
                     }}
                     className="flex-1 bg-slate-900 hover:bg-black text-white font-bold py-3 px-4 rounded-full text-xs uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
                   >
-                    <i className="fa-solid fa-file-invoice text-[#DF9235]"></i>
+                    <i className="fa-solid fa-file-invoice text-[#DC2626]"></i>
                     <span>+ Minta Penawaran (RFQ)</span>
                   </button>
 
@@ -143,7 +143,7 @@ export default function ProductDetailModal({ product, onClose, onAddToRfq, onDir
                     onClick={() => {
                       if (onDirectWhatsApp) onDirectWhatsApp(product, qty);
                     }}
-                    className="bg-[#DF9235] hover:bg-[#C97E25] text-white font-bold py-3 px-4 rounded-full text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-sm active:scale-95 cursor-pointer"
+                    className="bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold py-3 px-4 rounded-full text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-sm active:scale-95 cursor-pointer"
                   >
                     <i className="fa-brands fa-whatsapp text-sm"></i>
                     <span>Tanya WA</span>

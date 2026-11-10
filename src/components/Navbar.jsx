@@ -10,7 +10,7 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,7 +44,7 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
               <span className="absolute -bottom-0.5 -right-0.5 w-2 sm:w-2.5 h-2 sm:h-2.5 bg-emerald-500 border-2 border-white rounded-full animate-pulse" title="Ready to supply"></span>
             </div>
             <div className="min-w-0">
-              <div className="font-extrabold text-xs sm:text-base tracking-tight text-slate-900 group-hover:text-[#DF9235] transition-colors leading-tight truncate">
+              <div className="font-extrabold text-xs sm:text-base tracking-tight text-slate-900 group-hover:text-[#DC2626] transition-colors leading-tight truncate">
                 CV. KRISNA MANDIRI PERKASA
               </div>
               <p className="hidden sm:block text-[11px] text-slate-500 font-medium tracking-wide">
@@ -90,13 +90,13 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
             {/* Tombol RFQ Cart */}
             <button
               onClick={onOpenRfq}
-              className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-slate-200/90 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 transition-all shadow-xs hover:border-[#DF9235]/60 active:scale-95 shrink-0"
+              className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-slate-200/90 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 transition-all shadow-xs hover:border-[#DC2626]/60 active:scale-95 shrink-0"
             >
               <i className="fa-solid fa-file-invoice text-slate-500 text-xs"></i>
               <span className="hidden sm:inline">Daftar RFQ</span>
               <span className="sm:hidden text-[11px]">RFQ</span>
               {rfqCount > 0 && (
-                <span className="w-4 h-4 rounded-full bg-[#DF9235] text-white text-[10px] flex items-center justify-center font-extrabold animate-bounce">
+                <span className="w-4 h-4 rounded-full bg-[#DC2626] text-white text-[10px] flex items-center justify-center font-extrabold animate-bounce">
                   {rfqCount}
                 </span>
               )}
@@ -110,7 +110,7 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
               className="hidden sm:flex bg-[#1E293B] hover:bg-[#0F172A] text-white text-xs font-bold py-2 sm:py-2.5 px-4 sm:px-5 rounded-full items-center gap-2 shadow-sm transition-all hover:shadow-md active:scale-95 group shrink-0"
             >
               <span>Minta Penawaran</span>
-              <i className="fa-solid fa-arrow-right text-[11px] text-[#DF9235] transition-transform group-hover:translate-x-0.5"></i>
+              <i className="fa-solid fa-arrow-right text-[11px] text-[#DC2626] transition-transform group-hover:translate-x-0.5"></i>
             </a>
 
             {/* Mobile Menu Toggle Button */}
@@ -140,7 +140,7 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
                   key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3.5 py-2 rounded-xl hover:bg-slate-50 hover:text-[#DF9235] transition-colors"
+                  className="px-3.5 py-2 rounded-xl hover:bg-slate-50 hover:text-[#DC2626] transition-colors"
                 >
                   {link.label}
                 </a>
@@ -154,7 +154,7 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full bg-[#DF9235] hover:bg-[#C97E25] text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 shadow-sm text-center"
+                className="w-full bg-[#DC2626] hover:bg-[#B91C1C] text-white text-xs font-bold py-2.5 px-4 rounded-full flex items-center justify-center gap-2 shadow-sm text-center"
               >
                 <i className="fa-brands fa-whatsapp text-sm"></i>
                 <span>Minta Penawaran via WhatsApp</span>
