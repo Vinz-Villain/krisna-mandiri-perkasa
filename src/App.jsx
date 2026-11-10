@@ -2,8 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import { PRODUCTS_CATALOG } from './catalogData';
+import {
+  initStorage,
+  getProducts,
+  getCategories,
+  getBrands,
+  DEFAULT_CATEGORIES,
+  DEFAULT_BRANDS,
+} from './services/storageService';
 import ProductDetailModal from './ProductDetailModal';
 import RfqModal from './RfqModal';
+import AdminDashboardModal from './components/admin/AdminDashboardModal';
 
 // Components
 import Navbar from './components/Navbar';
@@ -22,15 +31,73 @@ export default function App() {
   const [selectedBrand, setSelectedBrand] = useState('all');
   const [activeTabFilter, setActiveTabFilter] = useState('Semua');
 
+  // Dynamic Catalog State from Storage / CRUD
+  const [products, setProducts] = useState(PRODUCTS_CATALOG);
+  const [categories, setCategories] = useState(DEFAULT_CATEGORIES);
+  const [brands, setBrands] = useState(DEFAULT_BRANDS);
+
   // Modal & Cart States
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isRfqOpen, setIsRfqOpen] = useState(false);
+  const [isAdminOpen, setIsAdminOpen] = useState(
+    () => typeof window !== 'undefined' && window.location.hash === '#admin'
+  );
   const [rfqCart, setRfqCart] = useState([]);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Kontak resmi WhatsApp KMP
   const defaultWhatsAppNumber = '6289659586363';
   const displayWhatsApp = '+62 896 5958 6363';
+
+  // Load dynamic data on mount
+  const loadCatalogData = async () => {
+    try {
+      await initStorage();
+      const [prodList, catList, brandList] = await Promise.all([
+        getProducts(),
+        getCategories(),
+        getBrands(),
+      ]);
+      if (prodList && prodList.length > 0) setProducts(prodList);
+      if (catList && catList.length > 0) setCategories(catList);
+      if (brandList && brandList.length > 0) setBrands(brandList);
+    } catch (err) {
+      console.error('Failed to load storage catalog:', err);
+    }
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+    (async () => {
+      try {
+        await initStorage();
+        const [prodList, catList, brandList] = await Promise.all([
+          getProducts(),
+          getCategories(),
+          getBrands(),
+        ]);
+        if (isMounted) {
+          if (prodList && prodList.length > 0) setProducts(prodList);
+          if (catList && catList.length > 0) setCategories(catList);
+          if (brandList && brandList.length > 0) setBrands(brandList);
+        }
+      } catch (err) {
+        console.error('Failed to load storage catalog:', err);
+      }
+    })();
+
+    // Dukung akses langsung via URL hash #admin
+    const handleHashChange = () => {
+      if (window.location.hash === '#admin') {
+        setIsAdminOpen(true);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      isMounted = false;
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   // Pantau scroll untuk tombol Back-to-Top (native listener, passive untuk performa optimal 60/120fps)
   useEffect(() => {
@@ -43,7 +110,7 @@ export default function App() {
 
   // Kunci scroll background saat modal aktif
   useEffect(() => {
-    if (selectedProduct || isRfqOpen) {
+    if (selectedProduct || isRfqOpen || isAdminOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -51,7 +118,7 @@ export default function App() {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [selectedProduct, isRfqOpen]);
+  }, [selectedProduct, isRfqOpen, isAdminOpen]);
 
   // Smooth Scroll Helper (Native browser behavior)
   const smoothScrollTo = (target) => {
@@ -119,7 +186,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
   };
 
   // Filtering Produk
-  const filteredProducts = PRODUCTS_CATALOG.filter((product) => {
+  const filteredProducts = products.filter((product) => {
     const matchesCat =
       selectedCategory === 'all' || product.category === selectedCategory;
     const matchesBrand =
@@ -136,21 +203,22 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
 
   const categoriesList = [
     'all',
-    ...Array.from(new Set(PRODUCTS_CATALOG.map((p) => p.category))),
+    ...Array.from(
+      new Set([
+        ...categories.map((c) => c.name),
+        ...products.map((p) => p.category),
+      ])
+    ).filter(Boolean),
   ];
 
   const brandsList = [
     'all',
-    'ASCO',
-    'Numatics',
-    'Aventics',
-    'Norgren',
-    'Airtac',
-    'Barksdale',
-    'Findeva',
-    'Winters',
-    'HYDAC',
-    'Camozzi',
+    ...Array.from(
+      new Set([
+        ...brands.map((b) => b.name),
+        ...products.map((p) => p.brand),
+      ])
+    ).filter(Boolean),
   ];
 
   return (
@@ -159,6 +227,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
       <Navbar
         rfqCount={rfqCart.length}
         onOpenRfq={() => setIsRfqOpen(true)}
+        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* 2. Hero Section Interaktif & Fresh */}
@@ -173,6 +242,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
 
       {/* 3. Infinite Logo Marquee Brand Resmi */}
       <BrandMarquee
+        brands={brands}
         onSelectBrand={(brandName) => {
           setSelectedBrand(brandName);
           smoothScrollTo('#katalog');
@@ -217,6 +287,7 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
           setSelectedBrand(brand);
           smoothScrollTo('#katalog');
         }}
+        onOpenAdmin={() => setIsAdminOpen(true)}
       />
 
       {/* 8. Floating Smart Industrial Assistant Widget */}
@@ -282,6 +353,25 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
           onClearCart={handleClearRfqCart}
         />
       )}
+
+      {/* 12. Modal Admin Dashboard (CRUD Produk, Kategori & Merek) */}
+      <AdminDashboardModal
+        isOpen={isAdminOpen}
+        onClose={() => {
+          setIsAdminOpen(false);
+          if (window.location.hash === '#admin') {
+            window.history.pushState(
+              '',
+              document.title,
+              window.location.pathname + window.location.search
+            );
+          }
+        }}
+        products={products}
+        categories={categories}
+        brands={brands}
+        onRefreshData={loadCatalogData}
+      />
     </div>
   );
 }

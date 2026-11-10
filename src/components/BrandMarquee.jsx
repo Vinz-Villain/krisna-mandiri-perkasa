@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BrandMarquee({ onSelectBrand }) {
+export default function BrandMarquee({ onSelectBrand, brands = [] }) {
   // Baris 1: Brand manufaktur pneumatik & katup
   const row1Brands = [
     {
@@ -194,9 +194,40 @@ export default function BrandMarquee({ onSelectBrand }) {
     },
   ];
 
+  // Integrasikan merek kustom dari CRUD
+  const knownBrandNames = new Set([
+    ...row1Brands.map((b) => b.name.toLowerCase()),
+    ...row2Brands.map((b) => b.name.toLowerCase()),
+  ]);
+
+  const customBrandItems = (brands || [])
+    .filter((b) => b.name && !knownBrandNames.has(b.name.toLowerCase()))
+    .map((b) => ({
+      name: b.name,
+      renderLogo: () => (
+        <div className="flex flex-col items-center justify-center">
+          <span className="text-base sm:text-lg font-black tracking-wider text-slate-900 font-sans uppercase">
+            {b.name}
+          </span>
+          <span className="text-[8px] sm:text-[9px] font-bold text-red-600 tracking-widest uppercase">
+            {b.origin || 'Industrial'}
+          </span>
+        </div>
+      ),
+    }));
+
+  const finalRow1 = [
+    ...row1Brands,
+    ...customBrandItems.slice(0, Math.ceil(customBrandItems.length / 2)),
+  ];
+  const finalRow2 = [
+    ...row2Brands,
+    ...customBrandItems.slice(Math.ceil(customBrandItems.length / 2)),
+  ];
+
   // Duplikat array agar continuous seamless loop
-  const row1Items = [...row1Brands, ...row1Brands, ...row1Brands];
-  const row2Items = [...row2Brands, ...row2Brands, ...row2Brands];
+  const row1Items = [...finalRow1, ...finalRow1, ...finalRow1];
+  const row2Items = [...finalRow2, ...finalRow2, ...finalRow2];
 
   const handleBrandClick = (brandName) => {
     if (onSelectBrand) {
