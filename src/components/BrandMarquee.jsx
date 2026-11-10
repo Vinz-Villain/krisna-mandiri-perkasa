@@ -1,233 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function BrandMarquee({ onSelectBrand, brands = [] }) {
-  // Baris 1: Brand manufaktur pneumatik & katup
+function BrandLogoRenderer({ brand }) {
+  const [hasError, setHasError] = useState(false);
+  const slug = (brand.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const imageSrc = brand.logo || `/brands/${slug}.png`;
+
+  if (!hasError) {
+    return (
+      <img
+        src={imageSrc}
+        alt={brand.name}
+        onError={() => setHasError(true)}
+        className="max-h-8 sm:max-h-10 md:max-h-12 w-auto max-w-[130px] sm:max-w-[160px] object-contain transition-transform"
+      />
+    );
+  }
+
+  return brand.renderLogo ? (
+    brand.renderLogo()
+  ) : (
+    <div className="flex flex-col items-center justify-center">
+      <span className="text-base sm:text-lg font-black tracking-wider text-slate-900 font-sans uppercase">
+        {brand.name}
+      </span>
+      <span className="text-[8px] sm:text-[9px] font-bold text-red-600 tracking-widest uppercase">
+        {brand.origin || 'Industrial'}
+      </span>
+    </div>
+  );
+}
+
+export default function BrandMarquee({ onSelectBrand }) {
+  // Baris 1: 5 Merek resmi terverifikasi dari folder Logo Merk
   const row1Brands = [
-    {
-      name: 'ASCO',
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex items-center gap-1.5">
-            <span className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 font-sans">
-              ASCO
-            </span>
-            <span className="w-2.5 h-2.5 rounded-full bg-red-600"></span>
-          </div>
-          <span className="text-[8px] sm:text-[9px] font-bold text-red-600 tracking-widest uppercase">
-            Emerson
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Norgren',
-      renderLogo: () => (
-        <div className="flex items-center gap-2">
-          <span className="px-1.5 py-0.5 rounded bg-red-600 text-white font-black text-[10px] sm:text-[11px] tracking-wider">
-            IMI
-          </span>
-          <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 font-sans">
-            NORGREN
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Aventics',
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-lg sm:text-xl font-black tracking-widest text-slate-900 font-sans">
-            AVENTICS
-          </span>
-          <span className="text-[8px] sm:text-[9px] font-bold tracking-wider text-slate-400 uppercase">
-            An Emerson Brand
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Numatics',
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-lg sm:text-xl font-black tracking-tight text-emerald-700 font-sans lowercase">
-            numatics<span className="text-emerald-500 font-normal text-xs">®</span>
-          </span>
-          <span className="text-[8px] sm:text-[9px] font-bold text-slate-400 tracking-wider uppercase">
-            Motion Control
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Airtac',
-      renderLogo: () => (
-        <div className="flex items-center gap-1.5">
-          <span className="text-xl sm:text-2xl font-black italic tracking-tight text-blue-700 font-sans">
-            AirTAC
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'SMC',
-      renderLogo: () => (
-        <div className="flex items-center gap-2">
-          <span className="text-2xl sm:text-3xl font-black tracking-tight text-blue-600 font-sans">
-            SMC
-          </span>
-          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider hidden sm:inline">
-            Corporation
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Festo',
-      renderLogo: () => (
-        <div className="flex items-center gap-1.5">
-          <span className="text-2xl sm:text-3xl font-black tracking-widest text-[#0091DA] font-sans">
-            FESTO
-          </span>
-        </div>
-      ),
-    },
+    { name: 'ASCO' },
+    { name: 'Norgren' },
+    { name: 'Aventics' },
+    { name: 'Numatics' },
+    { name: 'Airtac' },
   ];
 
-  // Baris 2: Brand instrumentasi, fluida, sensor & penggerak
+  // Baris 2: 5 Merek resmi terverifikasi dari folder Logo Merk
   const row2Brands = [
-    {
-      name: 'Winters',
-      renderLogo: () => (
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-sky-700 flex items-center justify-center relative shrink-0">
-            <span className="w-2.5 h-0.5 bg-sky-700 transform -rotate-45 origin-left"></span>
-            <span className="w-1.5 h-1.5 rounded-full bg-sky-700 absolute"></span>
-          </div>
-          <div className="text-left leading-none">
-            <span className="text-base sm:text-lg font-black tracking-wider text-slate-900 block font-sans">
-              WINTERS
-            </span>
-            <span className="text-[8px] sm:text-[9px] font-semibold text-slate-400 tracking-wider">
-              INSTRUMENTS
-            </span>
-          </div>
-        </div>
-      ),
-    },
-    {
-      name: 'HYDAC',
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-xl sm:text-2xl font-black tracking-widest text-red-600 font-sans">
-            HYDAC
-          </span>
-          <span className="text-[8px] sm:text-[9px] font-semibold text-slate-400 tracking-wider uppercase">
-            Fluid Technology
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Barksdale',
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-base sm:text-lg font-black tracking-tight text-amber-700 font-sans uppercase">
-            Barksdale
-          </span>
-          <span className="text-[8px] sm:text-[9px] font-bold text-slate-400 tracking-widest uppercase">
-            Control Products
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Findeva',
-      renderLogo: () => (
-        <div className="flex items-center gap-2">
-          <div className="w-5 h-5 sm:w-6 sm:h-6 rounded bg-red-600 flex items-center justify-center text-white font-bold text-[10px] shadow-xs shrink-0">
-            <i className="fa-solid fa-plus text-[9px]"></i>
-          </div>
-          <span className="text-base sm:text-lg font-black tracking-wider text-slate-900 font-sans uppercase">
-            findeva
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Camozzi',
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-base sm:text-lg font-black tracking-wide text-slate-800 font-sans">
-            CAMOZZI
-          </span>
-          <span className="text-[8px] sm:text-[9px] font-semibold text-sky-600 tracking-wider uppercase">
-            Automation
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'Parker',
-      renderLogo: () => (
-        <div className="flex items-center gap-2">
-          <span className="w-6 h-6 sm:w-7 sm:h-7 rounded bg-amber-500 text-slate-900 flex items-center justify-center font-black text-xs shadow-xs shrink-0">
-            P
-          </span>
-          <span className="text-lg sm:text-xl font-black tracking-tight text-slate-900 font-sans">
-            Parker
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: 'CKD',
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-xl sm:text-2xl font-black tracking-wider text-sky-700 font-sans">
-            CKD
-          </span>
-          <span className="text-[8px] sm:text-[9px] font-semibold text-slate-400 tracking-wider uppercase">
-            Pneumatics
-          </span>
-        </div>
-      ),
-    },
+    { name: 'Winters' },
+    { name: 'HYDAC' },
+    { name: 'Barksdale' },
+    { name: 'Findeva' },
+    { name: 'Camozzi' },
   ];
 
-  // Integrasikan merek kustom dari CRUD
-  const knownBrandNames = new Set([
-    ...row1Brands.map((b) => b.name.toLowerCase()),
-    ...row2Brands.map((b) => b.name.toLowerCase()),
-  ]);
-
-  const customBrandItems = (brands || [])
-    .filter((b) => b.name && !knownBrandNames.has(b.name.toLowerCase()))
-    .map((b) => ({
-      name: b.name,
-      renderLogo: () => (
-        <div className="flex flex-col items-center justify-center">
-          <span className="text-base sm:text-lg font-black tracking-wider text-slate-900 font-sans uppercase">
-            {b.name}
-          </span>
-          <span className="text-[8px] sm:text-[9px] font-bold text-red-600 tracking-widest uppercase">
-            {b.origin || 'Industrial'}
-          </span>
-        </div>
-      ),
-    }));
-
-  const finalRow1 = [
-    ...row1Brands,
-    ...customBrandItems.slice(0, Math.ceil(customBrandItems.length / 2)),
-  ];
-  const finalRow2 = [
-    ...row2Brands,
-    ...customBrandItems.slice(Math.ceil(customBrandItems.length / 2)),
-  ];
-
-  // Duplikat array agar continuous seamless loop
-  const row1Items = [...finalRow1, ...finalRow1, ...finalRow1];
-  const row2Items = [...finalRow2, ...finalRow2, ...finalRow2];
+  // Duplikat array agar continuous seamless loop saat animasi marquee berjalan
+  const row1Items = [...row1Brands, ...row1Brands, ...row1Brands, ...row1Brands];
+  const row2Items = [...row2Brands, ...row2Brands, ...row2Brands, ...row2Brands];
 
   const handleBrandClick = (brandName) => {
     if (onSelectBrand) {
@@ -266,7 +90,7 @@ export default function BrandMarquee({ onSelectBrand, brands = [] }) {
                 title={`Lihat suku cadang ${brand.name}`}
               >
                 <div className="transition-transform duration-300 group-hover/card:scale-105">
-                  {brand.renderLogo()}
+                  <BrandLogoRenderer brand={brand} />
                 </div>
               </div>
             ))}
@@ -284,7 +108,7 @@ export default function BrandMarquee({ onSelectBrand, brands = [] }) {
                 title={`Lihat suku cadang ${brand.name}`}
               >
                 <div className="transition-transform duration-300 group-hover/card:scale-105">
-                  {brand.renderLogo()}
+                  <BrandLogoRenderer brand={brand} />
                 </div>
               </div>
             ))}

@@ -23,7 +23,6 @@ import ProductCatalogSection from './components/ProductCatalogSection';
 import FaqSection from './components/FaqSection';
 import CtaBanner from './components/CtaBanner';
 import Footer from './components/Footer';
-import InteractiveAssistantWidget from './components/InteractiveAssistantWidget';
 import FloatingRfqBar from './components/FloatingRfqBar';
 
 export default function App() {
@@ -326,19 +325,6 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
           setSelectedBrand(brand);
           smoothScrollTo('#katalog');
         }}
-      />
-
-      {/* 8. Floating Smart Industrial Assistant Widget */}
-      <InteractiveAssistantWidget
-        onFilterCategory={(cat) => {
-          setSelectedCategory(cat);
-          smoothScrollTo('#katalog');
-        }}
-        onFilterBrand={(b) => {
-          setSelectedBrand(b);
-          smoothScrollTo('#katalog');
-        }}
-        onOpenRfq={() => setIsRfqOpen(true)}
       />
 
       {/* 9. Floating Smooth Back-to-Top Button */}

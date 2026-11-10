@@ -35,21 +35,17 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group min-w-0"
           >
-            <div className="relative shrink-0">
+            <div className="shrink-0">
               <img
                 src={kmpLogo}
                 alt="Logo CV. Krisna Mandiri Perkasa"
                 className="h-8 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
               />
-              <span className="absolute -bottom-0.5 -right-0.5 w-2 sm:w-2.5 h-2 sm:h-2.5 bg-emerald-500 border-2 border-white rounded-full animate-pulse" title="Ready to supply"></span>
             </div>
             <div className="min-w-0">
               <div className="font-extrabold text-xs sm:text-base tracking-tight text-slate-900 group-hover:text-[#DC2626] transition-colors leading-tight truncate">
                 CV. KRISNA MANDIRI PERKASA
               </div>
-              <p className="hidden sm:block text-[11px] text-slate-500 font-medium tracking-wide">
-                Pemasok & Distributor Suku Cadang Industri
-              </p>
             </div>
           </div>
 
