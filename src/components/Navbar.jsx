@@ -33,17 +33,17 @@ export default function Navbar({ rfqCount, onOpenRfq }) {
           {/* Logo & Brand Identity */}
           <div
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer group min-w-0 shrink-0"
+            className="flex items-center gap-2 sm:gap-3 cursor-pointer group min-w-0"
           >
             <div className="shrink-0">
               <img
                 src={kmpLogo}
                 alt="Logo CV. Krisna Mandiri Perkasa"
-                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-xs"
+                className="h-11 min-[400px]:h-12 sm:h-13 md:h-14 lg:h-16 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-xs"
               />
             </div>
             <div className="min-w-0">
-              <div className="font-black text-xs min-[400px]:text-sm sm:text-base md:text-lg lg:text-[22px] tracking-tight text-slate-900 group-hover:text-[#DC2626] transition-colors leading-tight">
+              <div className="font-black text-[13px] min-[400px]:text-sm sm:text-base md:text-lg lg:text-[22px] tracking-tight text-slate-900 group-hover:text-[#DC2626] transition-colors leading-tight">
                 CV. KRISNA MANDIRI PERKASA
               </div>
             </div>
