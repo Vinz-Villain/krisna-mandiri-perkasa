@@ -11,7 +11,16 @@ import {
   exportAllData,
   importAllData,
   resetToDefaults,
+  refreshCatalogFromCloud,
+  syncCurrentCatalogToGoogleSheet,
 } from '../../services/storageService';
+import {
+  getGoogleSheetUrl,
+  setGoogleSheetUrl,
+  isGoogleSheetActive,
+  testConnection,
+} from '../../services/googleSheetService';
+import { GOOGLE_APPS_SCRIPT_CODE } from '../../services/googleAppsScriptCode';
 
 const COMMON_ICONS = [
   { class: 'fa-compress', label: 'Silinder' },
@@ -86,6 +95,16 @@ export default function AdminDashboardModal({
     origin: '',
     description: '',
   });
+
+  // States Google Sheets Integration
+  const [gsheetUrlInput, setGsheetUrlInput] = useState(() => getGoogleSheetUrl());
+  const [isTestingGSheet, setIsTestingGSheet] = useState(false);
+  const [isSyncingGSheet, setIsSyncingGSheet] = useState(false);
+  const [isPushingGSheet, setIsPushingGSheet] = useState(false);
+  const [gsheetStatus, setGsheetStatus] = useState(() => isGoogleSheetActive());
+  const [codeCopied, setCodeCopied] = useState(false);
+  const [showAdvancedGSheet, setShowAdvancedGSheet] = useState(false);
+  const [showAdvancedBackup, setShowAdvancedBackup] = useState(false);
 
   if (!isOpen) return null;
 
@@ -233,15 +252,14 @@ export default function AdminDashboardModal({
         productForm.description.slice(0, 140) + '...',
       image: productForm.image || '/logo-kmp.png',
       images: [productForm.image || '/logo-kmp.png'],
-      whatsapp: '+62 896 5958 6363',
     };
 
     try {
       await saveProduct(payload);
       showToast(
         editingProductId
-          ? 'Produk berhasil diperbarui!'
-          : 'Produk baru berhasil ditambahkan!'
+          ? (gsheetStatus ? 'Produk diperbarui di Google Sheets & Perangkat!' : 'Produk berhasil diperbarui!')
+          : (gsheetStatus ? 'Produk baru tersimpan ke Google Sheets & Perangkat!' : 'Produk baru berhasil ditambahkan!')
       );
       setIsProductFormOpen(false);
       onRefreshData();
@@ -254,7 +272,7 @@ export default function AdminDashboardModal({
     if (window.confirm(`Yakin ingin menghapus produk "${name}"?`)) {
       try {
         await deleteProduct(id);
-        showToast('Produk berhasil dihapus!');
+        showToast(gsheetStatus ? 'Produk berhasil dihapus dari Google Sheets & Perangkat!' : 'Produk berhasil dihapus!');
         onRefreshData();
       } catch (err) {
         showToast('Gagal menghapus produk: ' + err.message, 'error');
@@ -297,8 +315,8 @@ export default function AdminDashboardModal({
       await saveCategory(payload);
       showToast(
         editingCategoryId
-          ? 'Kategori berhasil diperbarui!'
-          : 'Kategori baru berhasil ditambahkan!'
+          ? (gsheetStatus ? 'Kategori diperbarui di Google Sheets & Perangkat!' : 'Kategori berhasil diperbarui!')
+          : (gsheetStatus ? 'Kategori baru tersimpan ke Google Sheets & Perangkat!' : 'Kategori baru berhasil ditambahkan!')
       );
       setIsCategoryFormOpen(false);
       onRefreshData();
@@ -320,7 +338,7 @@ export default function AdminDashboardModal({
     if (window.confirm(`Yakin ingin menghapus kategori "${cat.name}"?`)) {
       try {
         await deleteCategory(cat.id);
-        showToast('Kategori berhasil dihapus!');
+        showToast(gsheetStatus ? 'Kategori dihapus dari Google Sheets & Perangkat!' : 'Kategori berhasil dihapus!');
         onRefreshData();
       } catch (err) {
         showToast('Gagal menghapus kategori: ' + err.message, 'error');
@@ -363,8 +381,8 @@ export default function AdminDashboardModal({
       await saveBrand(payload);
       showToast(
         editingBrandId
-          ? 'Merek berhasil diperbarui!'
-          : 'Merek baru berhasil ditambahkan!'
+          ? (gsheetStatus ? 'Merek diperbarui di Google Sheets & Perangkat!' : 'Merek berhasil diperbarui!')
+          : (gsheetStatus ? 'Merek baru tersimpan ke Google Sheets & Perangkat!' : 'Merek baru berhasil ditambahkan!')
       );
       setIsBrandFormOpen(false);
       onRefreshData();
@@ -387,7 +405,7 @@ export default function AdminDashboardModal({
     if (window.confirm(`Yakin ingin menghapus merek "${brand.name}"?`)) {
       try {
         await deleteBrand(brand.id);
-        showToast('Merek berhasil dihapus!');
+        showToast(gsheetStatus ? 'Merek dihapus dari Google Sheets & Perangkat!' : 'Merek berhasil dihapus!');
         onRefreshData();
       } catch (err) {
         showToast('Gagal menghapus merek: ' + err.message, 'error');
@@ -453,6 +471,83 @@ export default function AdminDashboardModal({
       } catch (err) {
         showToast('Gagal me-reset katalog: ' + err.message, 'error');
       }
+    }
+  };
+
+  // ==================== GOOGLE SHEETS HANDLERS ====================
+  const handleTestAndSaveGSheet = async () => {
+    if (!gsheetUrlInput.trim()) {
+      showToast('Masukkan URL Web App Google Apps Script terlebih dahulu!', 'error');
+      return;
+    }
+    try {
+      setIsTestingGSheet(true);
+      const res = await testConnection(gsheetUrlInput.trim());
+      setGoogleSheetUrl(gsheetUrlInput.trim());
+      setGsheetStatus(true);
+      showToast(res.message || 'Koneksi ke Google Sheets API Berhasil & Disimpan!');
+    } catch (err) {
+      showToast(err.message || 'Koneksi gagal. Periksa izin Web App (Anyone)!', 'error');
+    } finally {
+      setIsTestingGSheet(false);
+    }
+  };
+
+  const handleDisconnectGSheet = () => {
+    if (window.confirm('Putus koneksi Google Sheets dan kembali ke mode database lokal?')) {
+      setGoogleSheetUrl('');
+      setGsheetUrlInput('');
+      setGsheetStatus(false);
+      showToast('Koneksi Google Sheets diputus. Website kini dalam mode lokal.');
+    }
+  };
+
+  const handlePullFromGSheet = async () => {
+    try {
+      setIsSyncingGSheet(true);
+      const data = await refreshCatalogFromCloud();
+      if (data && data.products) {
+        showToast(`Berhasil menarik ${data.products.length} produk dari Google Sheets!`);
+        onRefreshData();
+      } else {
+        showToast('Google Sheet belum memiliki data produk.', 'error');
+      }
+    } catch (err) {
+      showToast('Gagal menarik data: ' + err.message, 'error');
+    } finally {
+      setIsSyncingGSheet(false);
+    }
+  };
+
+  const handlePushToGSheet = async () => {
+    if (
+      !window.confirm(
+        `Unggah seluruh katalog saat ini (${products.length} produk, ${categories.length} kategori, ${brands.length} merek) ke Google Sheet? Ini akan mengisi lembar Google Sheets Anda secara instan.`
+      )
+    ) {
+      return;
+    }
+
+    try {
+      setIsPushingGSheet(true);
+      const res = await syncCurrentCatalogToGoogleSheet();
+      showToast(res.message || 'Seluruh data katalog berhasil diunggah ke Google Sheet!');
+      onRefreshData();
+    } catch (err) {
+      showToast('Gagal mengunggah ke Google Sheet: ' + err.message, 'error');
+    } finally {
+      setIsPushingGSheet(false);
+    }
+  };
+
+  const handleCopyScriptCode = async () => {
+    try {
+      await navigator.clipboard.writeText(GOOGLE_APPS_SCRIPT_CODE);
+      setCodeCopied(true);
+      showToast('Kode Google Apps Script berhasil disalin ke clipboard!');
+      setTimeout(() => setCodeCopied(false), 3000);
+    } catch {
+      showToast('Gagal menyalin kode ke clipboard', 'error');
     }
   };
 
@@ -578,12 +673,12 @@ export default function AdminDashboardModal({
               <div className="min-w-0">
                 <h2 className="font-black text-xs sm:text-base tracking-tight flex items-center gap-1.5 sm:gap-2 truncate">
                   <span className="truncate">Panel Kelola Katalog</span>
-                  <span className="text-[9px] sm:text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-slate-800 text-red-400 border border-slate-700 shrink-0">
-                    CRUD
+                  <span className="text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-950/80 text-red-300 border border-red-800/60 shrink-0">
+                    Administrator
                   </span>
                 </h2>
                 <p className="text-[10px] sm:text-xs text-slate-400 hidden xs:block truncate">
-                  Kelola produk, kategori, dan merek CV. KMP
+                  Kelola produk, kategori, merek, dan database Google Sheets CV. KMP
                 </p>
               </div>
             </div>
@@ -664,15 +759,41 @@ export default function AdminDashboardModal({
             </button>
 
             <button
-              onClick={() => setActiveTab('backup')}
+              onClick={() => setActiveTab('sheets')}
               className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-t-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 transition-all cursor-pointer ${
-                activeTab === 'backup'
+                activeTab === 'sheets'
+                  ? 'bg-white text-emerald-800 border-t-2 border-emerald-600 shadow-sm'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
+              }`}
+            >
+              <i className="fa-solid fa-table text-emerald-600"></i>
+              <span>Google Sheets</span>
+              <span
+                className={`text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 rounded-full font-bold flex items-center gap-1 ${
+                  gsheetStatus
+                    ? 'bg-emerald-100 text-emerald-800'
+                    : 'bg-slate-200 text-slate-600'
+                }`}
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    gsheetStatus ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'
+                  }`}
+                />
+                {gsheetStatus ? 'Online' : 'Lokal'}
+              </span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('settings')}
+              className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-t-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+                activeTab === 'settings'
                   ? 'bg-white text-slate-900 border-t-2 border-[#DC2626] shadow-sm'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
               }`}
             >
-              <i className="fa-solid fa-database text-slate-500"></i>
-              <span>Cadangan</span>
+              <i className="fa-solid fa-gear text-slate-500"></i>
+              <span>Pengaturan</span>
             </button>
           </div>
 
@@ -1462,73 +1583,234 @@ export default function AdminDashboardModal({
             )}
 
             {/* ========================================================= */}
-            {/* TAB 4: CADANGAN & RESET                                   */}
+            {/* TAB 4: GOOGLE SHEETS CLOUD DATABASE                       */}
             {/* ========================================================= */}
-            {activeTab === 'backup' && (
-              <div className="space-y-4 sm:space-y-6 max-w-2xl">
+            {activeTab === 'sheets' && (
+              <div className="space-y-4 sm:space-y-6 max-w-3xl">
                 <div>
-                  <h3 className="text-xs sm:text-sm font-black text-slate-900">
-                    Manajemen Data & Cadangan
-                  </h3>
-                  <p className="text-[11px] sm:text-xs text-slate-500">
-                    Cadangkan atau pulihkan data produk, kategori, dan merek ke file JSON di perangkat Anda.
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xs sm:text-sm font-black text-slate-900">
+                      Database Google Sheets
+                    </h3>
+                    <span
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1.5 ${
+                        gsheetStatus
+                          ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                          : 'bg-amber-100 text-amber-800 border border-amber-300'
+                      }`}
+                    >
+                      <span
+                        className={`w-2 h-2 rounded-full ${
+                          gsheetStatus ? 'bg-emerald-500 animate-pulse' : 'bg-amber-500'
+                        }`}
+                      />
+                      {gsheetStatus ? 'Online (Tersinkronisasi)' : 'Mode Offline / Lokal'}
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
+                    Data produk tersimpan di Google Spreadsheet Anda dan langsung tampil live ke seluruh pengunjung website.
                   </p>
                 </div>
 
-                {/* Ekspor Backup */}
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
-                  <div>
-                    <h4 className="text-xs font-black text-slate-900 flex items-center gap-1.5">
-                      <i className="fa-solid fa-download text-emerald-600"></i>
-                      <span>Ekspor Cadangan (Download JSON)</span>
-                    </h4>
-                    <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
-                      Simpan {products.length} produk, {categories.length} kategori, dan {brands.length} merek ke satu file backup.
-                    </p>
+                {/* Kartu Status Utama & Aksi Langsung */}
+                <div
+                  className={`p-4 sm:p-6 rounded-2xl sm:rounded-3xl border transition-all ${
+                    gsheetStatus
+                      ? 'bg-gradient-to-br from-emerald-50 via-white to-emerald-50/30 border-emerald-200 shadow-sm'
+                      : 'bg-gradient-to-br from-amber-50 via-white to-amber-50/30 border-amber-200 shadow-sm'
+                  }`}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-11 h-11 rounded-2xl flex items-center justify-center text-xl shadow-md shrink-0 ${
+                          gsheetStatus
+                            ? 'bg-emerald-600 text-white'
+                            : 'bg-amber-500 text-white'
+                        }`}
+                      >
+                        <i
+                          className={`fa-solid ${
+                            gsheetStatus
+                              ? 'fa-cloud-arrow-up'
+                              : 'fa-triangle-exclamation'
+                          }`}
+                        ></i>
+                      </div>
+                      <div>
+                        <h4 className="text-sm sm:text-base font-black text-slate-900">
+                          {gsheetStatus
+                            ? 'Sinkronisasi Live Otomatis Aktif'
+                            : 'Google Sheets Belum Terhubung'}
+                        </h4>
+                        <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                          {gsheetStatus
+                            ? 'Setiap produk yang Anda tambah, edit, atau hapus otomatis tersimpan ke Google Sheet dan langsung tampil ke semua orang.'
+                            : 'Saat ini produk hanya tersimpan di browser komputer ini saja. Hubungkan URL Google Sheets di bawah.'}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <button
-                    onClick={handleExportBackup}
-                    className="w-full sm:w-auto px-4 py-2 sm:py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-sm transition-all active:scale-95"
-                  >
-                    <i className="fa-solid fa-file-arrow-down"></i>
-                    <span>Download Backup</span>
-                  </button>
+
+                  {/* Tombol Utama Operasional User */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-slate-200/80">
+                    <button
+                      type="button"
+                      disabled={isSyncingGSheet || !gsheetStatus}
+                      onClick={handlePullFromGSheet}
+                      className="px-4 py-3 rounded-xl sm:rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 cursor-pointer shadow-sm transition-all active:scale-95 disabled:opacity-50"
+                    >
+                      {isSyncingGSheet ? (
+                        <>
+                          <i className="fa-solid fa-spinner fa-spin"></i>
+                          <span>Menyinkronkan Data...</span>
+                        </>
+                      ) : (
+                        <>
+                          <i className="fa-solid fa-arrows-rotate text-sm"></i>
+                          <span>Sinkronkan / Tarik Data Terbaru</span>
+                        </>
+                      )}
+                    </button>
+
+                    <a
+                      href="https://sheets.google.com"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-4 py-3 rounded-xl sm:rounded-2xl bg-slate-900 hover:bg-black text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 cursor-pointer shadow-sm transition-all active:scale-95 text-center"
+                    >
+                      <i className="fa-solid fa-arrow-up-right-from-square text-emerald-400 text-xs"></i>
+                      <span>Buka Google Spreadsheet</span>
+                    </a>
+                  </div>
                 </div>
 
-                {/* Impor Backup */}
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
-                  <div>
-                    <h4 className="text-xs font-black text-slate-900 flex items-center gap-1.5">
-                      <i className="fa-solid fa-upload text-blue-600"></i>
-                      <span>Pulihkan dari File Backup (JSON)</span>
-                    </h4>
-                    <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
-                      Unggah file backup JSON yang sebelumnya telah Anda download.
-                    </p>
-                  </div>
-                  <label className="w-full sm:w-auto px-4 py-2 sm:py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-sm transition-all active:scale-95 text-center">
-                    <i className="fa-solid fa-file-arrow-up"></i>
-                    <span>Pilih File Backup</span>
-                    <input
-                      type="file"
-                      accept=".json"
-                      onChange={handleImportBackup}
-                      className="hidden"
-                    />
-                  </label>
+                {/* Pengaturan Lanjutan / Opsi Teknis (Dapat Dilipat / Accordion) */}
+                <div className="pt-1">
+                  <button
+                    type="button"
+                    onClick={() => setShowAdvancedGSheet(!showAdvancedGSheet)}
+                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 text-xs font-bold flex items-center justify-between transition-colors cursor-pointer"
+                  >
+                    <span className="flex items-center gap-2">
+                      <i className="fa-solid fa-sliders text-slate-400"></i>
+                      <span>Pengaturan Teknis &amp; Ganti URL Spreadsheet</span>
+                    </span>
+                    <i
+                      className={`fa-solid fa-chevron-down text-xs transition-transform ${
+                        showAdvancedGSheet ? 'rotate-180' : ''
+                      }`}
+                    ></i>
+                  </button>
+
+                  {showAdvancedGSheet && (
+                    <div className="mt-3 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+                      {/* Form URL */}
+                      <div className="space-y-2">
+                        <label className="block text-[11px] font-bold text-slate-700">
+                          URL Endpoint Web App Google Apps Script
+                        </label>
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                          <input
+                            type="url"
+                            placeholder="https://script.google.com/macros/s/.../exec"
+                            value={gsheetUrlInput}
+                            onChange={(e) => setGsheetUrlInput(e.target.value)}
+                            className="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-mono focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/20 focus:border-[#DC2626]"
+                          />
+                          <button
+                            type="button"
+                            disabled={isTestingGSheet}
+                            onClick={handleTestAndSaveGSheet}
+                            className="px-4 py-2.5 rounded-xl bg-[#DC2626] hover:bg-[#b91c1c] text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-sm transition-all active:scale-95 disabled:opacity-60 shrink-0"
+                          >
+                            {isTestingGSheet ? (
+                              <>
+                                <i className="fa-solid fa-spinner fa-spin"></i>
+                                <span>Menguji...</span>
+                              </>
+                            ) : (
+                              <>
+                                <i className="fa-solid fa-plug"></i>
+                                <span>Tes &amp; Simpan</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Tombol Ekstra */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                        <button
+                          type="button"
+                          disabled={isPushingGSheet || !gsheetStatus}
+                          onClick={handlePushToGSheet}
+                          className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold flex items-center gap-2 cursor-pointer transition-colors"
+                        >
+                          <i className="fa-solid fa-file-export text-slate-500"></i>
+                          <span>Unggah Ulang Seluruh Data ke Sheet</span>
+                        </button>
+
+                        {gsheetStatus && (
+                          <button
+                            type="button"
+                            onClick={handleDisconnectGSheet}
+                            className="px-3.5 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold flex items-center gap-2 cursor-pointer transition-colors"
+                          >
+                            <i className="fa-solid fa-link-slash"></i>
+                            <span>Putus Koneksi</span>
+                          </button>
+                        )}
+                      </div>
+
+                      {/* Salin Kode Script jika diperlukan developer */}
+                      <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                        <span>Kode Skrip Google Apps Script (Code.gs v2):</span>
+                        <button
+                          type="button"
+                          onClick={handleCopyScriptCode}
+                          className="text-red-600 hover:text-red-700 font-bold flex items-center gap-1 cursor-pointer"
+                        >
+                          <i
+                            className={`fa-solid ${
+                              codeCopied ? 'fa-check text-emerald-500' : 'fa-copy'
+                            }`}
+                          ></i>
+                          <span>{codeCopied ? 'Tersalin!' : 'Salin Kode Skrip'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* ========================================================= */}
+            {/* TAB 5: PENGATURAN & KATA SANDI                            */}
+            {/* ========================================================= */}
+            {activeTab === 'settings' && (
+              <div className="space-y-4 sm:space-y-6 max-w-2xl">
+                <div>
+                  <h3 className="text-xs sm:text-sm font-black text-slate-900">
+                    Pengaturan Administrator
+                  </h3>
+                  <p className="text-[11px] sm:text-xs text-slate-500">
+                    Kelola kata sandi akun administrator dan keamanan akses katalog.
+                  </p>
                 </div>
 
                 {/* Ubah Kata Sandi Admin */}
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
                   <div>
-                    <h4 className="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900 flex items-center gap-1.5">
                       <i className="fa-solid fa-key text-amber-600"></i>
                       <span>Ubah Kata Sandi Admin</span>
                     </h4>
                     <p className="text-[10px] sm:text-[11px] text-slate-500 mt-0.5">
-                      Ganti kata sandi default dengan kata sandi pribadi Anda untuk keamanan maksimal.
+                      Ganti kata sandi bawaan dengan kata sandi pribadi Anda untuk keamanan panel.
                     </p>
                   </div>
+
                   <form onSubmit={handleChangePassword} className="space-y-3 pt-1">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                       <div className="space-y-1">
@@ -1546,7 +1828,7 @@ export default function AdminDashboardModal({
                               currentPw: e.target.value,
                             }))
                           }
-                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-[#DC2626]/20 focus:border-[#DC2626]"
+                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/20 focus:border-[#DC2626]"
                         />
                       </div>
                       <div className="space-y-1">
@@ -1564,14 +1846,14 @@ export default function AdminDashboardModal({
                               newPw: e.target.value,
                             }))
                           }
-                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-white text-xs focus:outline-none focus:ring-2 focus:ring-[#DC2626]/20 focus:border-[#DC2626]"
+                          className="w-full px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#DC2626]/20 focus:border-[#DC2626]"
                         />
                       </div>
                     </div>
                     <div className="flex items-center justify-end pt-1">
                       <button
                         type="submit"
-                        className="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-sm transition-all active:scale-95"
+                        className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 cursor-pointer shadow-sm transition-all active:scale-95"
                       >
                         <i className="fa-solid fa-check"></i>
                         <span>Simpan Kata Sandi Baru</span>
@@ -1580,24 +1862,93 @@ export default function AdminDashboardModal({
                   </form>
                 </div>
 
-                {/* Reset Pabrik */}
-                <div className="p-3.5 sm:p-5 rounded-2xl bg-rose-50/50 border border-rose-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
-                  <div>
-                    <h4 className="text-xs font-black text-rose-900 flex items-center gap-1.5">
-                      <i className="fa-solid fa-triangle-exclamation text-rose-600"></i>
-                      <span>Reset ke Data Katalog Awal</span>
-                    </h4>
-                    <p className="text-[10px] sm:text-[11px] text-rose-700 mt-0.5">
-                      Kembalikan seluruh produk, kategori, dan merek ke data default bawaan pabrik KMP.
-                    </p>
-                  </div>
+                {/* Cadangan & Pemulihan Darurat (Accordion Lipat) */}
+                <div className="pt-1">
                   <button
-                    onClick={handleResetDefaults}
-                    className="w-full sm:w-auto px-4 py-2 sm:py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold flex items-center justify-center gap-2 shrink-0 cursor-pointer shadow-sm transition-all active:scale-95"
+                    type="button"
+                    onClick={() => setShowAdvancedBackup(!showAdvancedBackup)}
+                    className="w-full py-2.5 px-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 text-xs font-bold flex items-center justify-between transition-colors cursor-pointer"
                   >
-                    <i className="fa-solid fa-rotate-left"></i>
-                    <span>Reset Sekarang</span>
+                    <span className="flex items-center gap-2">
+                      <i className="fa-solid fa-box-archive text-slate-400"></i>
+                      <span>Opsi Cadangan File &amp; Pemulihan Darurat</span>
+                    </span>
+                    <i
+                      className={`fa-solid fa-chevron-down text-xs transition-transform ${
+                        showAdvancedBackup ? 'rotate-180' : ''
+                      }`}
+                    ></i>
                   </button>
+
+                  {showAdvancedBackup && (
+                    <div className="mt-3 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+                      {/* Ekspor & Impor JSON */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between gap-2">
+                          <div>
+                            <h5 className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                              <i className="fa-solid fa-download text-emerald-600"></i>
+                              <span>Download Cadangan</span>
+                            </h5>
+                            <p className="text-[10px] text-slate-500 mt-0.5">
+                              Unduh file cadangan offline ({products.length} produk).
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={handleExportBackup}
+                            className="w-full py-1.5 rounded-lg bg-slate-800 hover:bg-black text-white text-[11px] font-bold flex items-center justify-center gap-1.5 cursor-pointer"
+                          >
+                            <i className="fa-solid fa-file-arrow-down"></i>
+                            <span>Download File</span>
+                          </button>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between gap-2">
+                          <div>
+                            <h5 className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                              <i className="fa-solid fa-upload text-blue-600"></i>
+                              <span>Pulihkan File</span>
+                            </h5>
+                            <p className="text-[10px] text-slate-500 mt-0.5">
+                              Unggah file cadangan yang pernah diunduh.
+                            </p>
+                          </div>
+                          <label className="w-full py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold flex items-center justify-center gap-1.5 cursor-pointer text-center">
+                            <i className="fa-solid fa-file-arrow-up"></i>
+                            <span>Pilih File</span>
+                            <input
+                              type="file"
+                              accept=".json"
+                              onChange={handleImportBackup}
+                              className="hidden"
+                            />
+                          </label>
+                        </div>
+                      </div>
+
+                      {/* Reset Data Awal */}
+                      <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+                        <div>
+                          <h5 className="text-xs font-bold text-rose-900 flex items-center gap-1.5">
+                            <i className="fa-solid fa-triangle-exclamation text-rose-600"></i>
+                            <span>Reset ke Katalog Bawaan Pabrik</span>
+                          </h5>
+                          <p className="text-[10px] text-rose-700 mt-0.5">
+                            Kembalikan data produk ke kondisi awal perusahaan.
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleResetDefaults}
+                          className="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
+                        >
+                          <i className="fa-solid fa-rotate-left"></i>
+                          <span>Reset</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

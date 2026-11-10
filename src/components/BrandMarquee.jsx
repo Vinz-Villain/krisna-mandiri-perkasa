@@ -242,10 +242,10 @@ export default function BrandMarquee({ onSelectBrand, brands = [] }) {
       {/* Centered Section Header inspired by SMK Telkom */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10 sm:mb-14">
         <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-red-600 tracking-tight leading-tight mb-3 font-sans">
-          Kerja Sama Industri
+          Merek yang Kami Sediakan
         </h2>
         <p className="text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed">
-          Kami menjalin kolaborasi dengan berbagai prinsipal manufaktur dan distributor resmi global untuk mendukung ketersediaan suku cadang otomasi industri berkualitas tinggi bagi lini produksi Anda.
+          Kami menyediakan berbagai produk dari merek-merek industri terkemuka untuk memenuhi kebutuhan industri Anda. Didukung pilihan produk berkualitas serta layanan pengadaan yang andal, kami siap menjadi solusi kebutuhan industri Anda.
         </p>
       </div>
 

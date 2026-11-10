@@ -1,4 +1,15 @@
 import { PRODUCTS_CATALOG } from '../catalogData';
+import {
+  isGoogleSheetActive,
+  fetchAllFromGoogleSheet,
+  saveProductToGSheet,
+  deleteProductFromGSheet,
+  saveCategoryToGSheet,
+  deleteCategoryFromGSheet,
+  saveBrandToGSheet,
+  deleteBrandFromGSheet,
+  syncAllToGoogleSheet,
+} from './googleSheetService';
 
 const DB_NAME = 'kmp_catalog_db';
 const DB_VERSION = 1;
@@ -268,23 +279,85 @@ export async function initStorage() {
   }
 }
 
+/**
+ * Sinkronisasi data live dari Google Sheet Database ke penyimpanan lokal (IndexedDB)
+ */
+export async function refreshCatalogFromCloud() {
+  if (!isGoogleSheetActive()) return null;
+  try {
+    const cloud = await fetchAllFromGoogleSheet();
+    if (cloud.products && cloud.products.length > 0) {
+      await clearStore(STORE_PRODUCTS);
+      for (const p of cloud.products) {
+        await putToStore(STORE_PRODUCTS, p, 'kmp_products');
+      }
+    }
+    if (cloud.categories && cloud.categories.length > 0) {
+      await clearStore(STORE_CATEGORIES);
+      for (const c of cloud.categories) {
+        await putToStore(STORE_CATEGORIES, c, 'kmp_categories');
+      }
+    }
+    if (cloud.brands && cloud.brands.length > 0) {
+      await clearStore(STORE_BRANDS);
+      for (const b of cloud.brands) {
+        await putToStore(STORE_BRANDS, b, 'kmp_brands');
+      }
+    }
+    return cloud;
+  } catch (err) {
+    console.warn('Gagal sinkronisasi data dari Google Sheet:', err);
+    return null;
+  }
+}
+
 // ==================== PRODUCTS CRUD ====================
 export async function getProducts() {
   return await getAllFromStore(STORE_PRODUCTS, 'kmp_products', PRODUCTS_CATALOG);
 }
 
 export async function saveProduct(product) {
-  const finalProduct = {
+  let finalProduct = {
     ...product,
     id: product.id || `PROD-${Date.now()}`,
     sku: product.sku?.trim() || `SKU-${Date.now().toString().slice(-6)}`,
     updatedAt: new Date().toISOString(),
   };
-  return await putToStore(STORE_PRODUCTS, finalProduct, 'kmp_products');
+
+  // Simpan ke IndexedDB lokal terlebih dahulu untuk kecepatan UI
+  await putToStore(STORE_PRODUCTS, finalProduct, 'kmp_products');
+
+  // Jika Google Sheet aktif, kirim perubahan ke cloud database
+  if (isGoogleSheetActive()) {
+    try {
+      let productForCloud = { ...finalProduct };
+      if (productForCloud.image && productForCloud.image.startsWith('/products/')) {
+        productForCloud.image = `https://raw.githubusercontent.com/Vinz-Villain/krisna-mandiri-perkasa/main/public${productForCloud.image}`;
+      }
+      const gRes = await saveProductToGSheet(productForCloud);
+      if (gRes && gRes.product) {
+        finalProduct = gRes.product;
+        await putToStore(STORE_PRODUCTS, finalProduct, 'kmp_products');
+      }
+    } catch (err) {
+      console.warn('Tersimpan di lokal, namun gagal sinkron ke Google Sheet:', err);
+      throw new Error(`Data tersimpan di perangkat, namun gagal dikirim ke Google Sheet: ${err.message}`);
+    }
+  }
+
+  return finalProduct;
 }
 
 export async function deleteProduct(id) {
-  return await deleteFromStore(STORE_PRODUCTS, id, 'kmp_products');
+  await deleteFromStore(STORE_PRODUCTS, id, 'kmp_products');
+  if (isGoogleSheetActive()) {
+    try {
+      await deleteProductFromGSheet(id);
+    } catch (err) {
+      console.warn('Gagal menghapus dari Google Sheet:', err);
+      throw new Error(`Dihapus dari lokal, namun gagal dihapus dari Google Sheet: ${err.message}`);
+    }
+  }
 }
 
 // ==================== CATEGORIES CRUD ====================
@@ -293,17 +366,41 @@ export async function getCategories() {
 }
 
 export async function saveCategory(category) {
-  const finalCategory = {
+  let finalCategory = {
     ...category,
     id: category.id || `cat-${Date.now()}`,
     icon: category.icon || 'fa-box',
     updatedAt: new Date().toISOString(),
   };
-  return await putToStore(STORE_CATEGORIES, finalCategory, 'kmp_categories');
+
+  await putToStore(STORE_CATEGORIES, finalCategory, 'kmp_categories');
+
+  if (isGoogleSheetActive()) {
+    try {
+      const gRes = await saveCategoryToGSheet(finalCategory);
+      if (gRes && gRes.category) {
+        finalCategory = gRes.category;
+        await putToStore(STORE_CATEGORIES, finalCategory, 'kmp_categories');
+      }
+    } catch (err) {
+      console.warn('Gagal sinkron kategori ke Google Sheet:', err);
+      throw new Error(`Kategori tersimpan lokal, gagal sinkron Google Sheet: ${err.message}`);
+    }
+  }
+
+  return finalCategory;
 }
 
 export async function deleteCategory(id) {
-  return await deleteFromStore(STORE_CATEGORIES, id, 'kmp_categories');
+  await deleteFromStore(STORE_CATEGORIES, id, 'kmp_categories');
+  if (isGoogleSheetActive()) {
+    try {
+      await deleteCategoryFromGSheet(id);
+    } catch (err) {
+      console.warn('Gagal menghapus kategori dari Google Sheet:', err);
+      throw new Error(`Kategori dihapus lokal, gagal hapus di Google Sheet: ${err.message}`);
+    }
+  }
 }
 
 // ==================== BRANDS CRUD ====================
@@ -312,17 +409,72 @@ export async function getBrands() {
 }
 
 export async function saveBrand(brand) {
-  const finalBrand = {
+  let finalBrand = {
     ...brand,
     id: brand.id || `brand-${Date.now()}`,
     origin: brand.origin || 'Industrial',
     updatedAt: new Date().toISOString(),
   };
-  return await putToStore(STORE_BRANDS, finalBrand, 'kmp_brands');
+
+  await putToStore(STORE_BRANDS, finalBrand, 'kmp_brands');
+
+  if (isGoogleSheetActive()) {
+    try {
+      const gRes = await saveBrandToGSheet(finalBrand);
+      if (gRes && gRes.brand) {
+        finalBrand = gRes.brand;
+        await putToStore(STORE_BRANDS, finalBrand, 'kmp_brands');
+      }
+    } catch (err) {
+      console.warn('Gagal sinkron merek ke Google Sheet:', err);
+      throw new Error(`Merek tersimpan lokal, gagal sinkron Google Sheet: ${err.message}`);
+    }
+  }
+
+  return finalBrand;
 }
 
 export async function deleteBrand(id) {
-  return await deleteFromStore(STORE_BRANDS, id, 'kmp_brands');
+  await deleteFromStore(STORE_BRANDS, id, 'kmp_brands');
+  if (isGoogleSheetActive()) {
+    try {
+      await deleteBrandFromGSheet(id);
+    } catch (err) {
+      console.warn('Gagal menghapus merek dari Google Sheet:', err);
+      throw new Error(`Merek dihapus lokal, gagal hapus di Google Sheet: ${err.message}`);
+    }
+  }
+}
+
+/**
+ * Ekspor seluruh katalog lokal saat ini ke Google Sheet (1-Click Upload)
+ * Otomatis mengonversi relative path foto lokal ke CDN GitHub publik agar
+ * thumbnail foto dapat muncul langsung di dalam sel Google Sheets!
+ */
+export async function syncCurrentCatalogToGoogleSheet() {
+  const products = await getProducts();
+  const categories = await getCategories();
+  const brands = await getBrands();
+
+  const GITHUB_RAW_BASE =
+    'https://raw.githubusercontent.com/Vinz-Villain/krisna-mandiri-perkasa/main/public';
+
+  const normalizedProducts = products.map((p) => {
+    let finalImage = p.image || '';
+    if (finalImage.startsWith('/products/')) {
+      finalImage = `${GITHUB_RAW_BASE}${finalImage}`;
+    }
+    return {
+      ...p,
+      image: finalImage,
+    };
+  });
+
+  return await syncAllToGoogleSheet({
+    products: normalizedProducts,
+    categories,
+    brands,
+  });
 }
 
 // ==================== IMAGE COMPRESSION UTILITY ====================

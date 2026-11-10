@@ -7,6 +7,7 @@ import {
   getProducts,
   getCategories,
   getBrands,
+  refreshCatalogFromCloud,
   DEFAULT_CATEGORIES,
   DEFAULT_BRANDS,
 } from './services/storageService';
@@ -66,6 +67,14 @@ export default function App() {
       if (prodList && prodList.length > 0) setProducts(prodList);
       if (catList && catList.length > 0) setCategories(catList);
       if (brandList && brandList.length > 0) setBrands(brandList);
+
+      // Sinkronisasi data live cloud Google Sheet di latar belakang
+      const cloudData = await refreshCatalogFromCloud();
+      if (cloudData) {
+        if (cloudData.products && cloudData.products.length > 0) setProducts(cloudData.products);
+        if (cloudData.categories && cloudData.categories.length > 0) setCategories(cloudData.categories);
+        if (cloudData.brands && cloudData.brands.length > 0) setBrands(cloudData.brands);
+      }
     } catch (err) {
       console.error('Failed to load storage catalog:', err);
     }
@@ -85,6 +94,14 @@ export default function App() {
           if (prodList && prodList.length > 0) setProducts(prodList);
           if (catList && catList.length > 0) setCategories(catList);
           if (brandList && brandList.length > 0) setBrands(brandList);
+        }
+
+        // Ambil data live cloud Google Sheet
+        const cloudData = await refreshCatalogFromCloud();
+        if (isMounted && cloudData) {
+          if (cloudData.products && cloudData.products.length > 0) setProducts(cloudData.products);
+          if (cloudData.categories && cloudData.categories.length > 0) setCategories(cloudData.categories);
+          if (cloudData.brands && cloudData.brands.length > 0) setBrands(cloudData.brands);
         }
       } catch (err) {
         console.error('Failed to load storage catalog:', err);
