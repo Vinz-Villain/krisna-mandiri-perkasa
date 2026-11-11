@@ -25,6 +25,7 @@ import FaqSection from './components/FaqSection';
 import CtaBanner from './components/CtaBanner';
 import Footer from './components/Footer';
 import FloatingRfqBar from './components/FloatingRfqBar';
+import ChatbotWidget from './components/ChatbotWidget';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -371,7 +372,14 @@ Mohon dapat dikirimkan surat penawaran resminya. Terima kasih.`;
         )}
       </AnimatePresence>
 
-      {/* 10. Sticky Bottom RFQ Notification Bar */}
+      {/* 10. Floating Interactive WhatsApp Chatbot Widget */}
+      <ChatbotWidget
+        defaultWhatsAppNumber={defaultWhatsAppNumber}
+        displayWhatsApp={displayWhatsApp}
+        onOpenRfq={() => setIsRfqOpen(true)}
+      />
+
+      {/* 11. Sticky Bottom RFQ Notification Bar */}
       <FloatingRfqBar
         items={rfqCart}
         onOpenRfq={() => setIsRfqOpen(true)}
